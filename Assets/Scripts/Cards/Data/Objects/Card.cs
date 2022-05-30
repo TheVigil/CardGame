@@ -6,25 +6,8 @@ namespace Data.Objects
 {
     public abstract class Card
     {
-        protected string _guid;
-        protected Image _cardImg;
-        protected double _pixHeight;
-        protected double _pixWidth;
-
-        public string Guid
-        {
-            get { return _guid; }
-        }
-
-        public Image CardImg
-        {
-            get { return _cardImg; }
-        }
-
-        protected Image FileToImage(string imgPath)
-        {
-            return Image.FromFile(imgPath);
-        }
+        protected readonly double _pixHeight = 50.0;
+        protected readonly double _pixWidth = 30.0;
 
         public double PixHeight
         {

@@ -1,34 +1,45 @@
-using System;
+using Data.Json.Colors_Patterns.Objects;
+using Utils;
 
 namespace Data.Objects
 {
     public class Artist
     {
         private string _name;
-        private string _nickname;
         private DateTime _dateOfBirth;
         private DateTime _dateOfDeath;
         private string _birthplace;
         private string _deathplace;
 
-        public Artist(string name, string nickname, string dateOfBirth, string dateOfDeath, string birthplace, string deathplace)
+        public Artist(OutputParameter jParam)
         {
-            _name = name;
-            _nickname = nickname;
-            _dateOfBirth = DateTime.Parse(dateOfBirth);
-            _dateOfDeath = DateTime.Parse(dateOfDeath);
-            _birthplace = birthplace;
-            _deathplace = deathplace;
+            _name = CleanArtName(jParam._artist[0]._fullname);
+            _dateOfBirth = NullFixer.GenVal<DateTime>(jParam._artist[0]._birthdate);
+            _dateOfDeath = NullFixer.GenVal<DateTime>(jParam._artist[0]._deathdate);
+            _birthplace = jParam._artist[0]._birthplace;
+            _deathplace = jParam._artist[0]._deathplace;
+        }
+
+        private string CleanArtName(string name)
+        {
+            if (name.Contains("Anonym,"))
+            {
+                string[] nameArr = name.Split(',');
+                name = nameArr[0];
+            }
+            if (name.Contains('(') && name.Contains(')'))
+            {
+                int start = name.IndexOf(" (");
+                int end = name.IndexOf(")");
+                name = name.Remove(start, end + 1 - start);
+            }
+
+            return name;
         }
 
         public string Name
         {
             get { return _name; }
-        }
-
-        public string Nickname
-        {
-            get { return _nickname; }
         }
 
         public int BirthDay
