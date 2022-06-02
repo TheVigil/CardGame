@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Data.Objects
 {
     public class MatRuleCard : RuleCard

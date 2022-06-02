@@ -2,13 +2,14 @@ using System.Drawing;
 using System.Collections.Generic;
 using Data.Json.Colors_Patterns.Objects;
 using Utils;
+using System;
 
 namespace Data.Objects
 {
     public class ItemCard : Card
     {
         private string _guid;
-        private Image _cardImg;
+         // private Image _cardImg;
         private string _artAllocation;
         private Artist _artist;
         private string _title;
@@ -20,7 +21,7 @@ namespace Data.Objects
         public ItemCard(OutputParameter jParam, string imgPath, Artist artist, string[] keywords)
         {
             _guid = jParam._guid;
-            _cardImg = FileToImage(imgPath);
+           // _cardImg = FileToImage(imgPath);
             _artAllocation = jParam._domain;
             _artist = artist;
             _title = jParam._title;
@@ -30,20 +31,20 @@ namespace Data.Objects
             _keywords = keywords;
         }
 
-        private Image FileToImage(string imgPath)
+      /*  private Image FileToImage(string imgPath)
         {
             return Image.FromFile(imgPath);
-        }
+        } */
 
         public string Guid
         {
             get { return _guid; }
         }
 
-        public Image Image
+       /* public Image Image
         {
             get { return _cardImg; }
-        }
+        }*/
 
         public string Allocation
         {

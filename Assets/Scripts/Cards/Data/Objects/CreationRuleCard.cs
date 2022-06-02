@@ -1,3 +1,5 @@
+using System;
+
 namespace Data.Objects
 {
     public class CreationRuleCard : RuleCard

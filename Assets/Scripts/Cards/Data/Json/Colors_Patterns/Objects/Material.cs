@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Data.Json.Colors_Patterns.Objects
 {
