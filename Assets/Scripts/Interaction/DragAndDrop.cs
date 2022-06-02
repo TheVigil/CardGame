@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
 {
-    //Canvas is assigned locally at runtime in Start(), whereas the rest are assigned contextually as this gameobject is dragged and dropped
-    public GameObject Canvas;
 
+    public GameObject Canvas;
     private bool isDragging = false;
     private bool isOverDropZone = false;
     private bool isDraggable = true;
@@ -21,7 +20,6 @@ public class DragAndDrop : MonoBehaviour
     }
     void Update()
     {
-        //check every frame to see if this gameobject is being dragged. If it is, make it follow the mouse and set it as a child of the Canvas to render above everything else
         if (isDragging)
         {
             transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
@@ -31,7 +29,7 @@ public class DragAndDrop : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //in our scene, if this gameobject collides with something, it must be the dropzone, as specified in the layer collision matrix (cards are part of the "Cards" layer and the dropzone is part of the "DropZone" layer)
+        // cards should only collide with a drop zone so that they cannot simply be placed anywhere on the board
         isOverDropZone = true;
         dropZone = collision.gameObject;
     }
@@ -44,7 +42,7 @@ public class DragAndDrop : MonoBehaviour
 
     /**
      * 
-     * //TODO: what is the bug here? They parent correctly, but appear behind the ui layer (and don't always appear at the proper coordinates, it seems). . .
+     * //TODO: what is the bug here? They parent correctly, but are snapped not back to the original pos, but some random pos outside the rendered canvas area. . .
      * 
      * StartDrag and EndDrag are called by the event detector component registered on the gameobject. 
      * Cards should snap back to the hand area if they are not placed in a dropzone.
@@ -62,6 +60,7 @@ public class DragAndDrop : MonoBehaviour
     public void EndDrag()
     {
         if (!isDraggable) return;
+
         isDragging = false;
 
         //if the gameobject is put in a dropzone, set it as a child of the dropzone
@@ -73,12 +72,8 @@ public class DragAndDrop : MonoBehaviour
         //otherwise, send it to the hand area
         else
         {
-            transform.position = origin;
+            transform.position = startParent.transform.position;
             transform.SetParent(startParent.transform, false);
-            Debug.Log(origin);
-            Debug.Log("Bad drag, set to start: ", transform.parent);
-            Debug.Log("Bad drag, revert to old pos: ");
-            Debug.Log(transform.position);
         }
     }
 }
