@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cards;
+// using Cards;
+using Data.Objects;
+using UnityEngine.UI;
 
 namespace GameManager
 {
@@ -73,7 +75,7 @@ namespace GameManager
         #region handlers and assorted methods
         private void PopulateDeck()
         {
-            // TODO: Implement. Should fill the deck list with cards
+
             for (int i = 0; i < 60; i++)
             {
                 GameObject Card = Instantiate(PlayerCard, new Vector2(0, 0), Quaternion.identity);
@@ -91,7 +93,7 @@ namespace GameManager
         {
             if(deck.Count >= 1)
              {
-                 GameObject randCard = deck[Random.Range(0, deck.Count + 1)];
+                 GameObject randCard = deck[Random.Range(0, deck.Count)];
 
                  for (int i = 0; i < availableCardSlots.Length; i++)
                  {

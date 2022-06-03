@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
 {
-
     public GameObject Canvas;
     private bool isDragging = false;
     private bool isOverDropZone = false;
@@ -32,12 +31,19 @@ public class DragAndDrop : MonoBehaviour
         // cards should only collide with a drop zone so that they cannot simply be placed anywhere on the board
         isOverDropZone = true;
         dropZone = collision.gameObject;
+
+        if(dropZone.transform.childCount > 0)
+        {
+            var collider = dropZone.GetComponent<Collider2D>();
+            collider.enabled = false; // TODO: It would be better to enable and disable the collider with a script on the dropzone, not in our drag and drop logic. . .
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         isOverDropZone = false;
         dropZone = null;
+
     }
 
     /**

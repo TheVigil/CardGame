@@ -49,3 +49,4 @@ MonoBehaviour:
   discardPile: []
   cardSlots: []
   availableCardSlots: 
+  PlayerCard: {fileID: 2086673271917568855, guid: dc926623afbe8eb49aa7c46e53ae9925, type: 3}
