@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Data.Objects;
 
 public class DragAndDrop : MonoBehaviour
 {
@@ -32,11 +33,6 @@ public class DragAndDrop : MonoBehaviour
         isOverDropZone = true;
         dropZone = collision.gameObject;
 
-        if(dropZone.transform.childCount > 0)
-        {
-            var collider = dropZone.GetComponent<Collider2D>();
-            collider.enabled = false; // TODO: It would be better to enable and disable the collider with a script on the dropzone, not in our drag and drop logic. . .
-        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -46,19 +42,10 @@ public class DragAndDrop : MonoBehaviour
 
     }
 
-    /**
-     * 
-     * //TODO: what is the bug here? They parent correctly, but are snapped not back to the original pos, but some random pos outside the rendered canvas area. . .
-     * 
-     * StartDrag and EndDrag are called by the event detector component registered on the gameobject. 
-     * Cards should snap back to the hand area if they are not placed in a dropzone.
-     * 
-     */
     public void StartDrag()
     {
         //if the gameobject is draggable, store the parent and position of it so we know where to return it if it isn't put in a dropzone
         if (!isDraggable) return;
-        origin = gameObject.transform.position;
         startParent = transform.parent.gameObject;
         isDragging = true;
     }
@@ -74,11 +61,14 @@ public class DragAndDrop : MonoBehaviour
         {
             transform.SetParent(dropZone.transform, false);
             isDraggable = false;
-        }        
+            dropZone.GetComponent<DropZone>().DisableDropZoneCollider();
+            this.gameObject.GetComponent<Card>().played = true;
+            this.gameObject.GetComponent<Card>().OnDrop();
+        }
         //otherwise, send it to the hand area
         else
         {
-            transform.position = startParent.transform.position;
+            transform.position = this.gameObject.transform.parent.position;
             transform.SetParent(startParent.transform, false);
         }
     }

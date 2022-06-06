@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Drawing;
-using Unity;
 using UnityEngine;
 
 namespace Data.Objects
@@ -9,10 +5,9 @@ namespace Data.Objects
     public class Card : MonoBehaviour 
     {
 
-        // TODO: could be that we need separate logic for cards, so I just went ahead and set up a template class. . .
-        public bool played; // track if the card has already been played by the player
-
-        public int handSlotIndex; // track the index of the handslot in which this card is located
+        
+        public bool played;
+        public int handSlotIndex; 
         private GameManager.GameManager gameManager;
 
         protected readonly double _pixHeight = 50.0;
@@ -26,6 +21,26 @@ namespace Data.Objects
         public double PixWidth
         {
             get { return _pixWidth; }
+        }
+
+        private void Start()
+        {
+
+            gameManager = GameObject.FindObjectOfType<GameManager.GameManager>();
+
+        }
+
+        public void OnDrop()
+        {
+            if (this.played)
+            {
+                gameManager.availableCardSlots[handSlotIndex] = true;
+            }
+        }
+
+        private void Update()
+        {
+
         }
     }
 }

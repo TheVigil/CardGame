@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2086673271917568859}
   - component: {fileID: 2086673271917568856}
   - component: {fileID: 2086673271917568857}
+  - component: {fileID: 2980675762376553310}
   m_Layer: 7
   m_Name: ItemCard
   m_TagString: Untagged
@@ -41,7 +42,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 265.54993, y: 409}
-  m_SizeDelta: {x: 230.0755, y: 240.9584}
+  m_SizeDelta: {x: 262.3268, y: 320.1589}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2086673271917568860
 CanvasRenderer:
@@ -196,6 +197,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da102a03a04adbc47b130e8d76b55c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  played: 0
+  handSlotIndex: 0
+--- !u!114 &2980675762376553310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086673271917568855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf91d806145bcb541b109ff15ac4b0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   played: 0
