@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json;
 
 namespace Data.Json.Colors_Patterns.Objects

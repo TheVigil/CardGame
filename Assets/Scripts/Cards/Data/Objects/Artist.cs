@@ -1,5 +1,5 @@
-using Data.Json.Colors_Patterns.Objects;
 using System;
+using Data.Json.Colors_Patterns.Objects;
 using Utils;
 
 namespace Data.Objects
@@ -7,16 +7,20 @@ namespace Data.Objects
     public class Artist
     {
         private string _name;
-        private DateTime _dateOfBirth;
-        private DateTime _dateOfDeath;
+        private DateTime? _dateOfBirth;
+        private DateTime? _dateOfDeath;
         private string _birthplace;
         private string _deathplace;
 
         public Artist(OutputParameter jParam)
         {
             _name = CleanArtName(jParam._artist[0]._fullname);
-            _dateOfBirth = NullFixer.GenVal<DateTime>(jParam._artist[0]._birthdate);
-            _dateOfDeath = NullFixer.GenVal<DateTime>(jParam._artist[0]._deathdate);
+            _dateOfBirth = string.IsNullOrEmpty(jParam._artist[0]._birthdate)
+                                    ? (DateTime?)null
+                                    : DateTime.Parse(TimeFixer.CleanupDates(jParam._artist[0]._birthdate));
+            _dateOfDeath = string.IsNullOrEmpty(jParam._artist[0]._deathdate)
+                                    ? (DateTime?)null
+                                    : DateTime.Parse(TimeFixer.CleanupDates(jParam._artist[0]._deathdate));
             _birthplace = jParam._artist[0]._birthplace;
             _deathplace = jParam._artist[0]._deathplace;
         }
@@ -45,32 +49,32 @@ namespace Data.Objects
 
         public int BirthDay
         {
-            get { return _dateOfBirth.Day; }
+            get { return _dateOfBirth.Value.Day; }
         }
 
         public int BirthMonth
         {
-            get { return _dateOfBirth.Month; }
+            get { return _dateOfBirth.Value.Month; }
         }
 
         public int BirthYear
         {
-            get { return _dateOfBirth.Year; }
+            get { return _dateOfBirth.Value.Year; }
         }
 
         public int DeathDay
         {
-            get { return _dateOfDeath.Day; }
+            get { return _dateOfDeath.Value.Day; }
         }
 
         public int DeathMonth
         {
-            get { return _dateOfDeath.Month; }
+            get { return _dateOfDeath.Value.Month; }
         }
 
         public int DeathYear
         {
-            get { return _dateOfDeath.Year; }
+            get { return _dateOfDeath.Value.Year; }
         }
 
         public string Birthplace

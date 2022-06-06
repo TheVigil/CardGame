@@ -1,6 +1,6 @@
-using Data.Json.Colors_Patterns.Objects;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using Data.Json.Colors_Patterns.Objects;
 
 namespace Utils
 {
