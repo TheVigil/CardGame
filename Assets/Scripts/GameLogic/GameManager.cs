@@ -34,6 +34,7 @@ namespace GameManager
         public Transform[] cardSlots; // an array of transforms for tracking slot positions
         public bool[] availableCardSlots; // track if card slots are available for the player's hand
         public GameObject PlayerCard;
+        public GameObject GameDeck;
 
         #endregion
 
@@ -41,6 +42,7 @@ namespace GameManager
         private void Awake()
         {
             GameManagerInstance = this; // GameManager must be a singleton.
+            GameDeck = GameObject.Find("DrawDeck");
         }
 
         // Start is called before the first frame update
@@ -79,6 +81,7 @@ namespace GameManager
             for (int i = 0; i < 60; i++)
             {
                 GameObject Card = Instantiate(PlayerCard, new Vector2(0, 0), Quaternion.identity);
+                Card.transform.SetParent(GameDeck.transform, false);
                 deck.Add(Card);
             }
         }
@@ -93,8 +96,7 @@ namespace GameManager
         {
             if(deck.Count >= 1)
              {
-                 GameObject randCard = deck[Random.Range(0, deck.Count)];
-
+                GameObject randCard = deck[Random.Range(0, deck.Count)];
                  for (int i = 0; i < availableCardSlots.Length; i++)
                  {
                      if (availableCardSlots[i] == true)
@@ -102,7 +104,7 @@ namespace GameManager
                          randCard.gameObject.SetActive(true);
                          randCard.transform.SetParent(cardSlots[i].transform, false);
                          randCard.GetComponent<Card>().handSlotIndex = i;
-                         Debug.Log(randCard.GetComponent<Card>().handSlotIndex);
+                         randCard.GetComponent<CardFlipper>().FlipCard();
                          availableCardSlots[i] = false;
                          deck.Remove(randCard);
                          return; //draw only one card

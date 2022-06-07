@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Data.Objects
@@ -9,7 +11,10 @@ namespace Data.Objects
         public bool played;
         public int handSlotIndex; 
         private GameManager.GameManager gameManager;
-
+        private CardFlipper flipper;
+        private bool showFace;
+        public List<Sprite> sprites;
+        internal int cardIndex;
         protected readonly double _pixHeight = 50.0;
         protected readonly double _pixWidth = 30.0;
 
@@ -27,6 +32,12 @@ namespace Data.Objects
         {
 
             gameManager = GameObject.FindObjectOfType<GameManager.GameManager>();
+            flipper = gameObject.AddComponent<CardFlipper>();
+            ToggleFace(false);
+        }
+
+        private void Update()
+        {
 
         }
 
@@ -38,9 +49,9 @@ namespace Data.Objects
             }
         }
 
-        private void Update()
+        internal void ToggleFace(bool v)
         {
-
+            showFace = v;
         }
     }
 }
