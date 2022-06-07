@@ -35,6 +35,7 @@ namespace Data.Objects
 
         private void Awake()
         {
+            Debug.Log(_imgDataName);
             _renderer = this.gameObject.GetComponent<SpriteRenderer>();
             _renderer.drawMode = SpriteDrawMode.Sliced;
             _renderer.sprite = Resources.Load<Sprite>(_imgDataName);
