@@ -11,9 +11,9 @@ namespace Utils
             List<string> destination = new List<string>();
             switch (typeof(T))
             {
-                case var type when type == typeof(Material):
-                    List<Material> matList = (List<Material>)Convert.ChangeType(source, typeof(List<T>));
-                    foreach (Material mat in matList)
+                case var type when type == typeof(JMaterial):
+                    List<JMaterial> matList = (List<JMaterial>)Convert.ChangeType(source, typeof(List<T>));
+                    foreach (JMaterial mat in matList)
                         destination.Add(mat._term);
 
                     return destination;

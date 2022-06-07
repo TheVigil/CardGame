@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using Data.Json.Colors_Patterns.Objects;
 using Utils;
+using Unity;
+using UnityEngine;
 
 namespace Data.Objects
 {
@@ -16,6 +18,7 @@ namespace Data.Objects
         private List<string> _materials;
         private List<string> _techniques;
         private List<string> _keywords;
+        private SpriteRenderer _renderer;
 
         public ItemCard(OutputParameter jParam, string imgPath)
         {
@@ -25,9 +28,16 @@ namespace Data.Objects
             _artist = new Artist(jParam);
             _title = jParam._title;
             _estimatedCreationTime = AssignCreationTimeRange(jParam._creationTime);
-            _materials = ListFiller.FillList<Material>(jParam._materials);
+            _materials = ListFiller.FillList<JMaterial>(jParam._materials);
             _techniques = ListFiller.FillList<Technique>(jParam._techs);
             _keywords = jParam._keywords;
+        }
+
+        private void Awake()
+        {
+            _renderer = this.gameObject.GetComponent<SpriteRenderer>();
+            _renderer.drawMode = SpriteDrawMode.Sliced;
+            _renderer.sprite = Resources.Load<Sprite>(_imgDataName);
         }
 
         public string Guid

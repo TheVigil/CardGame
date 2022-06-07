@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Data.Json.Colors_Patterns.Objects
 {
-    public class Material
+    public class JMaterial
     {
         [JsonProperty(PropertyName = "term")]
         public string _term { get; set; }

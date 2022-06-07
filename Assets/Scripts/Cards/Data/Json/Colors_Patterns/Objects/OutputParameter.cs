@@ -37,7 +37,7 @@ namespace Data.Json.Colors_Patterns.Objects
         public string _creationTime { get; set; }
 
         [JsonProperty(PropertyName = "material")]
-        public List<Material> _materials { get; set; }
+        public List<JMaterial> _materials { get; set; }
 
         [JsonProperty(PropertyName = "technik")]
         public List<Technique> _techs { get; set; }
