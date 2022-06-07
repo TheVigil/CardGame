@@ -20,7 +20,7 @@ namespace Data.Objects
         public ItemCard(OutputParameter jParam, string imgPath)
         {
             _guid = jParam._guid;
-            _imgDataName = imgPath + "/" + jParam._dataName;
+            _imgDataName = imgPath + "/" + _guid + ".png";
             _artAllocation = jParam._domain;
             _artist = new Artist(jParam);
             _title = jParam._title;
