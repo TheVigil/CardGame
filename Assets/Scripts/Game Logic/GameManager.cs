@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cards;
+using Data.Json.Colors_Patterns.Objects;
+using Utils;
 
 namespace GameManager
 {
@@ -24,7 +26,7 @@ namespace GameManager
             PlayerTurn,
             ScoreCalc,
             TurnEnd
-        }   
+        }
 
         public GameState gameState;
         public List<GameObject> deck = new List<GameObject>();
@@ -74,10 +76,22 @@ namespace GameManager
         private void PopulateDeck()
         {
             // TODO: Implement. Should fill the deck list with cards
-            for (int i = 0; i < 60; i++)
+            ConfigParameter confParam = JConfigDeserializer.JConfig._out[0];
+            List<OutputParameter> outParams = JDataDeserializer.JData._out;
+
+            for (int i = 0; i < confParam._guids.Count; i++)
             {
-                GameObject Card = Instantiate(PlayerCard, new Vector2(0, 0), Quaternion.identity);
-                deck.Add(Card);
+                string currGuid = confParam._guids[i];
+                foreach (OutputParameter outParam in outParams)
+                {
+                    if (outParam._guid == currGuid)
+                    {
+                        JParamHolder._currOutParam = outParam;
+                        GameObject Card = Instantiate(PlayerCard, new Vector2(0, 0), Quaternion.identity);
+                        deck.Add(Card);
+                        break;
+                    }
+                }
             }
         }
 
@@ -89,24 +103,24 @@ namespace GameManager
 
         public void DrawCard()
         {
-            if(deck.Count >= 1)
-             {
-                 GameObject randCard = deck[Random.Range(0, deck.Count + 1)];
+            if (deck.Count >= 1)
+            {
+                GameObject randCard = deck[Random.Range(0, deck.Count + 1)];
 
-                 for (int i = 0; i < availableCardSlots.Length; i++)
-                 {
-                     if (availableCardSlots[i] == true)
-                     {
-                         randCard.gameObject.SetActive(true);
-                         randCard.transform.SetParent(cardSlots[i].transform, false);
-                         randCard.GetComponent<Card>().handSlotIndex = i;
-                         Debug.Log(randCard.GetComponent<Card>().handSlotIndex);
-                         availableCardSlots[i] = false;
-                         deck.Remove(randCard);
-                         return; //draw only one card
-                     }
-                 }
-             }           
+                for (int i = 0; i < availableCardSlots.Length; i++)
+                {
+                    if (availableCardSlots[i] == true)
+                    {
+                        randCard.gameObject.SetActive(true);
+                        randCard.transform.SetParent(cardSlots[i].transform, false);
+                        randCard.GetComponent<Card>().handSlotIndex = i;
+                        Debug.Log(randCard.GetComponent<Card>().handSlotIndex);
+                        availableCardSlots[i] = false;
+                        deck.Remove(randCard);
+                        return; //draw only one card
+                    }
+                }
+            }
         }
         #endregion
 

@@ -1,28 +1,31 @@
 using System;
 using Data.Json.Colors_Patterns.Objects;
 using Utils;
+using Unity;
+using UnityEngine;
 
 namespace Data.Objects
 {
     public class Artist
     {
+        private OutputParameter _jParam;
         private string _name;
         private DateTime? _dateOfBirth;
         private DateTime? _dateOfDeath;
         private string _birthplace;
         private string _deathplace;
 
-        public Artist(OutputParameter jParam)
+        internal void Awake() // Assembly-Access (almost equals protected)
         {
-            _name = CleanArtName(jParam._artist[0]._fullname);
-            _dateOfBirth = string.IsNullOrEmpty(jParam._artist[0]._birthdate)
+            _name = CleanArtName(_jParam._artist[0]._fullname);
+            _dateOfBirth = string.IsNullOrEmpty(_jParam._artist[0]._birthdate)
                                     ? (DateTime?)null
-                                    : DateTime.Parse(TimeFixer.CleanupDates(jParam._artist[0]._birthdate));
-            _dateOfDeath = string.IsNullOrEmpty(jParam._artist[0]._deathdate)
+                                    : DateTime.Parse(TimeFixer.CleanupDates(_jParam._artist[0]._birthdate));
+            _dateOfDeath = string.IsNullOrEmpty(_jParam._artist[0]._deathdate)
                                     ? (DateTime?)null
-                                    : DateTime.Parse(TimeFixer.CleanupDates(jParam._artist[0]._deathdate));
-            _birthplace = jParam._artist[0]._birthplace;
-            _deathplace = jParam._artist[0]._deathplace;
+                                    : DateTime.Parse(TimeFixer.CleanupDates(_jParam._artist[0]._deathdate));
+            _birthplace = _jParam._artist[0]._birthplace;
+            _deathplace = _jParam._artist[0]._deathplace;
         }
 
         private string CleanArtName(string name)
@@ -40,6 +43,11 @@ namespace Data.Objects
             }
 
             return name;
+        }
+
+        public OutputParameter SetJParam
+        {
+            set { _jParam = value; }
         }
 
         public string Name
