@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7454129838551895860}
   - component: {fileID: 5062778075644692408}
+  - component: {fileID: 1846991151}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -47,6 +48,30 @@ MonoBehaviour:
   gameState: 0
   deck: []
   discardPile: []
-  cardSlots: []
-  availableCardSlots: 
-  PlayerCard: {fileID: 2086673271917568855, guid: dc926623afbe8eb49aa7c46e53ae9925, type: 3}
+  cardSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  availableCardSlots: 010101
+  PlayerCard: {fileID: 206426737686601503, guid: c7b3ec8c17b2da144b1f8557e485ee14, type: 3}
+--- !u!114 &1846991151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3848657011809318098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9416dcdd9d640dd4abd22899e6682c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deck:
+  - {fileID: 0}
+  discardPile: []
+  cardSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  availableCardSlots: 010101
+  PlayerCard: {fileID: 206426737686601503, guid: c7b3ec8c17b2da144b1f8557e485ee14, type: 3}

@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Manager;
 
 namespace Data.Objects
 {
     public class Card : MonoBehaviour 
     {
-
-        
         public bool played;
         public int handSlotIndex; 
-        private GameManager.GameManager gameManager;
+        private GameManager gameManager;
         private CardFlipper flipper;
         private bool showFace;
         public List<Sprite> sprites;
@@ -31,7 +30,7 @@ namespace Data.Objects
         private void Start()
         {
 
-            gameManager = GameObject.FindObjectOfType<GameManager.GameManager>();
+            gameManager = FindObjectOfType<GameManager>();
             flipper = gameObject.AddComponent<CardFlipper>();
             ToggleFace(false);
         }
@@ -43,9 +42,9 @@ namespace Data.Objects
 
         public void OnDrop()
         {
-            if (this.played)
+            if (played)
             {
-                gameManager.availableCardSlots[handSlotIndex] = true;
+                gameManager.GetComponent<CardManager>().availableCardSlots[handSlotIndex] = true;
             }
         }
 

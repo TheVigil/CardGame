@@ -1,75 +1,82 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Manager;
 using Data.Objects;
 
 public class DragAndDrop : MonoBehaviour
 {
-    public GameObject Canvas;
-    private bool isDragging = false;
-    private bool isOverDropZone = false;
-    private bool isDraggable = true;
-    private GameObject dropZone;
-    private Vector3 origin;
-    private GameObject startParent;
+    private bool overDropZone;
+    private bool isDraggable;
 
-    private void Start()
+    private GameObject startParent;
+    private GameObject dropZone;
+    private GameManager gameManager;
+
+    private void Awake()
     {
-        Canvas = GameObject.Find("Canvas");
-  
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+        isDraggable = true;
     }
-    void Update()
+    public void OnMouseDown()
     {
-        if (isDragging)
+        startParent = transform.parent.gameObject;
+        
+    }
+    public void OnMouseDrag()
+    {
+        if (isDraggable)
         {
-            transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            transform.SetParent(Canvas.transform, true);
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            gameObject.GetComponent<SpriteRenderer>().size = new Vector2(1f, 1f);
+            gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
+            gameObject.GetComponent<Transform>().localScale = new Vector2(0.6f, 0.6f);
+            transform.Translate(mousePosition);
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    // TODO : Maybe animate the dropzone sprites to indicate a card can be dropped?
+    #region Collision Detection
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        // cards should only collide with a drop zone so that they cannot simply be placed anywhere on the board
-        isOverDropZone = true;
-        dropZone = collision.gameObject;
+        // Debug.Log("enter " + other.name);
+        if (other.gameObject.GetComponent<BoxCollider2D>().isTrigger)
+        {
+            dropZone = other.gameObject;
+            overDropZone = true;
+        }
 
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        isOverDropZone = false;
+       // Debug.Log("exit " + other.name);
         dropZone = null;
+        overDropZone = false;
 
     }
-
-    public void StartDrag()
-    {
-        //if the gameobject is draggable, store the parent and position of it so we know where to return it if it isn't put in a dropzone
-        if (!isDraggable) return;
-        startParent = transform.parent.gameObject;
-        isDragging = true;
-    }
+    #endregion
 
     public void EndDrag()
     {
-        if (!isDraggable) return;
-
-        isDragging = false;
-
-        //if the gameobject is put in a dropzone, set it as a child of the dropzone
-        if (isOverDropZone)
+        if (overDropZone)
         {
             transform.SetParent(dropZone.transform, false);
-            isDraggable = false;
+            transform.position = transform.parent.position;
+
+            gameObject.GetComponent<Transform>().localScale = new Vector2(1f, 1f);
+            gameObject.GetComponent<SpriteRenderer>().size = new Vector2(1f, 1f);
+            gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
+            gameManager.GetComponent<CardManager>().EnableCardSlot((gameObject.GetComponent<Card>().handSlotIndex));
             dropZone.GetComponent<DropZone>().DisableDropZoneCollider();
-            this.gameObject.GetComponent<Card>().played = true;
-            this.gameObject.GetComponent<Card>().OnDrop();
+
+            isDraggable = false;
         }
-        //otherwise, send it to the hand area
         else
         {
-            transform.position = this.gameObject.transform.parent.position;
+            gameObject.GetComponent<Transform>().localScale = new Vector2(1f, 1f);
+            transform.position = startParent.transform.position;
             transform.SetParent(startParent.transform, false);
+            isDraggable = true;
         }
     }
+
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Data.Objects;
 public class CardFlipper : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
+    /*private SpriteRenderer spriteRenderer;
     private Image image;
     private Card card;
     private GameObject canvas;
@@ -18,9 +18,7 @@ public class CardFlipper : MonoBehaviour
         canvas = GameObject.Find("Canvas");
         card = gameObject.GetComponent<Card>();
         // image = gameObject.GetComponent <Image>();
-
         // image.sprite = Resources.Load<Sprite>("CardFaces/cardBack");
-
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.drawMode = SpriteDrawMode.Sliced;
         spriteRenderer.sprite = Resources.Load<Sprite>("CardFaces/cardBack");
@@ -71,9 +69,9 @@ public class CardFlipper : MonoBehaviour
         {
             card.cardIndex = cardIndex;
             card.ToggleFace(true);
-        }*/
+        }
 
         card.ToggleFace(true);
         
-    }
+    }*/
 }

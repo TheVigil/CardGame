@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Data.Json.Colors_Patterns.Objects;
 using Utils;
 using System;
+using Unity;
+using UnityEngine;
 
 namespace Data.Objects
 {
@@ -17,8 +19,9 @@ namespace Data.Objects
         private List<string> _materials;
         private List<string> _techniques;
         private string[] _keywords;
+        private SpriteRenderer _spriteRenderer;
 
-        public ItemCard(OutputParameter jParam, string imgPath, Artist artist, string[] keywords)
+       /* public ItemCard()
         {
             _guid = jParam._guid;
            // _cardImg = FileToImage(imgPath);
@@ -29,12 +32,41 @@ namespace Data.Objects
             _materials = ListFiller.FillList<Material>(jParam._materials);
             _techniques = ListFiller.FillList<Technique>(jParam._techs);
             _keywords = keywords;
+        }*/
+
+        // called at instantiation
+        private void Awake()
+        {
+            _guid = "27A407B54E6CB9668EF0F4ABBD9C17BA";
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            _spriteRenderer.drawMode = SpriteDrawMode.Sliced;
+            _spriteRenderer.sprite = Resources.Load<Sprite>("CardFaces/" + _guid);
+            _spriteRenderer.size = new Vector2(1f, 1f); // values taken from inspector 
+
+            /* _artAllocation = 
+            _title =
+            _estimatedCreationTime =_
+            _materials =
+            _techniques =
+            _keywords = */
         }
 
-      /*  private Image FileToImage(string imgPath)
+        // called at first frame
+        private void Start()
         {
-            return Image.FromFile(imgPath);
-        } */
+            
+        }
+
+        /*void OnMouseDown()
+        {
+            Debug.Log("Sprite Clicked");
+        }*/
+
+        /*  private Image FileToImage(string imgPath)
+          {
+              return Image.FromFile(imgPath);
+          } */
 
         public string Guid
         {
