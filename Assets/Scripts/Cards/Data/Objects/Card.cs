@@ -1,10 +1,10 @@
 using System;
-using System.Collections;
-using System.Drawing;
+using Unity;
+using UnityEngine;
 
 namespace Data.Objects
 {
-    public abstract class Card
+    public class Card : MonoBehaviour
     {
         protected readonly double _pixHeight = 50.0;
         protected readonly double _pixWidth = 30.0;

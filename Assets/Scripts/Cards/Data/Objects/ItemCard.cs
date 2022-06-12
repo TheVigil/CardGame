@@ -1,50 +1,64 @@
-using System.Drawing;
+using System;
 using System.Collections.Generic;
 using Data.Json.Colors_Patterns.Objects;
+using Data.Json.Deserializer;
 using Utils;
-using System;
+using Unity;
+using UnityEngine;
 
 namespace Data.Objects
 {
     public class ItemCard : Card
     {
         private string _guid;
-         // private Image _cardImg;
+        private string _imgDataName;
         private string _artAllocation;
         private Artist _artist;
         private string _title;
         private List<int> _estimatedCreationTime;
         private List<string> _materials;
         private List<string> _techniques;
-        private string[] _keywords;
+        private List<string> _keywords;
+        private SpriteRenderer _spriteRenderer;
 
-        public ItemCard(OutputParameter jParam, string imgPath, Artist artist, string[] keywords)
+        private void Awake()
         {
-            _guid = jParam._guid;
-           // _cardImg = FileToImage(imgPath);
-            _artAllocation = jParam._domain;
-            _artist = artist;
-            _title = jParam._title;
-            _estimatedCreationTime = AssignCreationTimeRange(jParam._creationTime);
-            _materials = ListFiller.FillList<Material>(jParam._materials);
-            _techniques = ListFiller.FillList<Technique>(jParam._techs);
-            _keywords = keywords;
+            InstantiateItemCard();
+            InstantiateSpriteRenderer();
         }
 
-      /*  private Image FileToImage(string imgPath)
+        private void InstantiateItemCard()
         {
-            return Image.FromFile(imgPath);
-        } */
+            OutputParameter jParam = JParamHolder._currOutParam; // Currently setted parameter by GameManager for each Card
+
+            _guid = jParam._guid;
+            _imgDataName = jParam._dataName;
+            _artAllocation = jParam._domain;
+            _artist = new Artist();
+            _artist.SetJParam = jParam;
+            _artist.Awake();
+            _title = jParam._title;
+            _estimatedCreationTime = AssignCreationTimeRange(jParam._creationTime);
+            _materials = ListFiller.FillList<JMaterial>(jParam._materials);
+            _techniques = ListFiller.FillList<Technique>(jParam._techs);
+            _keywords = jParam._keywords;
+        }
+
+        private void InstantiateSpriteRenderer()
+        {
+            ConfigParameter confParam = JConfigDeserializer.JConfig._out[0]; // Static index is correct for current dataset
+
+            var parent = (gameObject.transform as RectTransform);
+            _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            _spriteRenderer.drawMode = SpriteDrawMode.Sliced;
+            _spriteRenderer.sprite = Resources.Load<Sprite>(confParam._savePath + _guid);
+            _spriteRenderer.size += parent.rect.size;
+        }
 
         public string Guid
         {
             get { return _guid; }
         }
-
-       /* public Image Image
-        {
-            get { return _cardImg; }
-        }*/
 
         public string Allocation
         {
@@ -66,11 +80,19 @@ namespace Data.Objects
             get { return _estimatedCreationTime; }
         }
 
+        public string ImgDataName
+        {
+            get { return _imgDataName; }
+        }
+
         private List<int> AssignCreationTimeRange(string estimatedTime)
         {
             List<int> estimatedTimeRange = new List<int>();
             string[] timeRange = new string[1];
-            string cleanedTime = CleanupJSONTimes(estimatedTime);
+            string cleanedTime = "";
+
+            if (estimatedTime != null)
+                cleanedTime = TimeFixer.CleanupCreationTimes(estimatedTime);
 
             if (cleanedTime.Contains('/'))
                 timeRange = cleanedTime.Split('/');
@@ -80,75 +102,19 @@ namespace Data.Objects
                 timeRange[0] = cleanedTime;
 
             for (int i = 0; i < timeRange.Length; i++)
-                estimatedTimeRange.Add(Int32.Parse(timeRange[i]));
+            {
+                try
+                {
+                    estimatedTimeRange.Add(Int32.Parse(timeRange[i]));
+                }
+                catch (FormatException fe)
+                {
+                    estimatedTimeRange.Add(0000);
+                }
+
+            }
 
             return estimatedTimeRange;
-        }
-
-        private string CleanupJSONTimes(string estimatedTime)
-        {
-            if (estimatedTime.Contains("um"))
-            {
-                estimatedTime = estimatedTime.Replace("um ", "");
-
-                if (!(estimatedTime.Contains('/') || estimatedTime.Contains('-')))
-                {
-                    int upperDeviation = Int32.Parse(estimatedTime) + 10;
-                    int lowerDeviation = Int32.Parse(estimatedTime) - 10;
-
-                    estimatedTime = lowerDeviation + "-" + upperDeviation;
-                }
-            }
-            else if (estimatedTime.Contains("nach"))
-            {
-                estimatedTime = estimatedTime.Replace("nach ", "");
-                int upperDeviation = Int32.Parse(estimatedTime) + 10;
-
-                estimatedTime = estimatedTime + "-" + upperDeviation;
-            }
-            else if (estimatedTime.Contains("vor"))
-            {
-                estimatedTime = estimatedTime.Replace("vor ", "");
-                int lowerDeviation = Int32.Parse(estimatedTime) - 10;
-
-                estimatedTime = lowerDeviation + "-" + estimatedTime;
-            }
-            else if (estimatedTime.Contains("Jh."))
-            {
-                if (estimatedTime.Contains("Hälfte"))
-                {
-                    char[] halfCenturyTime = estimatedTime.ToCharArray();
-                    int upperDeviation = 50;
-                    int composedCentury = Int32.Parse(halfCenturyTime[10] + "" + halfCenturyTime[11]);
-
-                    estimatedTime = (composedCentury - 1) + "00-" + (composedCentury - 1) + upperDeviation;
-                }
-                else
-                {
-                    char[] fullCenturyTime = estimatedTime.ToCharArray();
-                    int upperDeviation = 99;
-                    int composedCentury = Int32.Parse(fullCenturyTime[0] + "" + fullCenturyTime[1]);
-
-                    estimatedTime = (composedCentury - 1) + "00-" + (composedCentury - 1) + upperDeviation;
-                }
-            }
-            if (estimatedTime.Contains('/'))
-            {
-                string[] timeSplit = estimatedTime.Split('/');
-
-                if (timeSplit[1].Length < 4)
-                {
-                    char[] longTimeInfo = timeSplit[0].ToCharArray();
-                    estimatedTime = timeSplit[0] + "/" + longTimeInfo[0] + longTimeInfo[1] + timeSplit[1];
-                }
-            }
-            if (estimatedTime.Contains('(') && estimatedTime.Contains(')'))
-            {
-                estimatedTime = estimatedTime.Replace(" (", "/");
-                estimatedTime = estimatedTime.Replace(")", "");
-            }
-
-            return estimatedTime;
         }
 
         public List<string> Materials
@@ -161,7 +127,7 @@ namespace Data.Objects
             get { return _techniques; }
         }
 
-        public string[] Keywords
+        public List<string> Keywords
         {
             get { return _keywords; }
         }

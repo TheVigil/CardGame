@@ -1,5 +1,6 @@
-using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Data.Json.Colors_Patterns.Objects
 {
@@ -36,7 +37,7 @@ namespace Data.Json.Colors_Patterns.Objects
         public string _creationTime { get; set; }
 
         [JsonProperty(PropertyName = "material")]
-        public List<Material> _materials { get; set; }
+        public List<JMaterial> _materials { get; set; }
 
         [JsonProperty(PropertyName = "technik")]
         public List<Technique> _techs { get; set; }
@@ -64,5 +65,11 @@ namespace Data.Json.Colors_Patterns.Objects
 
         [JsonProperty(PropertyName = "submaster")]
         public List<Submaster> _submasters { get; set; }
+
+        [JsonProperty(PropertyName = "keywords")]
+        public List<string> _keywords { get; set; }
+
+        [JsonProperty(PropertyName = "dateiname")]
+        public string _dataName { get; set; }
     }
 }

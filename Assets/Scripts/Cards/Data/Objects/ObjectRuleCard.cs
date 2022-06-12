@@ -1,3 +1,5 @@
+using System;
+
 namespace Data.Objects
 {
     public class ObjectRuleCard : RuleCard
@@ -14,7 +16,7 @@ namespace Data.Objects
         {
             foreach (ItemCard card in _assignedItems.Keys)
             {
-                for (int i = 0; i < card.Keywords.Length; i++)
+                for (int i = 0; i < card.Keywords.Count; i++)
                 {
                     bool match = false;
 

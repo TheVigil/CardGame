@@ -1,6 +1,6 @@
-using Data.Objects;
-using System.Globalization;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 
 namespace Utils
 {
@@ -52,6 +52,8 @@ namespace Utils
                         jValue = jValue.Replace("(vor) ", "");
                     else if (jValue.Contains("(nach)"))
                         jValue = jValue.Replace("(nach) ", "");
+                    else if (jValue.Contains("(um)"))
+                        jValue = jValue.Replace("(um) ", "");
 
                     return jValue;
 

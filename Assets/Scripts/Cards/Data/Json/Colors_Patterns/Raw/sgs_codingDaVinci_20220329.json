@@ -63,7 +63,7 @@
         "vorname":"Georg",
         "geburtsdatum":"1566",
         "geburtsort":"Olmütz",
-        "sterbedatum":"(vor)  23.03.1638",
+        "sterbedatum":"(vor) 23.03.1638",
         "sterbeort":"Frankfurt <Main>",
         "notiz":"AKL:\nIdent.-Nr.: 00068450\nQuelle zum Thieme-Becker-Namen: ThB12, 1916"
       }
@@ -106,7 +106,13 @@
     "textdigitalerkatalogen":"Georg Flegel is widely regarded Germany's first still life painter. Unlike his fellow-artists he did not leave the country during the turmoil of the Thirty Years War, but remained active in Frankfurt. Combining outstanding painterly skill and aesthetic pleasure with moral instruction, his still lifes of the vanitas type address one of the central subjects of baroque art, namely the transience of life and the certainty of death. Withered flowers symbolise the corruption of beauty, the hourglass points to the days of our lives slipping away like sand. Broken crockery emphasises the futility of possessions, rotting fruit the perishable nature of food.",
     "urheberrechtkuenstler":"gemeinfrei",
     "status":"Inventarisiert",
-    "objektbezeichnung":"Gemälde"
+    "objektbezeichnung":"Gemälde",
+    "keywords":[
+        "Stillleben",
+        "Pflanzen",
+        "Pflanze"
+    ],
+    "dateiname":"flegel_1640.jpg"
   },
   {
     "guid":"5E84E96E4C44D5875DE6DFACB86FEA6B",
@@ -172,7 +178,14 @@
         "guid":"2ec648bc-d063-4011-9512-c1c83a237244",
         "pfad":"\/mup\/bravo\/3394\/001\/sgs_mup_bravo_3394_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Mensch",
+        "Tier",
+        "Reiter"
+    ],
+    "dateiname":"sgs_mup_bravo_3394_001_s.jpg"
   },
   {
     "guid":"83B795324231E30A6CD658889B083324",
@@ -231,7 +244,14 @@
         "guid":"c7e769f6-49dd-4d07-95af-dadf7bfd391c",
         "pfad":"\/mup\/anonym\/3593\/001\/sgs_mup_anonym_3593_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Landschaft",
+        "Naturlandschaft",
+        "Boote",
+        "Boot"
+    ],
+    "dateiname":"sgs_mup_anonym_3593_001_s.jpg"
   },
   {
     "guid":"AA61EA674B9637F920D0AB819C01B844",
@@ -429,7 +449,15 @@
         "guid":"8c2fa18b-cf9d-46d0-8101-24c83103e89a",
         "pfad":"\/mup\/marc\/2519\/001\/sgs_mup_marc_2519_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+        "Tiere",
+        "Tier",
+        "Pferde",
+        "Pferd"
+    ],
+    "dateiname":"sgs_mup_marc_2519_001_s.jpg"
   },
   {
     "guid":"C24DF31241EF93C55DC1F7BA05CBA3E7",
@@ -704,7 +732,13 @@
         "abbildungen":"113",
         "anzabbildungen":"113"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+        "Formen",
+        "Form"
+    ],
+    "dateiname":"sgs_mup_mondrian_2753_s01_s.jpg"
   },
   {
     "guid":"69A4FE3B411B0FA669CEAABE2AC7C954",
@@ -1811,7 +1845,16 @@
         "seitenzahl":"32-33",
         "abbildungen":"S. 32"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Menschen",
+        "Mensch",
+        "Tiere",
+        "Tier",
+        "Reiter"
+    ],
+    "dateiname":"achenbach_941.jpg"
   },
   {
     "guid":"882435B7C8DA498BA6CA71C048003865",
@@ -2022,7 +2065,13 @@
         "guid":"657e73e2-3416-4429-8f8d-228a01152c37",
         "pfad":"\/mup\/rottmann\/2162\/001\/sgs_mup_rottmann_2162_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Menschen",
+        "Mensch"
+    ],
+    "dateiname":"sgs_mup_rottmann_2162_001_s.jpg"
   },
   {
     "guid":"7F56C5244523A2E377EB6C98E601C102",
@@ -2230,7 +2279,14 @@
         "guid":"7b31d5c3-b8ee-4f14-8484-78385c1e0b56",
         "pfad":"\/mup\/signac\/2698\/001\/sgs_mup_signac_2698_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Landschaft",
+        "Boote",
+        "Boot",
+        "Hafen"
+    ],
+    "dateiname":"sgs_mup_signac_2698_001_s.jpg"
   },
   {
     "guid":"356197C843D454726E6707A54022485D",
@@ -2574,7 +2630,15 @@
         "guid":"73f8f9bc-1a3a-4f7b-9966-bf3b21cbf3f4",
         "pfad":"\/mup\/mirou\/506\/001\/sgs_mup_mirou_506_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Tiere",
+        "Tier",
+        "Menschen",
+        "Mensch"
+    ],
+    "dateiname":"sgs_mup_mirou_506_001_s.jpg"
   },
   {
     "guid":"CE18162A490560A3414B78B81A75724",
@@ -2642,7 +2706,14 @@
         "guid":"e8871675-1498-468a-8001-bdcbec3e2f5d",
         "pfad":"\/mup\/mondrian\/l-1331\/v01\/sgs_mup_mondrian_l-1331_v01_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+        "Formen",
+        "Form",
+        "Muster"
+    ],
+    "dateiname":"sgs_mup_mondrian_l-1331_v01_s.jpg"
   },
   {
     "guid":"AD15EEE340EF8F48546D97B6EE8F4265",
@@ -2945,7 +3016,17 @@
         "guid":"490bb4ee-2c00-4705-9011-a3865cb99835",
         "pfad":"\/mup\/heinzmann\/692\/001\/sgs_mup_heinzmann_692_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Stadtlandschaft",
+        "Naturlandschaft",
+        "Gebäude",
+        "Menschen",
+        "Mensch",
+        "Tiere",
+        "Tier"
+    ],
+    "dateiname":"sgs_mup_heinzmann_692_001_s.jpg"
   },
   {
     "guid":"BF323DAC4FEC5F7CBB49E59A9BE922C2",
@@ -3093,7 +3174,14 @@
         "guid":"9822796b-0e1e-4540-a0b6-f3ee69962c11",
         "pfad":"\/mup\/kanold\/1386\/001\/sgs_mup_kanold_1386_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Landschaft",
+        "Mensch",
+        "Menschen",
+        "Ländlich"
+    ],
+    "dateiname":"sgs_mup_kanold_1386_001_s.jpg"
   },
   {
     "guid":"8F833B0A48ED3344DCD8E8ADB4052480",
@@ -3390,7 +3478,14 @@
         "guid":"22e2c4ef-40f4-41b9-9041-c9b7ffc2b8d5",
         "pfad":"\/mup\/rohlfs\/1396\/001\/sgs_mup_rohlfs_1396_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Abstrakt",
+        "Bäume",
+        "Baum"
+    ],
+    "dateiname":"sgs_mup_rohlfs_1396_001_s.jpg"
   },
   {
     "guid":"0035DE614C2C737CC35437908E053DD7",
@@ -3559,7 +3654,13 @@
         "guid":"bd888991-5df8-4d75-912e-efb30f78956a",
         "pfad":"\/mup\/slevogt\/2577\/001\/sgs_mup_slevogt_2577_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Natur",
+        "Landschaft"
+    ],
+    "dateiname":"sgs_mup_slevogt_2577_001_s.jpg"
   },
   {
     "guid":"4DC1894446F64A38FA4E9F802678C3F8",
@@ -3721,7 +3822,13 @@
         "guid":"44f8b814-87f8-4d4c-b767-dc373e1f3415",
         "pfad":"\/mup\/bredt\/1784\/001\/sgs_mup_bredt_1784_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Mensch",
+        "Natur",
+        "Naturlandschaft"
+    ],
+    "dateiname":"sgs_mup_bredt_1784_001_s.jpg"
   },
   {
     "guid":"794D68014209A4905FB0B8A46316308E",
@@ -4126,7 +4233,13 @@
         "guid":"02ead911-7386-46ae-acfa-e96393e1a085",
         "pfad":"\/mup\/knaus\/2155\/001\/sgs_mup_knaus_2155_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Tier",
+        "Tiere",
+        "Gans"
+    ],
+    "dateiname":"sgs_mup_knaus_2155_001_s.jpg"
   },
   {
     "guid":"27FCDC704D5BF1996738D1AE72AC5BF5",
@@ -4243,7 +4356,15 @@
         "guid":"19e00b2c-5f44-4712-a08b-f267f0d930eb",
         "pfad":"\/mup\/kricheldorf\/3254\/001\/sgs_mup_kricheldorf_3254_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Stillleben",
+        "Nahrung",
+        "Essen",
+        "Kirschen",
+        "Kirsche"
+    ],
+    "dateiname":"sgs_mup_kricheldorf_3254_001_s.jpg"
   },
   {
     "guid":"F116319440889F6CD84EB0840DF54E76",
@@ -4509,7 +4630,13 @@
     "eingangstext":"1911",
     "urheberrechtkuenstler":"gemeinfrei",
     "status":"Inventarisiert",
-    "objektbezeichnung":"Gemälde"
+    "objektbezeichnung":"Gemälde",
+    "keywords":[
+        "Tier",
+        "Tiere",
+        "Tiger"
+    ],
+    "dateiname":"piglhein_1224.jpg"
   },
   {
     "guid":"27A407B54E6CB9668EF0F4ABBD9C17BA",
@@ -4580,7 +4707,14 @@
         "guid":"1975adbe-d90d-4a95-96fb-68b3173bf7a7",
         "pfad":"\/mup\/rauch\/2417\/001\/sgs_mup_rauch_2417_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Stadtlandschaft",
+        "Menschen",
+        "Mensch",
+        "Gebäude"
+    ],
+    "dateiname":"sgs_mup_rauch_2417_001_s.jpg"
   },
   {
     "guid":"FC2564A548510353E66F78FD1A36C35",
@@ -4698,7 +4832,13 @@
     "eingangstext":"1843",
     "urheberrechtkuenstler":"gemeinfrei",
     "status":"Inventarisiert",
-    "objektbezeichnung":"Gemälde"
+    "objektbezeichnung":"Gemälde",
+    "keywords":[
+        "Boote",
+        "Boot",
+        "Meer"
+    ],
+    "dateiname":"swagers_487.jpg"
   },
   {
     "guid":"482301914B7548C7B10F9489FB6A5A35",
@@ -5144,7 +5284,14 @@
         "guid":"a1c630a4-f4eb-44e3-8123-c3433169c560",
         "pfad":"\/mup\/moreaunelaton\/1025\/d03\/sgs_mup_moreaunelaton_1025_d03_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Stadtlandschaft",
+        "Tiere",
+        "Tier",
+        "Gebäude"
+    ],
+    "dateiname":"sgs_mup_moreaunelaton_1025_d03_s"
   },
   {
     "guid":"902D009445E6D958C280F08A8626BE2A",
@@ -5683,7 +5830,15 @@
         "guid":"1146cc3f-f4e9-4099-acf0-a79f09c29351",
         "pfad":"\/mup\/kanoldt\/3030\/002\/sgs_mup_kanoldt_3030_002_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Stillleben",
+        "Boote",
+        "Boot",
+        "Pflanze",
+        "Pflanze"
+    ],
+    "dateiname":"sgs_mup_kanoldt_3030_002_s.jpg"
   },
   {
     "guid":"4DE8684C41A2D8754311E7BD5D8A2EB1",
@@ -5789,7 +5944,13 @@
         "guid":"a34893e7-eee4-46ee-85f9-9c36250c4240",
         "pfad":"\/mup\/moll\/3002\/001\/sgs_mup_moll_3002_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Stillleben",
+        "Pflanzen",
+        "Pflanze"
+    ],
+    "dateiname":"sgs_mup_moll_3002_001_s.jpg"
   },
   {
     "guid":"3CB688F34C008FCB2AE332A07E95F506",
@@ -5982,7 +6143,13 @@
         "erscheinungsjahr":"2018",
         "anzabbildungen":"B.76"
       }
-    ]
+    ],
+    "keywords":[
+        "Mensch",
+        "Menschen",
+        "Abstrakt"
+    ],
+    "dateiname":"sgs_grs_kirchner_a_1957_2015_001_s.jpg"
   },
   {
     "guid":"D1A7D195478A32A014A50CB69149BF33",
@@ -6157,7 +6324,14 @@
         "guid":"bd30a1a8-d08d-440a-ac95-21b01d9c52c4",
         "pfad":"\/grs\/klee\/c-1968-1610\/001\/sgs_grs_klee_c-1968-1610_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+        "Farben",
+        "Muster",
+        "Formen"
+    ],
+    "dateiname":"sgs_grs_klee_c-1968-1610_001_s.jpg"
   },
   {
     "guid":"3426756943048D02AD1AE9A92619A1E8",
@@ -6664,7 +6838,13 @@
         "guid":"a421c9db-5fc0-45a3-bb97-4b7c0cdd9184",
         "pfad":"\/grs\/corinth\/c-1972-2220\/001\/sgs_grs_corinth_c-1972-2220_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+        "Abstrakte Landschaft",
+        "Farben"
+    ],
+    "dateiname":"sgs_grs_corinth_c-1972-2220_001_s.jpg"
   },
   {
     "guid":"B55735AD44A849A9CC7136BE0D224CBE",
@@ -7554,7 +7734,13 @@
         "abbildungen":"Faltplan",
         "anzabbildungen":"15"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+        "Formen",
+        "Form"
+    ],
+    "dateiname":"piranesi_a-1961-2386-2-kk.jpg"
   },
   {
     "guid":"2455490B402AD5FDFDA989802C75536B",
@@ -7989,7 +8175,13 @@
         "guid":"50503cd9-ca82-4468-a4bc-3d26eef10099",
         "pfad":"\/grs\/feuerbach\/c-1920-5\/o01\/sgs_grs_feuerbach_c-1920-5_o01_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Menschen",
+        "Mensch"
+    ],
+    "dateiname":"sgs_grs_feuerbach_c-1920-5_o01_s.jpg"
   },
   {
     "guid":"821F779B27BA43DAB90C477D9280B071",
@@ -8149,7 +8341,15 @@
         "guid":"bc3142a0-caed-4636-9252-db7e3df2df78",
         "pfad":"\/grs\/vries\/b-589-28\/001\/sgs_grs_vries_b-589-28_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+        "Menschen",
+        "Mensch",
+        "Geometrie",
+        "Muster"
+    ],
+    "dateiname":"sgs_grs_hondius_b-589-28_001_s.jpg"
   },
   {
     "guid":"B68AD3B42D4D408EA49363F2AE15280C",
@@ -8562,7 +8762,14 @@
         "guid":"cd570220-d6ca-4c3b-8e95-07c2fe361dfd",
         "pfad":"\/grs\/schlemmer\/a-1966-4343\/fr1\/sgs_grs_schlemmer_a-1966-4343_fr1_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+        "Formen",
+        "Form",
+        "Geometrie"
+    ],
+    "dateiname":"sgs_grs_schlemmer_a-1966-4343_001_s.jpg"
   },
   {
     "guid":"2D288F3BCF3445A4B116864CE5883F48",
@@ -9368,7 +9575,13 @@
         "guid":"66a64112-5e92-4627-94cb-677cf70f1724",
         "pfad":"\/grs\/boccioni\/a-1974-5354-b\/fr1\/sgs_grs_boccioni_a-1974-5354-b_fr1_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+        "Form",
+        "Formen"
+    ],
+    "dateiname":"sgs_grs_boccioni_a-1974-5354-b_001_s.jpg"
   },
   {
     "guid":"3D80EB3197AC4218B585A262B74575FA",
@@ -9889,7 +10102,16 @@
         "guid":"60aa0cbf-68a5-45cf-82b9-7e61369c5da1",
         "pfad":"\/grs\/riviere\/a-2008-7586-10\/001\/sgs_grs_riviere_a-2008-7586-10_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Tiere",
+        "Tier",
+        "Menschen",
+        "Mensch",
+        "Ländlich"
+    ],
+    "dateiname":"sgs_grs_riviere_a-2008-7586-10_001_s.jpg"
   },
   {
     "guid":"1A351FD3DC9D45828A8BC4ECB274B12F",
@@ -10196,7 +10418,13 @@
         "guid":"ea0c6ef1-a625-4449-b6a7-2ce8fff0cf61",
         "pfad":"\/grs\/kandinsky\/a-1965-4278-b\/fr1\/sgs_grs_kandinsky_a-1965-4278-b_fr1_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+        "Formen",
+        "Muster"
+    ],
+    "dateiname":"sgs_grs_kandinsky_a-1965-4278-b_001_s.jpg"
   },
   {
     "guid":"F7CA04D87B634787908A49ED6E3A8BF7",
@@ -10455,7 +10683,14 @@
         "guid":"4db19c47-6e78-4c22-a106-d7fc46a7f996",
         "pfad":"\/grs\/kandinsky\/a-1965-4278-d\/fr1\/sgs_grs_kandinsky_a-1965-4278-d_fr1_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+        "Formen",
+        "Farben",
+        "Muster"
+    ],
+    "dateiname":"sgs_grs_kandinsky_a-1965-4278-d_001_s.jpg"
   },
   {
     "guid":"FFC0493D35D342C6A59867AF28E9AF24",
@@ -10677,7 +10912,14 @@
         "guid":"2f90b507-adef-4f5b-b8a7-264dae501850",
         "pfad":"\/grs\/kandinsky\/a-1965-4278-c\/fr1\/sgs_grs_kandinsky_a-1965-4278-c_fr1_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+        "Formen",
+        "Form",
+        "Muster"
+    ],
+    "dateiname":"sgs_grs_kandinsky_a-1965-4278-c_001_s.jpg"
   },
   {
     "guid":"D32BE6041AC04E8FA6F2B746294FC959",
@@ -11194,7 +11436,14 @@
         "guid":"78414378-eedb-40cd-b379-b6b6d05e29d2",
         "pfad":"\/grs\/rohlfs\/a-1954-1620\/001\/sgs_grs_rohlfs_a-1954-1620_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+        "Farben",
+        "Tiere",
+        "Tier"
+    ],
+    "dateiname":"sgs_grs_rohlfs_a-1954-1620_001_s.jpg"
   },
   {
     "guid":"9E26234575E34BDB9D5B178A2D767524",
@@ -11426,7 +11675,13 @@
         "guid":"79a32176-d983-4337-8dcd-0d7b3959f68b",
         "pfad":"\/mup\/redon\/3834\/001\/sgs_mup_redon_3834_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+        "Formen",
+        "Farben"
+    ],
+    "dateiname":"sgs_mup_redon_3834_001_s.jpg"
   },
   {
     "guid":"1B29A948BED1405ABCCA8B58C00A52B5",
@@ -12001,7 +12256,15 @@
         "guid":"b8b0ad20-6f96-4904-8ae5-e06c931aabd2",
         "pfad":"\/grs\/anonym\/c-1990-3833\/001\/sgs_grs_anonym_c-1990-3833_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Landschaft",
+        "Menschen",
+        "Mensch",
+        "Tiere",
+        "Tier"
+    ],
+    "dateiname":"sgs_grs_anonym_c-1990-3833_001_s.jpg"
   },
   {
     "guid":"BDAF478F9E864130A7F1CB6A51BB7326",
@@ -12160,7 +12423,13 @@
         "guid":"2e040bb4-c565-4af2-9f56-32214d19618b",
         "pfad":"\/grs\/kirschner\/c-5728\/001\/sgs_grs_kirschner_c-5728_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Stillleben",
+        "Pflanzen",
+        "Pflanze"
+    ],
+    "dateiname":"sgs_grs_kirschner_c-5728_001_s.jpg"
   },
   {
     "guid":"5BBF5A1DDC444EDA9C347599AF58BB0E",
@@ -12315,7 +12584,15 @@
         "guid":"f3f334ee-aa3e-4881-b2a9-ae18dd5b598f",
         "pfad":"\/mup\/wiedmayer\/3835\/001\/sgs_mup_wiedmayer_3835_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Menschen",
+        "Mensch",
+        "Tiere",
+        "Tier"
+    ],
+    "dateiname":"sgs_mup_wiedmayer_3835_001_s.jpg"
   },
   {
     "guid":"FCB49A4CC0AE403EAA85B90FD7FF33A4",
@@ -12588,7 +12865,15 @@
         "guid":"d417b855-b328-424d-b65f-b8170b16f7da",
         "pfad":"\/grs\/kandinsky\/1970-16636-1\/001\/sgs_grs_kandinsky_1970-16636-1_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+        "Menschen",
+        "Mensch",
+        "Tiere",
+        "Tier"
+    ],
+    "dateiname":"sgs_grs_kandinsky_1970-16636-1_001_s.jpg"
   },
   {
     "guid":"5195750231CD491BB8B705ABD88375F8",
@@ -14299,7 +14584,16 @@
         "guid":"12f0c4fa-5030-4d9d-aaa5-52b2e40288d1",
         "pfad":"\/mup\/werner\/3480\/001\/sgs_mup_werner_3480_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Gebäude",
+        "Menschen",
+        "Mensch",
+        "Tiere",
+        "Tier",
+        "Taube"
+    ],
+    "dateiname":"sgs_mup_werner_3480_001_s.jpg"
   },
   {
     "guid":"999105307A8D4F80BE192E93480B13DA",
@@ -14361,7 +14655,14 @@
         "guid":"70e09450-7bee-4d48-9bc5-61884784dd2f",
         "pfad":"\/grs\/hiroshige\/a-1960-2272-11\/001\/sgs_grs_hiroshige_a-1960-2272-11_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Japanisch",
+        "Japan",
+        "Gebirge"
+    ],
+    "dateiname":"sgs_grs_hiroshige_a-1960-2272-11_001_s.jpg"
   },
   {
     "guid":"120C146C1BD1469D81A48012414E178A",
@@ -14423,7 +14724,16 @@
         "guid":"701a4019-0143-4d0b-bf81-8eacb19a1c46",
         "pfad":"\/grs\/hiroshige\/a-1960-2272-16\/001\/sgs_grs_hiroshige_a-1960-2272-16_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Menschen",
+        "Mensch",
+        "Gebäude",
+        "Japanisch",
+        "Japan"
+    ],
+    "dateiname":"sgs_grs_hiroshige_a-1960-2272-16_001_s.jpg"
   },
   {
     "guid":"432F6F2BC3994A72B2DE60440ACF1518",
@@ -14609,7 +14919,15 @@
         "guid":"daf81f6b-a6c3-4d7c-b9fc-aea6d9d9fe11",
         "pfad":"\/grs\/hiroshige\/a-1960-2272-22\/001\/sgs_grs_hiroshige_a-1960-2272-22_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Japanisch",
+        "Japan",
+        "Menschen",
+        "Mensch"
+    ],
+    "dateiname":"sgs_grs_hiroshige_a-1960-2272-22_001_s.jpg"
   },
   {
     "guid":"C03181C35194483BA4846C47ED4B6FB6",
@@ -14733,7 +15051,17 @@
         "guid":"b4426fba-e88c-444a-99a8-1001cbb578c3",
         "pfad":"\/grs\/hiroshige\/a-1960-2272-31\/001\/sgs_grs_hiroshige_a-1960-2272-31_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Landschaft",
+        "Menschen",
+        "Mensch",
+        "Boote",
+        "Boot",
+        "Japanisch",
+        "Japan"
+    ],
+    "dateiname":"sgs_grs_hiroshige_a-1960-2272-31_001_s.jpg"
   },
   {
     "guid":"BDB47B7094734A8C92EDB2B5D1B5E92E",
@@ -15156,7 +15484,16 @@
         "guid":"f9d96523-1b9c-4b45-8c7c-277024a9028d",
         "pfad":"\/grs\/ashiyuki\/a-2016-9288\/001\/sgs_grs_ashiyuki_a-2016-9288_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Mensch",
+        "Menschen",
+        "Pflanzen",
+        "Pflanze",
+        "Japanisch",
+        "Japan"
+    ],
+    "dateiname":"sgs_grs_ashiyuki_a-2016-9288_001_s.jpg"
   },
   {
     "guid":"E75C595A297E4FA7A2812B86AB1E6F41",
@@ -15171,7 +15508,7 @@
         "anzeigename":"Simon de Passe",
         "nachname":"Passe",
         "vorname":"Simon de",
-        "geburtsdatum":"(um) 1593? \/(um) 159",
+        "geburtsdatum":"(um) 1593",
         "sterbedatum":"1647.05.06",
         "notiz":"Quelle zur Namensvariante: Rump, 1912\nQuelle zur Namensvariante: DA XXIV, 1996\nQuelle zur Namensvariante: SvKL IV, 1961\nQuelle zur Namensvariante: Weilbach VI, 1997\nQuelle zur Namensvariante: Waller, 1938\nQuelle zum Thieme-Becker-Namen: ThB26, 1932\nAktueller Staatsname: Niederlande \/Dänemark \/Schweden\nGeburtsort: Köln\nTodesort: Kopenhagen"
       },
@@ -15180,7 +15517,7 @@
         "anzeigename":"Crispyn de Passe",
         "nachname":"Passe",
         "vorname":"Crispyn de (1590)",
-        "geburtsdatum":"(um) 1590 \/1593\/1594",
+        "geburtsdatum":"1590-1594",
         "sterbedatum":"(nach) 1670.01.06",
         "notiz":"Quelle zur Namensvariante: DA XXIV, 1996\nQuelle zur Namensvariante: Pavière, Flower I, 1962\nQuelle zur Namensvariante: Weilbach VI, 1997\nQuelle zur Namensvariante: Waller, 1938\nAktueller Staatsname: Niederlande \/Dänemark\nGeburtsort: Köln\nTodesort: Amsterdam"
       }
@@ -15385,7 +15722,13 @@
         "guid":"212a74b7-4c62-42a2-b420-2e2f3140b252",
         "pfad":"\/grs\/brandt\/c-2017-5756-17\/001\/sgs_grs_brandt_c-2017-5756-17_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Menschen",
+        "Mensch"
+    ],
+    "dateiname":"sgs_grs_brandt_c-2017-5756-17_001_s.jpg"
   },
   {
     "guid":"C1EFBB03D6A14A2EB682B25FDE3C8066",
@@ -15537,7 +15880,14 @@
         "guid":"2eea329a-19c8-4d85-8b7e-d9a6b1bb0858",
         "pfad":"\/grs\/genelli\/c-2017-5756-66\/001\/sgs_grs_genelli_c-2017-5756-66_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Natur",
+        "Naturlandschaft",
+        "Mensch",
+        "Menschen"
+    ],
+    "dateiname":"sgs_grs_genelli_c-2017-5756-66_001_s.jpg"
   },
   {
     "guid":"5416ED09F55F41CCBBA37DDFE07302B2",
@@ -15610,7 +15960,13 @@
         "guid":"a4dcb8de-e93e-49e7-b1b8-779d7e51edd3",
         "pfad":"\/grs\/graeb\/c-2017-5756-72\/001\/sgs_grs_graeb_c-2017-5756-72_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Gebirge",
+        "Wasserfall"
+    ],
+    "dateiname":"sgs_grs_graeb_c-2017-5756-72_001_s.jpg"
   },
   {
     "guid":"9B291AA5FB404FBEB3B56586D417D5E2",
@@ -15625,8 +15981,8 @@
         "anzeigename":"Eduard Hildebrandt",
         "nachname":"Hildebrandt",
         "vorname":"Eduard",
-        "geburtsdatum":"1817.09.09 \/1818.09.",
-        "sterbedatum":"1868 \/1869.10.25",
+        "geburtsdatum":"09.09.1817",
+        "sterbedatum":"25.10.1869",
         "notiz":"Quelle zur Namensvariante: ZI \/ B\nQuelle zur Namensvariante: DA XIV, 1996\nQuelle zur Namensvariante: EAAm II, 1969\nQuelle zur Namensvariante: Ayala, 1997\nQuelle zur Namensvariante: Cavalcanti II, 1974\nQuelle zur Namensvariante: Schurr V, 1981\nQuelle zur Namensvariante: Grant, Dict., 1952\nQuelle zur Namensvariante: Hughes, 1986\nQuelle zur Namensvariante: Schurr\/Cabanne I, 1996\nQuelle zur Namensvariante: RoyalHibAcad II, 1986\nQuelle zum Thieme-Becker-Namen: ThB17, 1924\nAktueller Staatsname: Deutschland \/Vereinigte Staaten\nGeburtsort: Danzig\nTodesort: Berlin"
       }
     ],
@@ -15696,7 +16052,7 @@
         "nachname":"Holsteijn",
         "vorname":"Pieter (1614)",
         "geburtsdatum":"(um) 1614",
-        "sterbedatum":"1673.11 \/(vor) 1673.",
+        "sterbedatum":"01.11.1673",
         "notiz":"Quelle zur Namensvariante: Bernt IV, 1979\nQuelle zur Namensvariante: Waller, 1938\nQuelle zum Thieme-Becker-Namen: ThB17, 1924\nAktueller Staatsname: Niederlande\nGeburtsort: Haarlem (Noord-Holland)\nTodesort: Haarlem (Noord-Holland)"
       }
     ],
@@ -16076,8 +16432,8 @@
         "anzeigename":"Eduard Hildebrandt",
         "nachname":"Hildebrandt",
         "vorname":"Eduard",
-        "geburtsdatum":"1817.09.09 \/1818.09.",
-        "sterbedatum":"1868 \/1869.10.25",
+        "geburtsdatum":"09.09.1817",
+        "sterbedatum":"25.10.1869",
         "notiz":"Quelle zur Namensvariante: ZI \/ B\nQuelle zur Namensvariante: DA XIV, 1996\nQuelle zur Namensvariante: EAAm II, 1969\nQuelle zur Namensvariante: Ayala, 1997\nQuelle zur Namensvariante: Cavalcanti II, 1974\nQuelle zur Namensvariante: Schurr V, 1981\nQuelle zur Namensvariante: Grant, Dict., 1952\nQuelle zur Namensvariante: Hughes, 1986\nQuelle zur Namensvariante: Schurr\/Cabanne I, 1996\nQuelle zur Namensvariante: RoyalHibAcad II, 1986\nQuelle zum Thieme-Becker-Namen: ThB17, 1924\nAktueller Staatsname: Deutschland \/Vereinigte Staaten\nGeburtsort: Danzig\nTodesort: Berlin"
       }
     ],
@@ -16203,7 +16559,14 @@
         "abbildungen":"Seite 51",
         "anzabbildungen":"57"
       }
-    ]
+    ],
+    "keywords":[
+        "Landschaft",
+        "Boote",
+        "Boot",
+        "Hafen"
+    ],
+    "dateiname":"sgs_grs_skarbina_c-2017-5756-276_001_s.jpg"
   },
   {
     "guid":"977EB53B16E045F18F1C6C3E83C0F5D7",
@@ -16329,7 +16692,14 @@
         "guid":"9575e770-e492-4f7f-a4a5-cebcdf1440a1",
         "pfad":"\/grs\/toyokuni\/a-2016-9547-kk\/001\/sgs_grs_toyokuni_a-2016-9547-kk_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Japanisch",
+        "Japan",
+        "Menschen",
+        "Mensch"
+    ],
+    "dateiname":"sgs_grs_toyokuni_a-2016-9547-kk_001_s.jpg"
   },
   {
     "guid":"CAF365147D184561AB80A92E96F04458",
@@ -16389,7 +16759,16 @@
         "guid":"3799a1f4-f7fd-46e3-9acf-82d9ce42104d",
         "pfad":"\/grs\/eisen\/a-2016-9562\/001\/sgs_grs_eisen_a-2016-9562_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Japanisch",
+        "Japan",
+        "Menschen",
+        "Mensch",
+        "Tiere",
+        "Tier"
+    ],
+    "dateiname":"sgs_grs_eisen_a-2016-9562_001_s.jpg"
   },
   {
     "guid":"24539AB4DE0B4DBD804D7362FCF64ED1",
@@ -16731,8 +17110,8 @@
         "anzeigename":"Eduard Hildebrandt",
         "nachname":"Hildebrandt",
         "vorname":"Eduard",
-        "geburtsdatum":"1817.09.09 \/1818.09.",
-        "sterbedatum":"1868 \/1869.10.25",
+        "geburtsdatum":"09.09.1817",
+        "sterbedatum":"25.10.1869",
         "notiz":"Quelle zur Namensvariante: ZI \/ B\nQuelle zur Namensvariante: DA XIV, 1996\nQuelle zur Namensvariante: EAAm II, 1969\nQuelle zur Namensvariante: Ayala, 1997\nQuelle zur Namensvariante: Cavalcanti II, 1974\nQuelle zur Namensvariante: Schurr V, 1981\nQuelle zur Namensvariante: Grant, Dict., 1952\nQuelle zur Namensvariante: Hughes, 1986\nQuelle zur Namensvariante: Schurr\/Cabanne I, 1996\nQuelle zur Namensvariante: RoyalHibAcad II, 1986\nQuelle zum Thieme-Becker-Namen: ThB17, 1924\nAktueller Staatsname: Deutschland \/Vereinigte Staaten\nGeburtsort: Danzig\nTodesort: Berlin"
       }
     ],
@@ -16774,7 +17153,13 @@
         "guid":"c58448e0-bcf9-4586-b7bf-274f9389befa",
         "pfad":"\/grs\/hildebrandt\/c-2017-5756-301\/001\/sgs_grs_hildebrandt_c-2017-5756-301_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Küste",
+        "Felsen"
+    ],
+    "dateiname":"sgs_grs_hildebrandt_c-2017-5756-301_001_s.jpg"
   },
   {
     "guid":"E7D6767FA9CF45788B1EADB0817889D2",
@@ -16832,7 +17217,12 @@
         "guid":"d1e36c7c-0bdf-42e5-8aca-b446f9b6026f",
         "pfad":"\/grs\/arnold\/c-2017-5757-53\/001\/sgs_grs_arnold_c-2017-5757-53_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Tiere",
+        "Tier"
+    ],
+    "dateiname":"sgs_grs_arnold_c-2017-5757-53_001_s.jpg"
   },
   {
     "guid":"9F140B0819E340918D66C694BE9F18F3",
@@ -17065,7 +17455,15 @@
         "guid":"d01bc22b-26c6-47ad-b77c-ee1422eb47ed",
         "pfad":"\/grs\/kley\/c-2017-5757-302\/001\/sgs_grs_kley_c-2017-5757-302_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Stadtlandschaft",
+        "Menschen",
+        "Mensch",
+        "Tiere",
+        "Tier"
+    ],
+    "dateiname":"sgs_grs_kley_c-2017-5757-302_001_s.jpg"
   },
   {
     "guid":"CD8B45807AA440ECB2DCA1AFCA660599",
@@ -17127,7 +17525,13 @@
         "guid":"c9e947b9-9520-44a7-876b-4668483a0e0d",
         "pfad":"\/grs\/koerner\/c-2017-5757-310\/001\/sgs_grs_koerner_c-2017-5757-310_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakte Naturlandschaft",
+        "Menschen",
+        "Mensch"
+    ],
+    "dateiname":"sgs_grs_koenig_c-2017-5757-310_001_s.jpg"
   },
   {
     "guid":"CF90D85E44BE46E88EE528B4D14D8D63",
@@ -17351,7 +17755,15 @@
         "guid":"821ef1e7-338c-45d0-a94f-c6e4f584400b",
         "pfad":"\/grs\/klengel\/c-2017-5757-320\/001\/sgs_grs_klengel_c-2017-5757-320_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Naturlandschaft",
+        "Tiere",
+        "Tier",
+        "Menschen",
+        "Mensch"
+    ],
+    "dateiname":"sgs_grs_klengel_c-2017-5757-320_001_s.jpg"
   },
   {
     "guid":"21857FB71C364B7C98282A540294D9D7",
@@ -17591,7 +18003,12 @@
         "guid":"f7764af7-5492-448e-a9d5-b59ddd59388f",
         "pfad":"\/grs\/wiegmann\/c-2017-5757-590\/001\/sgs_grs_wiegmann_c-2017-5757-590_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Stadtlandschaft",
+        "Gebäude"
+    ],
+    "dateiname":"sgs_grs_wiegmann_c-2017-5757-590_001_s.jpg"
   },
   {
     "guid":"6BE41FE48344411D895F23E4F9118B5F",
@@ -17860,7 +18277,13 @@
         "guid":"670eeba5-fe40-48e6-9b93-5b5d923b9052",
         "pfad":"\/grs\/lissitzky\/a-1977-5658-b\/001\/sgs_grs_lissitzky_a-1977-5658-b_001_s.tif"
       }
-    ]
+    ],
+    "keywords":[
+        "Abstrakt",
+       "Formen",
+        "Geometrie"
+    ],
+    "dateiname":"sgs_grs_lissitzky_a-1977-5658-b_001_s.jpg"
   },
   {
     "guid":"F561F3831B2443C08BAEE77627D6DCBF",
