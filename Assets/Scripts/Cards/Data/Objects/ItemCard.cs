@@ -52,7 +52,7 @@ namespace Data.Objects
             _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
             _spriteRenderer.drawMode = SpriteDrawMode.Sliced;
             _spriteRenderer.sprite = Resources.Load<Sprite>(confParam._savePath + _guid);
-            _spriteRenderer.size += parent.rect.size;
+            _spriteRenderer.size = new Vector2(1f, 1f);
         }
 
         public string Guid

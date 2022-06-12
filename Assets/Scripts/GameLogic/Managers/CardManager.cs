@@ -2,6 +2,7 @@ using Data.Objects;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Data.Json.Colors_Patterns.Objects;
 
 namespace Manager
 {
@@ -45,15 +46,25 @@ namespace Manager
         {
             // TODO: This will allow repeated instantiation of the same cards in the deck. Don't destroy deck on scene change?
 
-            deck.Clear(); 
+            // TODO: Implement. Should fill the deck list with cards
+            ConfigParameter confParam = JConfigDeserializer.JConfig._out[0];
+            List<OutputParameter> outParams = JDataDeserializer.JData._out;
 
-            for (int i = 0; i < 60; i++)
+            for (int i = 0; i < confParam._guids.Count; i++)
             {
-
-                GameObject Card = Instantiate(PlayerCard, new Vector2(0, 0), Quaternion.identity);
-                Card.transform.SetParent(GameDeck.transform, false);
-                Card.GetComponent<BoxCollider2D>().size = new Vector2(1f, 1f);
-                deck.Add(Card);
+                string currGuid = confParam._guids[i];
+                foreach (OutputParameter outParam in outParams)
+                {
+                    if (outParam._guid == currGuid)
+                    {
+                        JParamHolder._currOutParam = outParam;
+                        GameObject Card = Instantiate(PlayerCard, new Vector2(0, 0), Quaternion.identity);
+                        Card.transform.SetParent(GameDeck.transform, false);
+                        Card.GetComponent<BoxCollider2D>().size = new Vector2(1f, 1f);
+                        deck.Add(Card);
+                        break;
+                    }
+                }
             }
         }
         internal void EnableCardSlot(int i)
