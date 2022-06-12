@@ -57,8 +57,10 @@ public class DragAndDrop : MonoBehaviour
 
     public void EndDrag()
     {
+        Debug.Log("End Drag");
         if (overDropZone)
         {
+            Debug.Log("over dropzone");
             transform.SetParent(dropZone.transform, false);
             transform.position = transform.parent.position;
 
@@ -72,6 +74,7 @@ public class DragAndDrop : MonoBehaviour
         }
         else
         {
+            Debug.Log("Not over Drop zone");
             gameObject.GetComponent<Transform>().localScale = new Vector2(1f, 1f);
             transform.position = startParent.transform.position;
             transform.SetParent(startParent.transform, false);

@@ -32,7 +32,6 @@ namespace Data.Objects
 
             gameManager = FindObjectOfType<GameManager>();
             flipper = gameObject.AddComponent<CardFlipper>();
-            ToggleFace(false);
         }
 
         private void Update()
@@ -48,9 +47,5 @@ namespace Data.Objects
             }
         }
 
-        internal void ToggleFace(bool v)
-        {
-            showFace = v;
-        }
     }
 }
