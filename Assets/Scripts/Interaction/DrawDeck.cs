@@ -11,7 +11,7 @@ public class DrawDeck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.FindObjectOfType<Manager.GameManager>();
+        gameManager = GameManager.GameManagerInstance;
     }
 
     // Update is called once per frame

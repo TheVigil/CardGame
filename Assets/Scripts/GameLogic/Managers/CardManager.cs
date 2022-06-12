@@ -27,6 +27,8 @@ namespace Manager
         {
             GameDeck = GameObject.Find("CardContainer");
 
+            DontDestroyOnLoad(GameDeck);
+
         }
         // Start is called before the first frame update
         private void Start()
@@ -41,6 +43,10 @@ namespace Manager
 
         internal void PopulateDeck()
         {
+            // TODO: This will allow repeated instantiation of the same cards in the deck. Don't destroy deck on scene change?
+
+            deck.Clear(); 
+
             for (int i = 0; i < 60; i++)
             {
 

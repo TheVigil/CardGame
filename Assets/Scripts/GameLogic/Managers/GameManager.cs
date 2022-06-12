@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,47 +21,99 @@ namespace Manager
         #region declarations
         public static GameManager GameManagerInstance; // use this later to access gm from anywhere in our logic
         private static CardManager CardManagerInstance;
+        private static SceneLoader SceneLoader;
+        private static LevelManager LevelManager;
+       // private static GameObject UICavas;
         public GameState gameState;
-        #endregion
+        public static event Action<GameState> OnGameStateChanged;
 
         // TODO: implement the individual bits of state for the manager. What states do we need here?
         public enum GameState
         {
-            
+            StartGame,
             PlayerTurn,
             ScoreCalc,
-            TurnEnd
-        }   
+            TurnEnd,
+            LevelEnd,
+        }
+        #endregion
 
         #region setup
         private void Awake()
         {
-            GameManagerInstance = gameObject.GetComponent<GameManager>();
-            CardManagerInstance = gameObject.GetComponent<CardManager>();
+
+            if(GameManagerInstance != null)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                GameManagerInstance = this;
+                LevelManager = GetComponent<LevelManager>();
+                SceneLoader = GetComponent<SceneLoader>();
+                LevelManager = GetComponent<LevelManager>();
+                CardManagerInstance = GetComponent<CardManager>();
+            }
+
+            //TODO: there's a better way for sure
+            DontDestroyOnLoad(GameManagerInstance);
+            DontDestroyOnLoad(CardManagerInstance);
+            DontDestroyOnLoad(SceneLoader);
+            DontDestroyOnLoad(LevelManager);
+            DontDestroyOnLoad(GameObject.Find("CardSlots"));
+            DontDestroyOnLoad(GameObject.Find("CardContainer"));
+            DontDestroyOnLoad(GameObject.Find("Canvas"));
         }
 
         // Start is called before the first frame update
         void Start()
         {
             CardManagerInstance.PopulateDeck();
+            UpdateGameState(GameState.StartGame);
         }
-
-        #endregion
-
-        #region game state changes
-        public void UpdateGameState(GameState newGameState)
-        {
-            // TODO: Implement handlers for state changes
-            throw new System.NotImplementedException("Gamestate logic not implemented");
-
-        }
-        #endregion
 
         // Update is called once per frame
         void Update()
         {
 
         }
+        #endregion
+
+        #region game state changes
+
+        // TODO: For debugging only, delete!
+        public void ForceScene()
+        {
+            UpdateGameState(GameState.LevelEnd);
+        }
+        public void UpdateGameState(GameState newGameState)
+        {
+            gameState = newGameState;
+            // TODO: Implement handlers for state changes
+            switch (newGameState)
+            {
+                case GameState.StartGame:
+                    LevelManager.UpdateLevelState(LevelManager.LevelState.setUp);
+                    break;
+                case GameState.PlayerTurn:
+                    break;
+                case GameState.ScoreCalc:
+                    break;
+                case GameState.TurnEnd:
+                    break;
+                case GameState.LevelEnd:
+                    SceneLoader.UpdateSceneState(SceneLoader.SceneState.nextScene);
+                    LevelManager.UpdateLevelState(LevelManager.LevelState.setUp);
+                    break;
+                default:
+                    break;
+            }
+
+            OnGameStateChanged?.Invoke(newGameState);
+        }
+        #endregion
+
+
     }
 }
 
