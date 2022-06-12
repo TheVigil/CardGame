@@ -1,84 +1,82 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Manager;
+using Data.Objects;
 
 public class DragAndDrop : MonoBehaviour
 {
-    //Canvas is assigned locally at runtime in Start(), whereas the rest are assigned contextually as this gameobject is dragged and dropped
-    public GameObject Canvas;
+    private bool overDropZone;
+    private bool isDraggable;
 
-    private bool isDragging = false;
-    private bool isOverDropZone = false;
-    private bool isDraggable = true;
-    private GameObject dropZone;
-    private Vector3 origin;
     private GameObject startParent;
+    private GameObject dropZone;
+    private GameManager gameManager;
 
-    private void Start()
+    private void Awake()
     {
-        Canvas = GameObject.Find("Canvas");
-  
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+        isDraggable = true;
     }
-    void Update()
+    public void OnMouseDown()
     {
-        //check every frame to see if this gameobject is being dragged. If it is, make it follow the mouse and set it as a child of the Canvas to render above everything else
-        if (isDragging)
+        startParent = transform.parent.gameObject;
+        
+    }
+    public void OnMouseDrag()
+    {
+        if (isDraggable)
         {
-            transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            transform.SetParent(Canvas.transform, true);
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            gameObject.GetComponent<SpriteRenderer>().size = new Vector2(1f, 1f);
+            gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
+            gameObject.GetComponent<Transform>().localScale = new Vector2(0.6f, 0.6f);
+            transform.Translate(mousePosition);
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    // TODO : Maybe animate the dropzone sprites to indicate a card can be dropped?
+    #region Collision Detection
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        //in our scene, if this gameobject collides with something, it must be the dropzone, as specified in the layer collision matrix (cards are part of the "Cards" layer and the dropzone is part of the "DropZone" layer)
-        isOverDropZone = true;
-        dropZone = collision.gameObject;
+        // Debug.Log("enter " + other.name);
+        if (other.gameObject.GetComponent<BoxCollider2D>().isTrigger)
+        {
+            dropZone = other.gameObject;
+            overDropZone = true;
+        }
+
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        isOverDropZone = false;
+       // Debug.Log("exit " + other.name);
         dropZone = null;
-    }
+        overDropZone = false;
 
-    /**
-     * 
-     * //TODO: what is the bug here? They parent correctly, but appear behind the ui layer (and don't always appear at the proper coordinates, it seems). . .
-     * 
-     * StartDrag and EndDrag are called by the event detector component registered on the gameobject. 
-     * Cards should snap back to the hand area if they are not placed in a dropzone.
-     * 
-     */
-    public void StartDrag()
-    {
-        //if the gameobject is draggable, store the parent and position of it so we know where to return it if it isn't put in a dropzone
-        if (!isDraggable) return;
-        origin = gameObject.transform.position;
-        startParent = transform.parent.gameObject;
-        isDragging = true;
     }
+    #endregion
 
     public void EndDrag()
     {
-        if (!isDraggable) return;
-        isDragging = false;
-
-        //if the gameobject is put in a dropzone, set it as a child of the dropzone
-        if (isOverDropZone)
+        if (overDropZone)
         {
             transform.SetParent(dropZone.transform, false);
+            transform.position = transform.parent.position;
+
+            gameObject.GetComponent<Transform>().localScale = new Vector2(1f, 1f);
+            gameObject.GetComponent<SpriteRenderer>().size = new Vector2(1f, 1f);
+            gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
+            gameManager.GetComponent<CardManager>().EnableCardSlot((gameObject.GetComponent<Card>().handSlotIndex));
+            dropZone.GetComponent<DropZone>().DisableDropZoneCollider();
+
             isDraggable = false;
-        }        
-        //otherwise, send it to the hand area
+        }
         else
         {
-            transform.position = origin;
+            gameObject.GetComponent<Transform>().localScale = new Vector2(1f, 1f);
+            transform.position = startParent.transform.position;
             transform.SetParent(startParent.transform, false);
-            Debug.Log(origin);
-            Debug.Log("Bad drag, set to start: ", transform.parent);
-            Debug.Log("Bad drag, revert to old pos: ");
-            Debug.Log(transform.position);
+            isDraggable = true;
         }
     }
+
 }
