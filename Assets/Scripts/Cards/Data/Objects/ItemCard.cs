@@ -134,5 +134,10 @@ namespace Data.Objects
         {
             get { return _keywords; }
         }
+
+        public string HistClass
+        {
+            get { return _histClass; }
+        }
     }
 }
