@@ -71,5 +71,8 @@ namespace Data.Json.Colors_Patterns.Objects
 
         [JsonProperty(PropertyName = "dateiname")]
         public string _dataName { get; set; }
+
+        [JsonProperty(PropertyName = "hist_class")]
+        public string _histClass { get; set; }
     }
 }

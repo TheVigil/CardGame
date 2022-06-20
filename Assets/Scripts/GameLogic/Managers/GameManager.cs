@@ -77,6 +77,11 @@ namespace Manager
         {
 
         }
+
+        void SaveObject()
+        {
+            
+        }
         #endregion
 
         #region game state changes

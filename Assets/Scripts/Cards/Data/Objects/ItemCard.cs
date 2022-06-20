@@ -19,6 +19,8 @@ namespace Data.Objects
         private List<string> _materials;
         private List<string> _techniques;
         private List<string> _keywords;
+
+        private string _histClass;
         private SpriteRenderer _spriteRenderer;
 
         private void Awake()
@@ -42,6 +44,7 @@ namespace Data.Objects
             _materials = ListFiller.FillList<JMaterial>(jParam._materials);
             _techniques = ListFiller.FillList<Technique>(jParam._techs);
             _keywords = jParam._keywords;
+            _histClass = jParam._histClass;
         }
 
         private void InstantiateSpriteRenderer()

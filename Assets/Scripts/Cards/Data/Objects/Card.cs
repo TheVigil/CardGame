@@ -5,10 +5,10 @@ using Manager;
 
 namespace Data.Objects
 {
-    public class Card : MonoBehaviour 
+    public class Card : MonoBehaviour
     {
         public bool played;
-        public int handSlotIndex; 
+        public int handSlotIndex;
         private GameManager gameManager;
         private CardFlipper flipper;
         private bool showFace;

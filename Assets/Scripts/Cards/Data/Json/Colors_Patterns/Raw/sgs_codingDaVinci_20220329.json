@@ -112,7 +112,8 @@
         "Pflanzen",
         "Pflanze"
     ],
-    "dateiname":"flegel_1640.jpg"
+    "dateiname":"flegel_1640.jpg",
+    "hist_class":"Barock"
   },
   {
     "guid":"5E84E96E4C44D5875DE6DFACB86FEA6B",
@@ -185,7 +186,8 @@
         "Tier",
         "Reiter"
     ],
-    "dateiname":"sgs_mup_bravo_3394_001_s.jpg"
+    "dateiname":"sgs_mup_bravo_3394_001_s.jpg",
+    "hist_class":"Barock"
   },
   {
     "guid":"83B795324231E30A6CD658889B083324",
@@ -251,7 +253,8 @@
         "Boote",
         "Boot"
     ],
-    "dateiname":"sgs_mup_anonym_3593_001_s.jpg"
+    "dateiname":"sgs_mup_anonym_3593_001_s.jpg",
+    "hist_class":"Romantik"
   },
   {
     "guid":"AA61EA674B9637F920D0AB819C01B844",
@@ -457,7 +460,8 @@
         "Pferde",
         "Pferd"
     ],
-    "dateiname":"sgs_mup_marc_2519_001_s.jpg"
+    "dateiname":"sgs_mup_marc_2519_001_s.jpg",
+    "hist_class":"Expressionismus"
   },
   {
     "guid":"C24DF31241EF93C55DC1F7BA05CBA3E7",
@@ -738,7 +742,8 @@
         "Formen",
         "Form"
     ],
-    "dateiname":"sgs_mup_mondrian_2753_s01_s.jpg"
+    "dateiname":"sgs_mup_mondrian_2753_s01_s.jpg",
+    "hist_class":"Konstruktivismus"
   },
   {
     "guid":"69A4FE3B411B0FA669CEAABE2AC7C954",
@@ -1854,7 +1859,8 @@
         "Tier",
         "Reiter"
     ],
-    "dateiname":"achenbach_941.jpg"
+    "dateiname":"achenbach_941.jpg",
+    "hist_class":"Düsseldorfer Malerschule"
   },
   {
     "guid":"882435B7C8DA498BA6CA71C048003865",
@@ -2071,7 +2077,8 @@
         "Menschen",
         "Mensch"
     ],
-    "dateiname":"sgs_mup_rottmann_2162_001_s.jpg"
+    "dateiname":"sgs_mup_rottmann_2162_001_s.jpg",
+    "hist_class":"Romantik"
   },
   {
     "guid":"7F56C5244523A2E377EB6C98E601C102",
@@ -2286,7 +2293,8 @@
         "Boot",
         "Hafen"
     ],
-    "dateiname":"sgs_mup_signac_2698_001_s.jpg"
+    "dateiname":"sgs_mup_signac_2698_001_s.jpg",
+    "hist_class":"Pointillismus"
   },
   {
     "guid":"356197C843D454726E6707A54022485D",
@@ -2638,7 +2646,8 @@
         "Menschen",
         "Mensch"
     ],
-    "dateiname":"sgs_mup_mirou_506_001_s.jpg"
+    "dateiname":"sgs_mup_mirou_506_001_s.jpg",
+    "hist_class":"Frankenthaler Schule"
   },
   {
     "guid":"CE18162A490560A3414B78B81A75724",
@@ -2713,7 +2722,8 @@
         "Form",
         "Muster"
     ],
-    "dateiname":"sgs_mup_mondrian_l-1331_v01_s.jpg"
+    "dateiname":"sgs_mup_mondrian_l-1331_v01_s.jpg",
+    "hist_class":"Konstruktivismus"
   },
   {
     "guid":"AD15EEE340EF8F48546D97B6EE8F4265",
@@ -3026,7 +3036,8 @@
         "Tiere",
         "Tier"
     ],
-    "dateiname":"sgs_mup_heinzmann_692_001_s.jpg"
+    "dateiname":"sgs_mup_heinzmann_692_001_s.jpg",
+    "hist_class":"Klassizismus"
   },
   {
     "guid":"BF323DAC4FEC5F7CBB49E59A9BE922C2",
@@ -3181,7 +3192,8 @@
         "Menschen",
         "Ländlich"
     ],
-    "dateiname":"sgs_mup_kanold_1386_001_s.jpg"
+    "dateiname":"sgs_mup_kanold_1386_001_s.jpg",
+    "hist_class":"Neue Sachlichkeit"
   },
   {
     "guid":"8F833B0A48ED3344DCD8E8ADB4052480",
@@ -3485,7 +3497,8 @@
         "Bäume",
         "Baum"
     ],
-    "dateiname":"sgs_mup_rohlfs_1396_001_s.jpg"
+    "dateiname":"sgs_mup_rohlfs_1396_001_s.jpg",
+    "hist_class":"Impressionismus"
   },
   {
     "guid":"0035DE614C2C737CC35437908E053DD7",
@@ -3660,7 +3673,8 @@
         "Natur",
         "Landschaft"
     ],
-    "dateiname":"sgs_mup_slevogt_2577_001_s.jpg"
+    "dateiname":"sgs_mup_slevogt_2577_001_s.jpg",
+    "hist_class":"Impressionismus"
   },
   {
     "guid":"4DC1894446F64A38FA4E9F802678C3F8",
@@ -3828,7 +3842,8 @@
         "Natur",
         "Naturlandschaft"
     ],
-    "dateiname":"sgs_mup_bredt_1784_001_s.jpg"
+    "dateiname":"sgs_mup_bredt_1784_001_s.jpg",
+    "hist_class":"Münchener Secession"
   },
   {
     "guid":"794D68014209A4905FB0B8A46316308E",
@@ -4239,7 +4254,8 @@
         "Tiere",
         "Gans"
     ],
-    "dateiname":"sgs_mup_knaus_2155_001_s.jpg"
+    "dateiname":"sgs_mup_knaus_2155_001_s.jpg",
+    "hist_class":"Düsseldorfer Malerschule"
   },
   {
     "guid":"27FCDC704D5BF1996738D1AE72AC5BF5",
@@ -4364,7 +4380,8 @@
         "Kirschen",
         "Kirsche"
     ],
-    "dateiname":"sgs_mup_kricheldorf_3254_001_s.jpg"
+    "dateiname":"sgs_mup_kricheldorf_3254_001_s.jpg",
+    "hist_class":"Stillleben"
   },
   {
     "guid":"F116319440889F6CD84EB0840DF54E76",
@@ -4636,7 +4653,8 @@
         "Tiere",
         "Tiger"
     ],
-    "dateiname":"piglhein_1224.jpg"
+    "dateiname":"piglhein_1224.jpg",
+    "hist_class":"Münchener Secession"
   },
   {
     "guid":"27A407B54E6CB9668EF0F4ABBD9C17BA",
@@ -4681,6 +4699,7 @@
         "unit":"cm"
       }
     ],
+    "entstehungszeit":"19. Jh.",
     "material":[
       {
         "term":"Holz",
@@ -4714,7 +4733,8 @@
         "Mensch",
         "Gebäude"
     ],
-    "dateiname":"sgs_mup_rauch_2417_001_s.jpg"
+    "dateiname":"sgs_mup_rauch_2417_001_s.jpg",
+    "hist_class":"Romantik"
   },
   {
     "guid":"FC2564A548510353E66F78FD1A36C35",
@@ -4838,7 +4858,8 @@
         "Boot",
         "Meer"
     ],
-    "dateiname":"swagers_487.jpg"
+    "dateiname":"swagers_487.jpg",
+    "hist_class":"Romantik"
   },
   {
     "guid":"482301914B7548C7B10F9489FB6A5A35",
@@ -5291,7 +5312,8 @@
         "Tier",
         "Gebäude"
     ],
-    "dateiname":"sgs_mup_moreaunelaton_1025_d03_s"
+    "dateiname":"sgs_mup_moreaunelaton_1025_d03_s",
+    "hist_class":"Impressionismus"
   },
   {
     "guid":"902D009445E6D958C280F08A8626BE2A",
@@ -5838,7 +5860,8 @@
         "Pflanze",
         "Pflanze"
     ],
-    "dateiname":"sgs_mup_kanoldt_3030_002_s.jpg"
+    "dateiname":"sgs_mup_kanoldt_3030_002_s.jpg",
+    "hist_class":"Neue Sachlichkeit"
   },
   {
     "guid":"4DE8684C41A2D8754311E7BD5D8A2EB1",
@@ -5950,7 +5973,8 @@
         "Pflanzen",
         "Pflanze"
     ],
-    "dateiname":"sgs_mup_moll_3002_001_s.jpg"
+    "dateiname":"sgs_mup_moll_3002_001_s.jpg",
+    "hist_class":"Stillleben"
   },
   {
     "guid":"3CB688F34C008FCB2AE332A07E95F506",
@@ -6149,7 +6173,8 @@
         "Menschen",
         "Abstrakt"
     ],
-    "dateiname":"sgs_grs_kirchner_a_1957_2015_001_s.jpg"
+    "dateiname":"sgs_grs_kirchner_a_1957_2015_001_s.jpg",
+    "hist_class":"Expressionismus"
   },
   {
     "guid":"D1A7D195478A32A014A50CB69149BF33",
@@ -6331,7 +6356,8 @@
         "Muster",
         "Formen"
     ],
-    "dateiname":"sgs_grs_klee_c-1968-1610_001_s.jpg"
+    "dateiname":"sgs_grs_klee_c-1968-1610_001_s.jpg",
+    "hist_class":"Moderne"
   },
   {
     "guid":"3426756943048D02AD1AE9A92619A1E8",
@@ -6844,7 +6870,8 @@
         "Abstrakte Landschaft",
         "Farben"
     ],
-    "dateiname":"sgs_grs_corinth_c-1972-2220_001_s.jpg"
+    "dateiname":"sgs_grs_corinth_c-1972-2220_001_s.jpg",
+    "hist_class":"Impressionismus"
   },
   {
     "guid":"B55735AD44A849A9CC7136BE0D224CBE",
@@ -7740,7 +7767,8 @@
         "Formen",
         "Form"
     ],
-    "dateiname":"piranesi_a-1961-2386-2-kk.jpg"
+    "dateiname":"piranesi_a-1961-2386-2-kk.jpg",
+    "hist_class":"Stadtplan"
   },
   {
     "guid":"2455490B402AD5FDFDA989802C75536B",
@@ -8181,7 +8209,8 @@
         "Menschen",
         "Mensch"
     ],
-    "dateiname":"sgs_grs_feuerbach_c-1920-5_o01_s.jpg"
+    "dateiname":"sgs_grs_feuerbach_c-1920-5_o01_s.jpg",
+    "hist_class":"Klassizismus"
   },
   {
     "guid":"821F779B27BA43DAB90C477D9280B071",
@@ -8349,7 +8378,8 @@
         "Geometrie",
         "Muster"
     ],
-    "dateiname":"sgs_grs_hondius_b-589-28_001_s.jpg"
+    "dateiname":"sgs_grs_hondius_b-589-28_001_s.jpg",
+    "hist_class":"Renaissance"
   },
   {
     "guid":"B68AD3B42D4D408EA49363F2AE15280C",
@@ -8769,7 +8799,8 @@
         "Form",
         "Geometrie"
     ],
-    "dateiname":"sgs_grs_schlemmer_a-1966-4343_001_s.jpg"
+    "dateiname":"sgs_grs_schlemmer_a-1966-4343_001_s.jpg",
+    "hist_class":"Bauhaus"
   },
   {
     "guid":"2D288F3BCF3445A4B116864CE5883F48",
@@ -9581,7 +9612,8 @@
         "Form",
         "Formen"
     ],
-    "dateiname":"sgs_grs_boccioni_a-1974-5354-b_001_s.jpg"
+    "dateiname":"sgs_grs_boccioni_a-1974-5354-b_001_s.jpg",
+    "hist_class":"Futurismus"
   },
   {
     "guid":"3D80EB3197AC4218B585A262B74575FA",
@@ -10111,7 +10143,8 @@
         "Mensch",
         "Ländlich"
     ],
-    "dateiname":"sgs_grs_riviere_a-2008-7586-10_001_s.jpg"
+    "dateiname":"sgs_grs_riviere_a-2008-7586-10_001_s.jpg",
+    "hist_class":"Jugendstil"
   },
   {
     "guid":"1A351FD3DC9D45828A8BC4ECB274B12F",
@@ -10424,7 +10457,8 @@
         "Formen",
         "Muster"
     ],
-    "dateiname":"sgs_grs_kandinsky_a-1965-4278-b_001_s.jpg"
+    "dateiname":"sgs_grs_kandinsky_a-1965-4278-b_001_s.jpg",
+    "hist_class":"Expressionismus"
   },
   {
     "guid":"F7CA04D87B634787908A49ED6E3A8BF7",
@@ -10690,7 +10724,8 @@
         "Farben",
         "Muster"
     ],
-    "dateiname":"sgs_grs_kandinsky_a-1965-4278-d_001_s.jpg"
+    "dateiname":"sgs_grs_kandinsky_a-1965-4278-d_001_s.jpg",
+    "hist_class":"Expressionismus"
   },
   {
     "guid":"FFC0493D35D342C6A59867AF28E9AF24",
@@ -10919,7 +10954,8 @@
         "Form",
         "Muster"
     ],
-    "dateiname":"sgs_grs_kandinsky_a-1965-4278-c_001_s.jpg"
+    "dateiname":"sgs_grs_kandinsky_a-1965-4278-c_001_s.jpg",
+    "hist_class":"Expressionismus"
   },
   {
     "guid":"D32BE6041AC04E8FA6F2B746294FC959",
@@ -11443,7 +11479,8 @@
         "Tiere",
         "Tier"
     ],
-    "dateiname":"sgs_grs_rohlfs_a-1954-1620_001_s.jpg"
+    "dateiname":"sgs_grs_rohlfs_a-1954-1620_001_s.jpg",
+    "hist_class":"Expressionismus"
   },
   {
     "guid":"9E26234575E34BDB9D5B178A2D767524",
@@ -11681,7 +11718,8 @@
         "Formen",
         "Farben"
     ],
-    "dateiname":"sgs_mup_redon_3834_001_s.jpg"
+    "dateiname":"sgs_mup_redon_3834_001_s.jpg",
+    "hist_class":"Symbolismus"
   },
   {
     "guid":"1B29A948BED1405ABCCA8B58C00A52B5",
@@ -12264,7 +12302,8 @@
         "Tiere",
         "Tier"
     ],
-    "dateiname":"sgs_grs_anonym_c-1990-3833_001_s.jpg"
+    "dateiname":"sgs_grs_anonym_c-1990-3833_001_s.jpg",
+    "hist_class":"Landschaftsdarstellung"
   },
   {
     "guid":"BDAF478F9E864130A7F1CB6A51BB7326",
@@ -12429,7 +12468,8 @@
         "Pflanzen",
         "Pflanze"
     ],
-    "dateiname":"sgs_grs_kirschner_c-5728_001_s.jpg"
+    "dateiname":"sgs_grs_kirschner_c-5728_001_s.jpg",
+    "hist_class":"Stillleben"
   },
   {
     "guid":"5BBF5A1DDC444EDA9C347599AF58BB0E",
@@ -12592,7 +12632,8 @@
         "Tiere",
         "Tier"
     ],
-    "dateiname":"sgs_mup_wiedmayer_3835_001_s.jpg"
+    "dateiname":"sgs_mup_wiedmayer_3835_001_s.jpg",
+    "hist_class":"Impressionismus"
   },
   {
     "guid":"FCB49A4CC0AE403EAA85B90FD7FF33A4",
@@ -12873,7 +12914,8 @@
         "Tiere",
         "Tier"
     ],
-    "dateiname":"sgs_grs_kandinsky_1970-16636-1_001_s.jpg"
+    "dateiname":"sgs_grs_kandinsky_1970-16636-1_001_s.jpg",
+    "hist_class":"Expressionismus"
   },
   {
     "guid":"5195750231CD491BB8B705ABD88375F8",
@@ -14593,7 +14635,8 @@
         "Tier",
         "Taube"
     ],
-    "dateiname":"sgs_mup_werner_3480_001_s.jpg"
+    "dateiname":"sgs_mup_werner_3480_001_s.jpg",
+    "hist_class":"Orientalismus"
   },
   {
     "guid":"999105307A8D4F80BE192E93480B13DA",
@@ -14662,7 +14705,8 @@
         "Japan",
         "Gebirge"
     ],
-    "dateiname":"sgs_grs_hiroshige_a-1960-2272-11_001_s.jpg"
+    "dateiname":"sgs_grs_hiroshige_a-1960-2272-11_001_s.jpg",
+    "hist_class":"Ukiyo-e"
   },
   {
     "guid":"120C146C1BD1469D81A48012414E178A",
@@ -14733,7 +14777,8 @@
         "Japanisch",
         "Japan"
     ],
-    "dateiname":"sgs_grs_hiroshige_a-1960-2272-16_001_s.jpg"
+    "dateiname":"sgs_grs_hiroshige_a-1960-2272-16_001_s.jpg",
+    "hist_class":"Ukiyo-e"
   },
   {
     "guid":"432F6F2BC3994A72B2DE60440ACF1518",
@@ -15061,7 +15106,8 @@
         "Japanisch",
         "Japan"
     ],
-    "dateiname":"sgs_grs_hiroshige_a-1960-2272-31_001_s.jpg"
+    "dateiname":"sgs_grs_hiroshige_a-1960-2272-31_001_s.jpg",
+    "hist_class":"Ukiyo-e"
   },
   {
     "guid":"BDB47B7094734A8C92EDB2B5D1B5E92E",
@@ -15493,7 +15539,8 @@
         "Japanisch",
         "Japan"
     ],
-    "dateiname":"sgs_grs_ashiyuki_a-2016-9288_001_s.jpg"
+    "dateiname":"sgs_grs_ashiyuki_a-2016-9288_001_s.jpg",
+    "hist_class":"Ukiyo-e"
   },
   {
     "guid":"E75C595A297E4FA7A2812B86AB1E6F41",
@@ -15728,7 +15775,8 @@
         "Menschen",
         "Mensch"
     ],
-    "dateiname":"sgs_grs_brandt_c-2017-5756-17_001_s.jpg"
+    "dateiname":"sgs_grs_brandt_c-2017-5756-17_001_s.jpg",
+    "hist_class":"Naturstudie"
   },
   {
     "guid":"C1EFBB03D6A14A2EB682B25FDE3C8066",
@@ -15887,7 +15935,8 @@
         "Mensch",
         "Menschen"
     ],
-    "dateiname":"sgs_grs_genelli_c-2017-5756-66_001_s.jpg"
+    "dateiname":"sgs_grs_genelli_c-2017-5756-66_001_s.jpg",
+    "hist_class":"Klassizismus"
   },
   {
     "guid":"5416ED09F55F41CCBBA37DDFE07302B2",
@@ -15966,7 +16015,8 @@
         "Gebirge",
         "Wasserfall"
     ],
-    "dateiname":"sgs_grs_graeb_c-2017-5756-72_001_s.jpg"
+    "dateiname":"sgs_grs_graeb_c-2017-5756-72_001_s.jpg",
+    "hist_class":"Romantik"
   },
   {
     "guid":"9B291AA5FB404FBEB3B56586D417D5E2",
@@ -16566,7 +16616,8 @@
         "Boot",
         "Hafen"
     ],
-    "dateiname":"sgs_grs_skarbina_c-2017-5756-276_001_s.jpg"
+    "dateiname":"sgs_grs_skarbina_c-2017-5756-276_001_s.jpg",
+    "hist_class":"Impressionismus"
   },
   {
     "guid":"977EB53B16E045F18F1C6C3E83C0F5D7",
@@ -16699,7 +16750,8 @@
         "Menschen",
         "Mensch"
     ],
-    "dateiname":"sgs_grs_toyokuni_a-2016-9547-kk_001_s.jpg"
+    "dateiname":"sgs_grs_toyokuni_a-2016-9547-kk_001_s.jpg",
+    "hist_class":"Ukiyo-e"
   },
   {
     "guid":"CAF365147D184561AB80A92E96F04458",
@@ -16768,7 +16820,8 @@
         "Tiere",
         "Tier"
     ],
-    "dateiname":"sgs_grs_eisen_a-2016-9562_001_s.jpg"
+    "dateiname":"sgs_grs_eisen_a-2016-9562_001_s.jpg",
+    "hist_class":"Ukiyo-e"
   },
   {
     "guid":"24539AB4DE0B4DBD804D7362FCF64ED1",
@@ -17159,7 +17212,8 @@
         "Küste",
         "Felsen"
     ],
-    "dateiname":"sgs_grs_hildebrandt_c-2017-5756-301_001_s.jpg"
+    "dateiname":"sgs_grs_hildebrandt_c-2017-5756-301_001_s.jpg",
+    "hist_class":"Naturstudie"
   },
   {
     "guid":"E7D6767FA9CF45788B1EADB0817889D2",
@@ -17222,7 +17276,8 @@
         "Tiere",
         "Tier"
     ],
-    "dateiname":"sgs_grs_arnold_c-2017-5757-53_001_s.jpg"
+    "dateiname":"sgs_grs_arnold_c-2017-5757-53_001_s.jpg",
+    "hist_class":"Tierstudie"
   },
   {
     "guid":"9F140B0819E340918D66C694BE9F18F3",
@@ -17463,7 +17518,8 @@
         "Tiere",
         "Tier"
     ],
-    "dateiname":"sgs_grs_kley_c-2017-5757-302_001_s.jpg"
+    "dateiname":"sgs_grs_kley_c-2017-5757-302_001_s.jpg",
+    "hist_class":"Impressionismus"
   },
   {
     "guid":"CD8B45807AA440ECB2DCA1AFCA660599",
@@ -17531,7 +17587,8 @@
         "Menschen",
         "Mensch"
     ],
-    "dateiname":"sgs_grs_koenig_c-2017-5757-310_001_s.jpg"
+    "dateiname":"sgs_grs_koenig_c-2017-5757-310_001_s.jpg",
+    "hist_class":"Expressionismus"
   },
   {
     "guid":"CF90D85E44BE46E88EE528B4D14D8D63",
@@ -17763,7 +17820,8 @@
         "Menschen",
         "Mensch"
     ],
-    "dateiname":"sgs_grs_klengel_c-2017-5757-320_001_s.jpg"
+    "dateiname":"sgs_grs_klengel_c-2017-5757-320_001_s.jpg",
+    "hist_class":"Landschaftsdarstellung"
   },
   {
     "guid":"21857FB71C364B7C98282A540294D9D7",
@@ -18008,7 +18066,8 @@
         "Stadtlandschaft",
         "Gebäude"
     ],
-    "dateiname":"sgs_grs_wiegmann_c-2017-5757-590_001_s.jpg"
+    "dateiname":"sgs_grs_wiegmann_c-2017-5757-590_001_s.jpg",
+    "hist_class":"Romantik"
   },
   {
     "guid":"6BE41FE48344411D895F23E4F9118B5F",
@@ -18283,7 +18342,8 @@
        "Formen",
         "Geometrie"
     ],
-    "dateiname":"sgs_grs_lissitzky_a-1977-5658-b_001_s.jpg"
+    "dateiname":"sgs_grs_lissitzky_a-1977-5658-b_001_s.jpg",
+    "hist_class":"Konstruktivismus"
   },
   {
     "guid":"F561F3831B2443C08BAEE77627D6DCBF",
