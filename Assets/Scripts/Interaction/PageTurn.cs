@@ -26,13 +26,13 @@ public class PageTurn : MonoBehaviour
     private GameObject NavButtonBack;
 
     // TextMesh objects containing the instructions of the game
-    private GameObject Text1;
-    private GameObject Text2;
-    private GameObject Text3;
-    private GameObject Text3b;
-    private GameObject Text4;
-    private GameObject Text4b;
-    private GameObject Text5;
+    private GameObject IntroPage;
+    private GameObject Page1;
+    private GameObject Page2;
+    private GameObject Page3;
+    private GameObject Page4;
+    private GameObject Page5;
+    private GameObject Page6;
 
     // TextMesh Objects containging the descriptions of the choosable characters
     private GameObject MuseumswaerterHeader;
@@ -50,55 +50,55 @@ public class PageTurn : MonoBehaviour
     private static event Action<TutorialState> OnTutorialStateChanged;
 
     private TutorialState tutorialState;
+    private int StateIndex; //q0 ... q9 of the state machine
 
     private List<GameObject> TextObjects = new List<GameObject>();
     private List<Tuple<GameObject, GameObject>> CharacterTextObjects = new List<Tuple<GameObject, GameObject>>();
 
-    private int PageCounter;
-    private int CharactersCounter;
-
     public enum TutorialState
     {
-        intro,
-        characters,
+        introPage,
+        page1,
+        page2,
         page3,
         page4,
         page5,
-        page5b,
         page6,
-        charactersBack,
+        page7,
+        page8,
+        page9,
     }
     #endregion
 
     #region unity methods
     private void Awake()
     {
-        PageCounter = 0;
-        CharactersCounter = 0;
+        StateIndex = 0;
 
         InitNavButtons();
         InitTextElementObjects();
         InitCharacterGameObjects();
 
-        DeactivateTextElements();
+        // ensure screen is clear of unwanted text meshes
+        DeactivateTextElements(0);
 
-        // hide the back button for the first page
-        NavButtonBack.SetActive(false);
-        StateForward();
+        //Start the state machine at q0
+        NewState();
     }
     #endregion
+
 
     #region public onPointerClick methods
     public void PageForward()
     {
-        PageCounter++;
-        StateForward();
+        StateIndex++;
+        NewState();
     }
 
     public void PageBack()
     {
-        PageCounter--;
-        StateBack();
+        StateIndex--;
+        NewState();
     }
     #endregion
 
@@ -111,13 +111,13 @@ public class PageTurn : MonoBehaviour
 
     private void InitTextElementObjects()
     {
-        TextObjects.Add(Text1 = GameObject.Find("Text1"));
-        TextObjects.Add(Text2 = GameObject.Find("Text2"));
-        TextObjects.Add(Text3 = GameObject.Find("Text3"));
-        TextObjects.Add(Text3b = GameObject.Find("Text3b"));
-        TextObjects.Add(Text4 = GameObject.Find("Text4"));
-        TextObjects.Add(Text4b = GameObject.Find("Text4b"));
-        TextObjects.Add(Text5 = GameObject.Find("Text5"));
+        TextObjects.Add(IntroPage = GameObject.Find("IntroPage"));
+        TextObjects.Add(Page1 = GameObject.Find("Page1"));
+        TextObjects.Add(Page2 = GameObject.Find("Page2"));
+        TextObjects.Add(Page3 = GameObject.Find("Page3"));
+        TextObjects.Add(Page4 = GameObject.Find("Page4"));
+        TextObjects.Add(Page5 = GameObject.Find("Page5"));
+        TextObjects.Add(Page6 = GameObject.Find("Page6"));
     }
 
     private void InitCharacterGameObjects()
@@ -136,16 +136,16 @@ public class PageTurn : MonoBehaviour
     {
         tutorialState = newTutorialState;
 
-        switch (newTutorialState)
+        switch (tutorialState)
         {
-            case TutorialState.intro:
-                SetUpIntro();
+            case TutorialState.introPage:
+                SetUpIntroPage();
                 break;
-            case TutorialState.characters:
-                SetCharactersForward(CharactersCounter);
+            case TutorialState.page1:
+                SetUpPage1();   
                 break;
-            case TutorialState.charactersBack:
-                SetCharactersBack();
+            case TutorialState.page2:
+                SetUpPage2();
                 break;
             case TutorialState.page3:
                 SetUpPage3();
@@ -156,100 +156,56 @@ public class PageTurn : MonoBehaviour
             case TutorialState.page5:
                 SetUpPage5();
                 break;
-            case TutorialState.page5b:
-                SetUpPage5b();
-                break;
             case TutorialState.page6:
                 SetUpPage6();
                 break;
+            case TutorialState.page7:
+                SetUpPage7();
+                break;
+            case TutorialState.page8:
+                SetUpPage8();
+                break;
+            case TutorialState.page9:
+                SetUpPage9();
+                break;
             default:
                 break;
         }
-
         OnTutorialStateChanged?.Invoke(newTutorialState);
     }
-
-    private void StateForward()
+    private void NewState()
     {
-        switch (PageCounter)
+        switch (StateIndex)
         {
             case 0:
-                NavButtonBack?.SetActive(false);
-                UpdateTutorialState(TutorialState.intro);
+                UpdateTutorialState(TutorialState.introPage);
                 break;
             case 1:
-                NavButtonBack?.SetActive(true);
-                UpdateTutorialState(TutorialState.characters);
+                UpdateTutorialState(TutorialState.page1);
                 break;
             case 2:
-                UpdateTutorialState(TutorialState.characters);
+                UpdateTutorialState(TutorialState.page2);
                 break;
             case 3:
-                UpdateTutorialState(TutorialState.characters);
-                break;
-            case 4:
-                UpdateTutorialState(TutorialState.characters);
-                break;
-            case 5:
                 UpdateTutorialState(TutorialState.page3);
                 break;
-            case 6:
+            case 4:
                 UpdateTutorialState(TutorialState.page4);
                 break;
-            case 7:
+            case 5:
                 UpdateTutorialState(TutorialState.page5);
                 break;
-            case 8:
-                UpdateTutorialState(TutorialState.page5b);
-                break;
-            case 9:
+            case 6:
                 UpdateTutorialState(TutorialState.page6);
                 break;
-            default:
-                break;
-        }
-    }
-
-    // this method should be removeable if refactored properly. . .
-    private void StateBack()
-    {
-        switch (PageCounter)
-        {
-            case 8:
-                Debug.Log("STATE NUM: " + PageCounter);
-                UpdateTutorialState(TutorialState.page5b);
-                break;
             case 7:
-                Debug.Log("STATE NUM: " + PageCounter);
-                UpdateTutorialState(TutorialState.page5);
+                UpdateTutorialState(TutorialState.page7);
                 break;
-            case 6:
-                Debug.Log("STATE NUM: " + PageCounter);
-                UpdateTutorialState(TutorialState.page4);
+            case 8:
+                UpdateTutorialState(TutorialState.page8);
                 break;
-            case 5:
-                Debug.Log("STATE NUM: " + PageCounter);
-                UpdateTutorialState(TutorialState.page3);
-                break;
-            case 4:
-                Debug.Log("STATE NUM: " + PageCounter);
-                UpdateTutorialState(TutorialState.charactersBack);
-                break;
-            case 3:
-                Debug.Log("STATE NUM: " + PageCounter);
-                UpdateTutorialState(TutorialState.charactersBack);
-                break;
-            case 2:
-                Debug.Log("STATE NUM: " + PageCounter);
-                UpdateTutorialState(TutorialState.charactersBack);
-                break;
-            case 1:
-                Debug.Log("STATE NUM: " + PageCounter);
-                UpdateTutorialState(TutorialState.charactersBack);
-                break;
-            case 0:
-                Debug.Log("STATE NUM: " + PageCounter);
-                UpdateTutorialState(TutorialState.intro);
+            case 9:
+                UpdateTutorialState(TutorialState.page9);
                 break;
             default:
                 break;
@@ -258,127 +214,133 @@ public class PageTurn : MonoBehaviour
     #endregion
 
     #region PageSetup methods
-    private void SetUpPage6()
+    private void SetUpIntroPage()
     {
-        DeactivateTextElements();
-        NavButtonForward.SetActive(false); 
-        TextObjects[6].SetActive(true);
+        DeactivateTextElements(0);
+
+        NavButtonBack.SetActive(false);
+        
+        TextObjects[0].SetActive(true);
+
     }
 
-    private void SetUpPage5b()
+    private void SetUpPage1()
     {
-        DeactivateTextElements();
-        TextObjects[5].SetActive(true);
-    }
+        NavButtonBack.SetActive(true);
 
-    private void SetUpPage5()
-    {
-        DeactivateTextElements();
-        TextObjects[4].SetActive(true);
-    }
+        DeactivateTextElements(0);
 
-    private void SetUpPage4()
+        TextObjects[1].SetActive(true);
+
+        // extra setup for character info
+        CharacterTextObjects[0].Item1.SetActive(true);
+        CharacterTextObjects[0].Item2.SetActive(true);
+
+    }
+    
+    private void SetUpPage2()
     {
-        DeactivateTextElements();
-        TextObjects[3].SetActive(true);
+        DeactivateTextElements(1);
+
+        // extra setup for character info
+        CharacterTextObjects[1].Item1.SetActive(true);
+        CharacterTextObjects[1].Item2.SetActive(true);
+
     }
 
     private void SetUpPage3()
     {
-        DeactivateTextElements();
-        CharactersCounter = 5; // ensures we can move back through states properly with the counter
+        DeactivateTextElements(1);
+
+        // extra setup for character info
+        CharacterTextObjects[2].Item1.SetActive(true);
+        CharacterTextObjects[2].Item2.SetActive(true);
+    }
+
+    private void SetUpPage4()
+    {
+        DeactivateTextElements(1);
+
+        // extra setup for character info
+        CharacterTextObjects[3].Item1.SetActive(true);
+        CharacterTextObjects[3].Item2.SetActive(true);
+    }
+
+    private void SetUpPage5()
+    {
+        DeactivateTextElements(0);
         TextObjects[2].SetActive(true);
     }
 
-    private void SetCharactersForward(int counter)
+  
+    private void SetUpPage6()
     {
-
-        if (counter == 0)
-        {
-            DeactivateTextElements();
-            TextObjects[1].SetActive(true);
-            CharacterTextObjects[counter].Item1.SetActive(true);
-            CharacterTextObjects[counter].Item2.SetActive(true);
-        }
-        else
-        {
-            // deactivate the text objects for the previous character
-            CharacterTextObjects[counter - 1].Item1.SetActive(false);
-            CharacterTextObjects[counter - 1].Item2.SetActive(false);
-
-            CharacterTextObjects[counter].Item1.SetActive(true);
-            CharacterTextObjects[counter].Item2.SetActive(true);
-        }
-
-        CharactersCounter++;
+        DeactivateTextElements(0);
+        TextObjects[3].SetActive(true);
     }
 
-    private void SetCharactersBack()
+    private void SetUpPage7()
     {
-        switch (CharactersCounter)
-        {
-            //TODO: this case may never occur
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                CharacterTextObjects[CharactersCounter - 1].Item1.SetActive(false);
-                CharacterTextObjects[CharactersCounter - 1].Item2.SetActive(false);
-
-                CharacterTextObjects[CharactersCounter - 2].Item1.SetActive(true);
-                CharacterTextObjects[CharactersCounter - 2].Item2.SetActive(true);
-                break;
-            case 3:
-                CharacterTextObjects[CharactersCounter - 1].Item1.SetActive(false);
-                CharacterTextObjects[CharactersCounter - 1].Item2.SetActive(false);
-
-                CharacterTextObjects[CharactersCounter - 2].Item1.SetActive(true);
-                CharacterTextObjects[CharactersCounter - 2].Item2.SetActive(true);
-                break;
-            case 4:
-                CharacterTextObjects[CharactersCounter - 1].Item1.SetActive(false);
-                CharacterTextObjects[CharactersCounter - 1].Item2.SetActive(false);
-
-                CharacterTextObjects[CharactersCounter - 2].Item1.SetActive(true);
-                CharacterTextObjects[CharactersCounter - 2].Item2.SetActive(true);
-                break;
-            case 5:
-                DeactivateTextElements();
-                TextObjects[1].SetActive(true);
-                CharacterTextObjects[CharactersCounter - 2].Item1.SetActive(true);
-                CharacterTextObjects[CharactersCounter - 2].Item2.SetActive(true);
-                break;
-            default:
-                break;
-        }
-
-        CharactersCounter--;
-
+        DeactivateTextElements(0);
+        TextObjects[4].SetActive(true);
     }
 
-    private void SetUpIntro()
+    private void SetUpPage8()
     {
-        CharactersCounter -= CharactersCounter;
-        NavButtonBack.SetActive(false);
-        DeactivateTextElements();
-        TextObjects[0].SetActive(true);
+        DeactivateTextElements(0);
+        TextObjects[5].SetActive(true);
     }
 
-    private void DeactivateTextElements()
+    private void SetUpPage9()
     {
-        // clean the scene of active text meshes
+        DeactivateTextElements(0);
+        NavButtonForward.SetActive(false);
+        TextObjects[6].SetActive(true);
+    }
 
-        foreach (var textObject in TextObjects)
+
+    private void DeactivateTextElements(int mode)
+    {
+        // clean the scene of active text meshes. Needs to be called to deactivate game objects after variable assignment in Awake() call.
+
+        if(mode == 0)
         {
-            textObject.SetActive(false);
+            foreach (var textObject in TextObjects)
+            {
+                textObject.SetActive(false);
+            }
+
+            foreach (var characterTextObject in CharacterTextObjects)
+            {
+                characterTextObject.Item1.SetActive(false);
+                characterTextObject.Item2.SetActive(false);
+            }
+        }
+        
+        if(mode == 1)
+        {
+            foreach (var textObject in TextObjects)
+            {
+                if(textObject.name == "Page1")
+                {
+                    Debug.Log("hit");
+                    continue;
+                }
+                else
+                {
+                    textObject.SetActive(false);
+                }
+
+                
+            }
+
+            foreach (var characterTextObject in CharacterTextObjects)
+            {
+                characterTextObject.Item1.SetActive(false);
+                characterTextObject.Item2.SetActive(false);
+            }
         }
 
-        foreach (var characterTextObject in CharacterTextObjects)
-        {
-            characterTextObject.Item1.SetActive(false);
-            characterTextObject.Item2.SetActive(false);
-        }
     }
     #endregion
 }

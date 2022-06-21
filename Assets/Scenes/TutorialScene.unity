@@ -254,7 +254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5552178460349475701, guid: f7199da0b134e3542809627a1a940f8b, type: 3}
       propertyPath: m_Name
-      value: Text2
+      value: Page1
       objectReference: {fileID: 0}
     - target: {fileID: 5552178460349475701, guid: f7199da0b134e3542809627a1a940f8b, type: 3}
       propertyPath: m_IsActive
@@ -397,7 +397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5552178460349475701, guid: f7199da0b134e3542809627a1a940f8b, type: 3}
       propertyPath: m_Name
-      value: Text1
+      value: IntroPage
       objectReference: {fileID: 0}
     - target: {fileID: 5552178460349475701, guid: f7199da0b134e3542809627a1a940f8b, type: 3}
       propertyPath: m_IsActive
@@ -541,7 +541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5552178460349475701, guid: f7199da0b134e3542809627a1a940f8b, type: 3}
       propertyPath: m_Name
-      value: Text5
+      value: Page6
       objectReference: {fileID: 0}
     - target: {fileID: 5552178460349475701, guid: f7199da0b134e3542809627a1a940f8b, type: 3}
       propertyPath: m_IsActive
@@ -689,7 +689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5552178460349475701, guid: f7199da0b134e3542809627a1a940f8b, type: 3}
       propertyPath: m_Name
-      value: Text4b
+      value: Page5
       objectReference: {fileID: 0}
     - target: {fileID: 5552178460349475701, guid: f7199da0b134e3542809627a1a940f8b, type: 3}
       propertyPath: m_IsActive
@@ -952,7 +952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5552178460349475701, guid: f7199da0b134e3542809627a1a940f8b, type: 3}
       propertyPath: m_Name
-      value: Text3b
+      value: Page3
       objectReference: {fileID: 0}
     - target: {fileID: 5552178460349475701, guid: f7199da0b134e3542809627a1a940f8b, type: 3}
       propertyPath: m_IsActive
@@ -1088,7 +1088,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5552178460349475701, guid: f7199da0b134e3542809627a1a940f8b, type: 3}
       propertyPath: m_Name
-      value: Text3
+      value: Page2
       objectReference: {fileID: 0}
     - target: {fileID: 5552178460349475701, guid: f7199da0b134e3542809627a1a940f8b, type: 3}
       propertyPath: m_IsActive
@@ -1314,7 +1314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5552178460349475701, guid: f7199da0b134e3542809627a1a940f8b, type: 3}
       propertyPath: m_Name
-      value: Text4
+      value: Page4
       objectReference: {fileID: 0}
     - target: {fileID: 5552178460349475701, guid: f7199da0b134e3542809627a1a940f8b, type: 3}
       propertyPath: m_IsActive
