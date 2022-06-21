@@ -45,8 +45,6 @@ namespace Manager
         internal void PopulateDeck()
         {
             // TODO: This will allow repeated instantiation of the same cards in the deck. Don't destroy deck on scene change?
-
-            // TODO: Implement. Should fill the deck list with cards
             ConfigParameter confParam = JConfigDeserializer.JConfig._out[0];
             List<OutputParameter> outParams = JDataDeserializer.JData._out;
 
