@@ -5,19 +5,11 @@ using UnityEngine;
 
 public class PageTurn : MonoBehaviour
 {
-
-    /**
-     * TODO: refactor with less spagehtti.
-     *  
-     *  Represent this a a state machine with states q0 . . . q9.
-     *  
-     *  Designate per state the active objects.
-     *
-     */
-
     /**
      * 
-     * Use this to turn the pages of the tutorial text.
+     * This class is a finite state machine that "turns" the pages of the instruction manual.
+     * Each state represents a page. The setup method builds the corresponding state/page
+     * while tearing down the previous state/page.
      * 
      */
 
@@ -25,39 +17,21 @@ public class PageTurn : MonoBehaviour
     private GameObject NavButtonForward;
     private GameObject NavButtonBack;
 
-    // TextMesh objects containing the instructions of the game
-    private GameObject IntroPage;
-    private GameObject Page1;
-    private GameObject Page2;
-    private GameObject Page3;
-    private GameObject Page4;
-    private GameObject Page5;
-    private GameObject Page6;
+    private GameObject CharacterSprite;
+    private GameObject BannerSprite;
 
-    // TextMesh Objects containging the descriptions of the choosable characters
-    private GameObject MuseumswaerterHeader;
-    private GameObject MuseumswaerterBody;
-
-    private GameObject MuseumdirektorinHeader;
-    private GameObject MuseumdirektorinBody;
-
-    private GameObject KunstkennerHeader;
-    private GameObject KunstkennerBody;
-
-    private GameObject MuseumsdiebinHeader;
-    private GameObject MuseumsdiebinBody;
 
     private static event Action<TutorialState> OnTutorialStateChanged;
-
     private TutorialState tutorialState;
-    private int StateIndex; //q0 ... q9 of the state machine
+    private int StateIndex; // corresponds to the current state of the FSM: q0. . .q9
 
     private List<GameObject> TextObjects = new List<GameObject>();
-    private List<Tuple<GameObject, GameObject>> CharacterTextObjects = new List<Tuple<GameObject, GameObject>>();
+    private List<Tuple<GameObject, GameObject>> CharacterTextObjects = new List<Tuple<GameObject, GameObject>>(); // Each character page consists of a header and body, so they are joined pairwise here.
 
     public enum TutorialState
     {
-        introPage,
+        // states are named colloqiually and not by index
+        introPage, //q0 . . . 
         page1,
         page2,
         page3,
@@ -66,7 +40,7 @@ public class PageTurn : MonoBehaviour
         page6,
         page7,
         page8,
-        page9,
+        page9, //q9
     }
     #endregion
 
@@ -78,15 +52,20 @@ public class PageTurn : MonoBehaviour
         InitNavButtons();
         InitTextElementObjects();
         InitCharacterGameObjects();
+        CharacterSprite = GameObject.Find("CharacterSprite");
+        BannerSprite = GameObject.Find("CharacterBannerSprite");
 
         // ensure screen is clear of unwanted text meshes
         DeactivateTextElements(0);
+
+        // disable the sprites for characters for now
+        CharacterSprite.SetActive(false);
+        BannerSprite.SetActive(false);
 
         //Start the state machine at q0
         NewState();
     }
     #endregion
-
 
     #region public onPointerClick methods
     public void PageForward()
@@ -111,22 +90,22 @@ public class PageTurn : MonoBehaviour
 
     private void InitTextElementObjects()
     {
-        TextObjects.Add(IntroPage = GameObject.Find("IntroPage"));
-        TextObjects.Add(Page1 = GameObject.Find("Page1"));
-        TextObjects.Add(Page2 = GameObject.Find("Page2"));
-        TextObjects.Add(Page3 = GameObject.Find("Page3"));
-        TextObjects.Add(Page4 = GameObject.Find("Page4"));
-        TextObjects.Add(Page5 = GameObject.Find("Page5"));
-        TextObjects.Add(Page6 = GameObject.Find("Page6"));
+        TextObjects.Add(GameObject.Find("IntroPage"));
+        TextObjects.Add(GameObject.Find("Page1"));
+        TextObjects.Add(GameObject.Find("Page2"));
+        TextObjects.Add(GameObject.Find("Page3"));
+        TextObjects.Add(GameObject.Find("Page4"));
+        TextObjects.Add(GameObject.Find("Page5"));
+        TextObjects.Add(GameObject.Find("Page6"));
     }
 
     private void InitCharacterGameObjects()
     {
 
-        CharacterTextObjects.Add(Tuple.Create(MuseumswaerterHeader = GameObject.Find("MuseumswaerterHeader"), MuseumswaerterBody = GameObject.Find("MuseumswaerterBody")));
-        CharacterTextObjects.Add(Tuple.Create(MuseumdirektorinHeader = GameObject.Find("MuseumdirektorinHeader"), MuseumdirektorinBody = GameObject.Find("MuseumdirektorinBody")));
-        CharacterTextObjects.Add(Tuple.Create(KunstkennerHeader = GameObject.Find("KunstkennerHeader"), KunstkennerBody = GameObject.Find("KunstkennerBody")));
-        CharacterTextObjects.Add(Tuple.Create(MuseumsdiebinHeader = GameObject.Find("MuseumsdiebinHeader"), MuseumsdiebinBody = GameObject.Find("MuseumsdiebinBody")));
+        CharacterTextObjects.Add(Tuple.Create(GameObject.Find("MuseumswaerterHeader"), GameObject.Find("MuseumswaerterBody")));
+        CharacterTextObjects.Add(Tuple.Create(GameObject.Find("MuseumdirektorinHeader"), GameObject.Find("MuseumdirektorinBody")));
+        CharacterTextObjects.Add(Tuple.Create(GameObject.Find("KunstkennerHeader"), GameObject.Find("KunstkennerBody")));
+        CharacterTextObjects.Add(Tuple.Create(GameObject.Find("MuseumsdiebinHeader"), GameObject.Find("MuseumsdiebinBody")));
 
     }
     #endregion
@@ -217,22 +196,47 @@ public class PageTurn : MonoBehaviour
     private void SetUpIntroPage()
     {
         DeactivateTextElements(0);
+        ToggleCharacterSprites(0);
 
         NavButtonBack.SetActive(false);
-        
+
         TextObjects[0].SetActive(true);
 
     }
 
+    private void ToggleCharacterSprites(int mode)
+    {
+        //Toggle the Sprites for characters
+
+        if (mode == 0)
+        {
+            CharacterSprite.SetActive(false);
+            BannerSprite.SetActive(false);
+        }
+        if(mode == 1)
+        {
+            CharacterSprite.SetActive(true);
+            BannerSprite.SetActive(true);
+        }
+    }
+
     private void SetUpPage1()
     {
-        NavButtonBack.SetActive(true);
-
         DeactivateTextElements(0);
+        ToggleCharacterSprites(1);
 
+        NavButtonBack.SetActive(true);
         TextObjects[1].SetActive(true);
 
         // extra setup for character info
+        ToggleCharacterSprites(1);
+
+        CharacterSprite.GetComponent<SpriteRenderer>()
+            .sprite = Resources.Load<Sprite>("CharacterSprites/character_museumswaerter");
+
+        BannerSprite.GetComponent<SpriteRenderer>()
+            .sprite = Resources.Load<Sprite>("CharacterSprites/sign_museumswaerter");
+
         CharacterTextObjects[0].Item1.SetActive(true);
         CharacterTextObjects[0].Item2.SetActive(true);
 
@@ -241,8 +245,15 @@ public class PageTurn : MonoBehaviour
     private void SetUpPage2()
     {
         DeactivateTextElements(1);
+        ToggleCharacterSprites(1);
 
         // extra setup for character info
+        CharacterSprite.GetComponent<SpriteRenderer>()
+            .sprite = Resources.Load<Sprite>("CharacterSprites/character_museumsdirektor");
+
+        BannerSprite.GetComponent<SpriteRenderer>()
+            .sprite = Resources.Load<Sprite>("CharacterSprites/sign_museumsdirektor");
+
         CharacterTextObjects[1].Item1.SetActive(true);
         CharacterTextObjects[1].Item2.SetActive(true);
 
@@ -251,8 +262,15 @@ public class PageTurn : MonoBehaviour
     private void SetUpPage3()
     {
         DeactivateTextElements(1);
+        ToggleCharacterSprites(1);
 
         // extra setup for character info
+        CharacterSprite.GetComponent<SpriteRenderer>()
+            .sprite = Resources.Load<Sprite>("CharacterSprites/character_kunstsammlerin");
+
+        BannerSprite.GetComponent<SpriteRenderer>()
+            .sprite = Resources.Load<Sprite>("CharacterSprites/sign_kunstsammlerin");
+
         CharacterTextObjects[2].Item1.SetActive(true);
         CharacterTextObjects[2].Item2.SetActive(true);
     }
@@ -260,14 +278,24 @@ public class PageTurn : MonoBehaviour
     private void SetUpPage4()
     {
         DeactivateTextElements(1);
+        ToggleCharacterSprites(1);
+
+        TextObjects[1].SetActive(true); // for the way back
 
         // extra setup for character info
+        CharacterSprite.GetComponent<SpriteRenderer>()
+            .sprite = Resources.Load<Sprite>("CharacterSprites/character_kunstdiebin");
+
+        BannerSprite.GetComponent<SpriteRenderer>()
+            .sprite = Resources.Load<Sprite>("CharacterSprites/sign_kunstdiebin");
+
         CharacterTextObjects[3].Item1.SetActive(true);
         CharacterTextObjects[3].Item2.SetActive(true);
     }
 
     private void SetUpPage5()
     {
+        ToggleCharacterSprites(0);
         DeactivateTextElements(0);
         TextObjects[2].SetActive(true);
     }
@@ -301,9 +329,19 @@ public class PageTurn : MonoBehaviour
 
     private void DeactivateTextElements(int mode)
     {
-        // clean the scene of active text meshes. Needs to be called to deactivate game objects after variable assignment in Awake() call.
+        /**
+         *   Deactivate all active text mesh objects.
+         *   
+         *   Parameters
+         *   ----------
+         *   mode : int
+         *       specifies what to deactivate. 
+         *       0 -> deactivate everything 
+         *       1 -> deactivate everything EXCEPT the intro text for the character pages.
+         *          
+         */
 
-        if(mode == 0)
+        if (mode == 0)
         {
             foreach (var textObject in TextObjects)
             {
@@ -315,8 +353,7 @@ public class PageTurn : MonoBehaviour
                 characterTextObject.Item1.SetActive(false);
                 characterTextObject.Item2.SetActive(false);
             }
-        }
-        
+        }        
         if(mode == 1)
         {
             foreach (var textObject in TextObjects)
