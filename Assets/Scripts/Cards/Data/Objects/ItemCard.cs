@@ -19,12 +19,8 @@ namespace Data.Objects
         private List<string> _materials;
         private List<string> _techniques;
         private List<string> _keywords;
-
         private string _histClass;
         private SpriteRenderer _spriteRenderer;
-        public int dd;
-        public int dm;
-        public int dy;
 
         private void Awake()
         {
@@ -48,9 +44,6 @@ namespace Data.Objects
             _techniques = ListFiller.FillList<Technique>(jParam._techs);
             _keywords = jParam._keywords;
             _histClass = jParam._histClass;
-            dd = _artist.DeathDay;
-            dm = _artist.DeathMonth;
-            dy = _artist.DeathYear;
         }
 
         private void InstantiateSpriteRenderer()
