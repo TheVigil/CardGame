@@ -19,10 +19,10 @@ namespace Data.Objects
         {
             _name = CleanArtName(_jParam._artist[0]._fullname);
             _dateOfBirth = string.IsNullOrEmpty(_jParam._artist[0]._birthdate)
-                                    ? (DateTime)new DateTime()
+                                    ? new DateTime()
                                     : DateTime.Parse(TimeFixer.CleanupDates(_jParam._artist[0]._birthdate));
             _dateOfDeath = string.IsNullOrEmpty(_jParam._artist[0]._deathdate)
-                                    ? (DateTime)new DateTime()
+                                    ? new DateTime()
                                     : DateTime.Parse(TimeFixer.CleanupDates(_jParam._artist[0]._deathdate));
             _birthplace = _jParam._artist[0]._birthplace;
             _deathplace = _jParam._artist[0]._deathplace;
