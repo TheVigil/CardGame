@@ -193,6 +193,7 @@ public class PageTurn : MonoBehaviour
     #endregion
 
     #region PageSetup methods
+    //TODO : these methods can be refactored into a single switch case . . .
     private void SetUpIntroPage()
     {
         DeactivateTextElements(0);
@@ -360,7 +361,6 @@ public class PageTurn : MonoBehaviour
             {
                 if(textObject.name == "Page1")
                 {
-                    Debug.Log("hit");
                     continue;
                 }
                 else

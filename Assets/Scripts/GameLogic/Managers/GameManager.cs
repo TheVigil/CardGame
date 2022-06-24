@@ -23,7 +23,9 @@ namespace Manager
         private static CardManager CardManagerInstance;
         private static SceneLoader SceneLoader;
         private static LevelManager LevelManager;
-       // private static GameObject UICavas;
+        private static RuleManager RuleManager;
+        internal int CurrentLevel;
+
         public GameState gameState;
         public static event Action<GameState> OnGameStateChanged;
 
@@ -32,17 +34,20 @@ namespace Manager
         {
             StartGame,
             PlayerTurn,
-            ScoreCalc,
+            UpdateScore,
+            UpdateLevelNumber,
             TurnEnd,
             LevelEnd,
         }
         #endregion
 
-        #region setup
+        #region Unity Methods
         private void Awake()
         {
 
-            if(GameManagerInstance != null)
+            CurrentLevel = 0;
+
+            if (GameManagerInstance != null)
             {
                 Destroy(this);
             }
@@ -51,8 +56,9 @@ namespace Manager
                 GameManagerInstance = this;
                 LevelManager = GetComponent<LevelManager>();
                 SceneLoader = GetComponent<SceneLoader>();
-                LevelManager = GetComponent<LevelManager>();
                 CardManagerInstance = GetComponent<CardManager>();
+                RuleManager = GetComponent<RuleManager>();
+                GameObject.Find("RulesTextDisplay").SetActive(false);
             }
 
             //TODO: there's a better way for sure
@@ -60,6 +66,7 @@ namespace Manager
             DontDestroyOnLoad(CardManagerInstance);
             DontDestroyOnLoad(SceneLoader);
             DontDestroyOnLoad(LevelManager);
+            DontDestroyOnLoad(RuleManager);
             DontDestroyOnLoad(GameObject.Find("CardSlots"));
             DontDestroyOnLoad(GameObject.Find("CardContainer"));
             DontDestroyOnLoad(GameObject.Find("Canvas"));
@@ -79,13 +86,14 @@ namespace Manager
         }
         #endregion
 
-        #region game state changes
+        #region State Management
 
         // TODO: For debugging only, delete!
         public void ForceScene()
         {
             UpdateGameState(GameState.LevelEnd);
         }
+
         public void UpdateGameState(GameState newGameState)
         {
             gameState = newGameState;
@@ -94,14 +102,20 @@ namespace Manager
             {
                 case GameState.StartGame:
                     LevelManager.UpdateLevelState(LevelManager.LevelState.setUp);
+                    RuleManager.UpdateRuleState(RuleManager.RuleState.assignRules);
                     break;
                 case GameState.PlayerTurn:
                     break;
-                case GameState.ScoreCalc:
+                case GameState.UpdateScore:
+                    UpdateScore();
+                    break;
+                case GameState.UpdateLevelNumber:
+                    UpdateLevelNumber();
                     break;
                 case GameState.TurnEnd:
                     break;
                 case GameState.LevelEnd:
+                    RuleManager.UpdateRuleState(RuleManager.RuleState.checkRules);
                     SceneLoader.UpdateSceneState(SceneLoader.SceneState.nextScene);
                     LevelManager.UpdateLevelState(LevelManager.LevelState.setUp);
                     break;
@@ -113,6 +127,18 @@ namespace Manager
         }
         #endregion
 
+        #region Methods
+
+        private void UpdateScore()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void UpdateLevelNumber()
+        {
+            CurrentLevel++;
+        }
+        #endregion
 
     }
 }

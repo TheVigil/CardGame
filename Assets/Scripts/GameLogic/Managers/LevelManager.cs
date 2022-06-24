@@ -53,21 +53,20 @@ namespace Manager
             if(level == 2)
             {
                 Debug.Log("Lvl2");
-
                 dropZones = 10;
             }
             if(level == 3)
             {
                 Debug.Log("Lvl3");
-
                 dropZones = 7;
             }
+
+            GameManager.GameManagerInstance.UpdateGameState(GameManager.GameState.UpdateLevelNumber);
 
         }
 
         private void CheckLevelEnd()
         {
-            Debug.Log(dropZones);
             if(dropZones == 0)
             {
                 GameManager.GameManagerInstance.UpdateGameState(GameManager.GameState.LevelEnd);
