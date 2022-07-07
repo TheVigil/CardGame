@@ -84,6 +84,11 @@ namespace Manager
         {
 
         }
+
+        void SaveObject()
+        {
+            
+        }
         #endregion
 
         #region State Management
