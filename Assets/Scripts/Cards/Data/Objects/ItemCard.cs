@@ -50,7 +50,7 @@ namespace Data.Objects
         {
             ConfigParameter confParam = JConfigDeserializer.JConfig._out[0]; // Static index is correct for current dataset
 
-            var parent = (gameObject.transform as RectTransform);
+            //var parent = (gameObject.transform as RectTransform);
             _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
             _spriteRenderer.drawMode = SpriteDrawMode.Sliced;
             _spriteRenderer.sprite = Resources.Load<Sprite>(confParam._savePath + _guid);

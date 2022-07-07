@@ -11,7 +11,6 @@ namespace Data.Objects
         public int handSlotIndex;
         private GameManager gameManager;
         private CardFlipper flipper;
-        private bool showFace;
         public List<Sprite> sprites;
         internal int cardIndex;
         protected readonly double _pixHeight = 50.0;
@@ -29,7 +28,6 @@ namespace Data.Objects
 
         private void Start()
         {
-
             gameManager = FindObjectOfType<GameManager>();
             flipper = gameObject.AddComponent<CardFlipper>();
         }
