@@ -73,6 +73,7 @@ public class DragAndDrop : MonoBehaviour
         else
         {
             gameObject.GetComponent<Transform>().localScale = new Vector2(1f, 1f);
+            gameObject.GetComponent<SpriteRenderer>().size = new Vector2(1f, 1f);
             transform.position = startParent.transform.position;
             transform.SetParent(startParent.transform, false);
             isDraggable = true;

@@ -49,13 +49,13 @@ namespace Data.Objects
         private void InstantiateSpriteRenderer()
         {
             ConfigParameter confParam = JConfigDeserializer.JConfig._out[0]; // Static index is correct for current dataset
-
-            //var parent = (gameObject.transform as RectTransform);
             _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
             _spriteRenderer.drawMode = SpriteDrawMode.Sliced;
             _spriteRenderer.sprite = Resources.Load<Sprite>(confParam._savePath + _guid);
             _spriteRenderer.size = new Vector2(1f, 1f);
         }
+
+
 
         public string Guid
         {

@@ -10,7 +10,6 @@ namespace Data.Objects
         public bool played;
         public int handSlotIndex;
         private GameManager gameManager;
-        private CardFlipper flipper;
         public List<Sprite> sprites;
         internal int cardIndex;
         protected readonly double _pixHeight = 50.0;
@@ -29,7 +28,6 @@ namespace Data.Objects
         private void Start()
         {
             gameManager = FindObjectOfType<GameManager>();
-            flipper = gameObject.AddComponent<CardFlipper>();
         }
 
         private void Update()

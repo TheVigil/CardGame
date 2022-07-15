@@ -79,16 +79,6 @@ namespace Manager
             UpdateGameState(GameState.StartGame);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-        void SaveObject()
-        {
-            
-        }
         #endregion
 
         #region State Management
