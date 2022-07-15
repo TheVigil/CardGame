@@ -13,15 +13,17 @@ public class CardFlipper : MonoBehaviour, IPointerClickHandler
     public GameObject cardBack;
     public bool cardBackActive;
     public int timer;
-    private SpriteRenderer cardBackSpriteRenderer;
-    private SpriteRenderer parentSpriteRenderer;
+    private SpriteRenderer _cardBackSpriteRenderer;
+    private SpriteRenderer _parentSpriteRenderer;
+    private string _guid;
 
     private void Start()
     {
         cardBackActive = false;
-        parentSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        cardBackSpriteRenderer = gameObject.transform.Find("CardBack").GetComponent<SpriteRenderer>();
-        cardBackSpriteRenderer.drawMode = SpriteDrawMode.Sliced;
+        _parentSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        _cardBackSpriteRenderer = gameObject.transform.Find("CardBack").GetComponent<SpriteRenderer>();
+        _cardBackSpriteRenderer.drawMode = SpriteDrawMode.Sliced;
+        _guid = gameObject.GetComponent<ItemCard>().Guid;
     }
 
     private void StartFlipCard()
@@ -34,31 +36,27 @@ public class CardFlipper : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log("Click!");
             StartFlipCard();
-        }
-        else
-        {
-            Debug.Log("!Click");
-            return;
         }
     }
 
-    public void Flip()
+    private void Flip()
     {
         if (cardBackActive)
         {
 
             cardBack.SetActive(false);
-            parentSpriteRenderer.enabled = true;
-            cardBackSpriteRenderer.size = new Vector2(1f, 1f);
+            _parentSpriteRenderer.enabled = true;
+            _cardBackSpriteRenderer.size = new Vector2(1f, 1f);
             cardBackActive = false;
         }
         else
         {
-            parentSpriteRenderer.enabled = false;
+            _parentSpriteRenderer.enabled = false;
             cardBack.SetActive(true);
-            cardBackSpriteRenderer.size = new Vector2(1f, 1f);
+            _cardBackSpriteRenderer.size = new Vector2(1f, 1f);
+            _cardBackSpriteRenderer.sprite = Resources.Load<Sprite>("Images/CardBacks/" + _guid);
+            _cardBackSpriteRenderer.flipX = true;  
             cardBackActive = true;
 
         }
