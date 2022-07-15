@@ -21,7 +21,7 @@ public class RuleSign : MonoBehaviour
     {
         RulesText = GameObject.Find("Canvas").transform.GetChild(1);
         gameManager = GameManager.GameManagerInstance;
-        ruleManager = gameManager.GetComponent<RuleManager>();
+        // ruleManager = gameManager.GetComponent<RuleManager>();
     }
     // Start is called before the first frame update
     void Start()

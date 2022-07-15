@@ -3,6 +3,7 @@ using Data.Json.Colors_Patterns.Objects;
 using Utils;
 using Unity;
 using UnityEngine;
+using System.Globalization;
 
 namespace Data.Objects
 {
@@ -14,18 +15,21 @@ namespace Data.Objects
         private DateTime _dateOfDeath;
         private string _birthplace;
         private string _deathplace;
+        private readonly CultureInfo _culture = CultureInfo.CreateSpecificCulture("de-DE"); // because jon has en-US as culture
 
         internal void Awake() // Assembly-Access (almost equals protected)
         {
             _name = CleanArtName(_jParam._artist[0]._fullname);
             _dateOfBirth = string.IsNullOrEmpty(_jParam._artist[0]._birthdate)
                                     ? new DateTime()
-                                    : DateTime.Parse(TimeFixer.CleanupDates(_jParam._artist[0]._birthdate));
+                                    : DateTime.Parse(TimeFixer.CleanupDates(_jParam._artist[0]._birthdate), _culture);
             _dateOfDeath = string.IsNullOrEmpty(_jParam._artist[0]._deathdate)
                                     ? new DateTime()
-                                    : DateTime.Parse(TimeFixer.CleanupDates(_jParam._artist[0]._deathdate));
+                                    : DateTime.Parse(TimeFixer.CleanupDates(_jParam._artist[0]._deathdate), _culture);
             _birthplace = _jParam._artist[0]._birthplace;
             _deathplace = _jParam._artist[0]._deathplace;
+            Debug.Log("DEATH: " + DeathMonth);
+            Debug.Log("BIRTH: " + BirthMonth);
         }
 
         private string CleanArtName(string name)
