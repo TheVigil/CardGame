@@ -44,6 +44,7 @@ namespace Data.Objects
             _techniques = ListFiller.FillList<Technique>(jParam._techs);
             _keywords = jParam._keywords;
             _histClass = jParam._histClass;
+
         }
 
         private void InstantiateSpriteRenderer()

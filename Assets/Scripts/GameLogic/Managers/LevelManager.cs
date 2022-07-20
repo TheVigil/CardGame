@@ -99,7 +99,10 @@ namespace Manager
             OnLevelStateChanged?.Invoke(newLevelState);
         }
 
-
+        public int CurrentLevel
+        {
+            get { return level; }
+        }
         #endregion
     }
 }

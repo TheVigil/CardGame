@@ -1,8 +1,11 @@
+using Data.Objects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using RND = System.Random;
 
 namespace Manager
@@ -29,27 +32,84 @@ namespace Manager
          * A mapping of levels to the rule types available in that level.
          * 
          * Key: int -> the level number
-         * Value: List<int> -> a list of integers corresponding to a rule.
+         * Value: SortedDictionary<int, List<string>> -> 
+         *          Key: int -> integer corresponding to the mapping below
+         *          Value: string -> list of strings corresponding to a rule.
          * 
          * Values are mapped as follows:
          * 
          * 0: Material
          * 1: Motif
-         * 2: Artist
+         * 2: Birthplace
          * 3: Technique
          * 4: Style
-         * 5: Elements (visual elements in image)
-         * 6: Year (a year or span of years about the creation year of the art)
+         * 5: Year (a year or span of years about the creation year of the art)
          * 
          * 
          */
 
-        private Dictionary<int, List<int>> RulesDict
-            = new Dictionary<int, List<int>>
+        private SortedDictionary<int, SortedDictionary<int, List<string>>> RulesDict
+            = new SortedDictionary<int, SortedDictionary<int, List<string>>>
             {
-                {1, new List<int> { 0, 1, 2, 3} },
-                {2, new List<int> { 2, 3, 4, 6} },
-                {3, new List<int> { 2, 4, 6} }
+                {1, new SortedDictionary<int, List<string>> {
+                        {0, new List<string>{"Papier", "Leinwand", "Holz"}},
+                        {1, new List<string>{ "Stillleben",
+                                                "Pflanzen",
+                                                "Pflanze",
+                                                "Naturlandschaft",
+                                                "Mensch",
+                                                "Reiter",
+                                                "Landschaft",
+                                                "Boote",
+                                                "Boot",
+                                                "Abstrakt",
+                                                "Tiere",
+                                                "Tier",
+                                                "Pferde",
+                                                "Pferd",
+                                                "Formen",
+                                                "Form",
+                                                "Muster",
+                                                "Menschen",
+                                                "Stadtlandschaft",
+                                                "Gebäude",
+                                                "Ländlich",
+                                                "Bäume",
+                                                "Baum",
+                                                "Gans",
+                                                "Nahrung",
+                                                "Essen",
+                                                "Kirschen",
+                                                "Kirsche",
+                                                "Tiger",
+                                                "Meer",
+                                                "Farben",
+                                                "Abstrakte Landschaft",
+                                                "Geometrie",
+                                                "Taube",
+                                                "Japanisch",
+                                                "Japan",
+                                                "Gebirge",
+                                                "Wasserfall",
+                                                "Hafen",
+                                                "Küste",
+                                                "Felsen"} },
+                        {2, new List<string>{"16", "17", "18", "19", "20"}},
+                    }
+                },
+                {2,  new SortedDictionary<int, List<string>>
+                    {
+                        { 3, new List<string>{"Öl", "Aquarell", "Gezeichnet", "Lithographie", "Farbholzschnitt"}},  
+                        { 4, new List<string>{"Expressionismus"}}, 
+                        { 5 ,new List<string>{"19", "20"}},
+                    } 
+                },
+                {3,  new SortedDictionary<int, List<string>>
+                    { 
+                        {4, new List<string>{"Impressionismus", "Romantik", "Klassizismus", "Ukiyo-e", "Konstrukivismus" }}, 
+                        {5, new List<string>{"17", "18", "1919-1930"}},
+                    } 
+                }
             };
 
         public GameObject MaterialRule;
@@ -66,19 +126,15 @@ namespace Manager
             assignRules,
             displayRule,
             checkRules,
+            attachItem,
+            detachItem,
         }
         #endregion
 
         #region Unity Methods
         private void Awake()
         {
-            exhibitObjects = new List<GameObject>();
-            exhibitObjects.Add(GameObject.Find("Exhibit_0"));
-            exhibitObjects.Add(GameObject.Find("Exhibit_1"));
-            exhibitObjects.Add(GameObject.Find("Exhibit_2"));
-            exhibitObjects.Add(GameObject.Find("Pedestal"));
 
-            RuleTextDisplay = GameObject.Find("RulesTextDisplay");
         }
 
         // Start is called before the first frame update
@@ -95,10 +151,11 @@ namespace Manager
         #endregion
 
         #region State Management
-        public void UpdateRuleState(RuleState newRuleState)
+        public void UpdateRuleState(RuleState newRuleState, Transform exhibit, GameObject card)
         {
             ruleState = newRuleState;
-
+            var x = exhibit;
+            var y = card;
             switch (ruleState)
             {
                 case RuleState.assignRules:
@@ -109,6 +166,12 @@ namespace Manager
                     break;
                 case RuleState.displayRule:
                     break;
+                case RuleState.attachItem:
+                    AttachItem(x, y);
+                    break;
+                case RuleState.detachItem:
+                    DetachItem();
+                    break;
                 default:
                     break;
             }
@@ -118,9 +181,16 @@ namespace Manager
         #region methods
         private void AssignRules()
         {
+            exhibitObjects = new List<GameObject>();
+            exhibitObjects.Add(GameObject.Find("Exhibit_0"));
+            exhibitObjects.Add(GameObject.Find("Exhibit_1"));
+            exhibitObjects.Add(GameObject.Find("Exhibit_2"));
+            exhibitObjects.Add(GameObject.Find("Pedestal"));
+
+            RuleTextDisplay = GameObject.Find("RulesTextDisplay");
+
             foreach (var exhibitObject in exhibitObjects)
             {
-
                 int currentLevel = GameManager.GameManagerInstance.CurrentLevel;
 
                 TextMeshProUGUI ruleText = exhibitObject
@@ -129,37 +199,38 @@ namespace Manager
                         .transform.GetChild(0)
                         .GetComponent<TextMeshProUGUI>();
 
-                int randRuleType = random.Next(RulesDict[currentLevel][0], RulesDict[currentLevel][^1]); // use a pseudorandom int to select which rule type will be used.
+                int randRuleType = random.Next(RulesDict[currentLevel].Keys.First(), RulesDict[currentLevel].Keys.Last() + 1);
 
                 switch (randRuleType)
                 {
                     case 0:
                         ruleText.text = "Material";
                         Instantiate(MaterialRule, new Vector2(0, 0), Quaternion.identity).transform.SetParent(exhibitObject.transform);
+                        exhibitObject.GetComponentInChildren<MatRuleCard>().AssignRuleText(RulesDict[currentLevel][randRuleType]);
                         break;
                     case 1:
                         ruleText.text = "Motiv";
                         Instantiate(MotifRule, new Vector2(0, 0), Quaternion.identity).transform.SetParent(exhibitObject.transform);
+                        exhibitObject.GetComponentInChildren<ObjectRuleCard>().AssignRuleText(RulesDict[currentLevel][randRuleType]);
                         break;
                     case 2:
-                        ruleText.text = "Künstler";
+                        ruleText.text = "Geburt (Jahrhundert)";
                         Instantiate(ArtistRule, new Vector2(0, 0), Quaternion.identity).transform.SetParent(exhibitObject.transform);
+                        exhibitObject.GetComponentInChildren<ArtistRuleCard>().AssignRuleText(RulesDict[currentLevel][randRuleType]);
                         break;
                     case 3:
                         ruleText.text = "Technik";
                         Instantiate(TechniqueRule, new Vector2(0, 0), Quaternion.identity).transform.SetParent(exhibitObject.transform);
+                        exhibitObject.GetComponentInChildren<TechRuleCard>().AssignRuleText(RulesDict[currentLevel][randRuleType]);
+
                         break;
                     case 4:
                         ruleText.text = "Stil";
                         Instantiate(StyleRule,new Vector2(0, 0), Quaternion.identity).transform.SetParent(exhibitObject.transform);
                         break;
                     case 5:
-                        ruleText.text = "Elemente";
+                        ruleText.text = "Jahr";
                         Instantiate(ElementRule, new Vector2(0, 0), Quaternion.identity).transform.SetParent(exhibitObject.transform);
-                        break;
-                    case 6:
-                        ruleText.text = "Jahreszahl";
-                        Instantiate(YearRule, new Vector2(0, 0), Quaternion.identity).transform.SetParent(exhibitObject.transform);
                         break;
                     default:
                         break;
@@ -167,24 +238,119 @@ namespace Manager
             }
         }
 
+        private void AttachItem(Transform exhibit, GameObject card)
+        {
+            var rule = exhibit.transform.GetChild(exhibit.transform.childCount - 1);
+            var item = card.GetComponent<ItemCard>();
+
+            var matRule = rule.GetComponent<MatRuleCard>();
+            var artistRule = rule.GetComponent<ArtistRuleCard>();
+            var creationRule = rule.GetComponent<CreationRuleCard>();
+            var techRule = rule.GetComponent<TechRuleCard>();
+            var styleRule = rule.GetComponent<StyleRuleCard>();
+            var elemRule = rule.GetComponent<ObjectRuleCard>();
+
+            var ruleArray = new UnityEngine.Object[6] { matRule, artistRule, creationRule, techRule, styleRule, elemRule };
+
+            foreach (var ruleCard in ruleArray)
+            {
+                if(ruleCard != null)
+                {
+                    string type = ruleCard.GetType().Name;
+
+                    switch (type)
+                    {
+                        case "MatRuleCard":
+                            MatRuleCard mrc = (MatRuleCard)ruleCard;
+                            mrc.AttachItemToRule(item);
+                            break;
+                        case "ArtistRuleCard":
+                            ArtistRuleCard arc = (ArtistRuleCard)ruleCard;
+                            arc.AttachItemToRule(item);
+                            break;
+                        case "CreationRuleCard":
+                            CreationRuleCard crc = (CreationRuleCard)ruleCard;
+                            crc.AttachItemToRule(item);
+                            break;
+                        case "TechRuleCard":
+                            TechRuleCard trc = (TechRuleCard)ruleCard;
+                            trc.AttachItemToRule(item);
+                            break;
+                        case "StyleRuleCard":
+                            StyleRuleCard src = (StyleRuleCard)ruleCard;
+                            src.AttachItemToRule(item);
+                            break;
+                        case "ObjectRuleCard":
+                            ObjectRuleCard erc = (ObjectRuleCard)ruleCard;
+                            erc.AttachItemToRule(item);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+        }
+
+        private void DetachItem()
+        {
+            throw new NotImplementedException();
+        }
 
         private void CheckRules()
         {
-            foreach (var exhibitObj in exhibitObjects)
+            foreach (var exhibit in exhibitObjects)
             {
-                GameObject rule = exhibitObj.transform.GetChild(exhibitObj.transform.childCount - 1).gameObject;
+                var rule = exhibit.transform.GetChild(exhibit.transform.childCount - 1);
 
-                for (int i = 1; i < exhibitObj.transform.childCount - 1; i++)
+                var matRule = rule.GetComponent<MatRuleCard>();
+                var artistRule = rule.GetComponent<StyleRuleCard>();
+                var creationRule = rule.GetComponent<CreationRuleCard>();
+                var techRule = rule.GetComponent<TechRuleCard>();
+                var styleRule = rule.GetComponent<StyleRuleCard>();
+                var elemRule = rule.GetComponent<ObjectRuleCard>();
+
+                var ruleArray = new UnityEngine.Object[6] { matRule, artistRule, creationRule, techRule, styleRule, elemRule };
+
+                foreach (var ruleCard in ruleArray)
                 {
-                    GameObject dropZone = exhibitObj.transform.GetChild(i).gameObject;
-                    GameObject card = dropZone.transform.GetChild(0).gameObject;
+                    if (ruleCard != null)
+                    {
+                        string type = ruleCard.GetType().Name;
 
-                    //TODO: assert the card belongs to the rule
-                    //rule.assert(card);
+                        switch (type)
+                        {
+                            case "MatRuleCard":
+                                MatRuleCard mrc = (MatRuleCard)ruleCard;
+                                mrc.AssertRuleViolation();
+                                break;
+                            case "ArtistRuleCard":
+                                StyleRuleCard arc = (StyleRuleCard)ruleCard;
+                                arc.AssertRuleViolation();
+                                break;
+                            case "CreationRuleCard":
+                                CreationRuleCard crc = (CreationRuleCard)ruleCard;
+                                crc.AssertRuleViolation();
+                                break;
+                            case "TechRuleCard":
+                                TechRuleCard trc = (TechRuleCard)ruleCard;
+                                trc.AssertRuleViolation();
+                                break;
+                            case "StyleRuleCard":
+                                StyleRuleCard src = (StyleRuleCard)ruleCard;
+                                src.AssertRuleViolation();  
+                                break;
+                            case "ObjectRuleCard":
+                                ObjectRuleCard erc = (ObjectRuleCard)ruleCard;
+                                erc.AssertRuleViolation();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                 }
             }
         }
-
         #endregion
 
     }

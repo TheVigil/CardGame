@@ -17,7 +17,7 @@ namespace Data.Objects
         private string _deathplace;
         private readonly CultureInfo _culture = CultureInfo.CreateSpecificCulture("de-DE"); // because jon has en-US as culture
 
-        internal void Awake() // Assembly-Access (almost equals protected)
+        internal void Awake()
         {
             _name = CleanArtName(_jParam._artist[0]._fullname);
             _dateOfBirth = string.IsNullOrEmpty(_jParam._artist[0]._birthdate)
@@ -28,8 +28,6 @@ namespace Data.Objects
                                     : DateTime.Parse(TimeFixer.CleanupDates(_jParam._artist[0]._deathdate), _culture);
             _birthplace = _jParam._artist[0]._birthplace;
             _deathplace = _jParam._artist[0]._deathplace;
-            Debug.Log("DEATH: " + DeathMonth);
-            Debug.Log("BIRTH: " + BirthMonth);
         }
 
         private string CleanArtName(string name)

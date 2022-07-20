@@ -22,7 +22,7 @@ public class DrawDeck : MonoBehaviour
 
     public void OnMouseDown()
     {
-        Debug.Log("Draw");
         gameManager.GetComponent<CardManager>().DrawCard();
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.DrawCard);
     }
 }

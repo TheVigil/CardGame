@@ -1,3 +1,5 @@
+using Data.Objects;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,5 +16,10 @@ public class ElementRuleCard : MonoBehaviour
     void Update()
     {
         
+    }
+
+    internal void AttachItemToRule(ItemCard item)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -1,18 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class StyleRuleCard : MonoBehaviour
+namespace Data.Objects
 {
-    // Start is called before the first frame update
-    void Start()
+    public class StyleRuleCard : RuleCard
     {
-        
-    }
+        private string _nameAllocation;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public StyleRuleCard(int points, string nameAllocation)
+        {
+            _points = points;
+            _nameAllocation = nameAllocation;
+        }
+
+        public override void AssertRuleViolation()
+        {
+            foreach (ItemCard card in _assignedItems.Keys)
+                if (card.Artist.Name == _nameAllocation)
+                {
+                    _assignedItems[card] = true;
+                    _reachedPoints += _points;
+                }
+        }
+
+        public string NameAllocation
+        {
+            get { return _nameAllocation; }
+        }
     }
 }

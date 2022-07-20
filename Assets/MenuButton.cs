@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Manager;
 
-public class MotifRuleCard : MonoBehaviour
+public class MenuButton : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,10 @@ public class MotifRuleCard : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnMouseDown()
+    {
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.ButtonClick);
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 // using Cards;
 using Data.Objects;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Manager
 {
@@ -25,6 +26,7 @@ namespace Manager
         private static LevelManager LevelManager;
         private static RuleManager RuleManager;
         internal int CurrentLevel;
+        public int CurrentPoints = 0;
 
         public GameState gameState;
         public static event Action<GameState> OnGameStateChanged;
@@ -58,10 +60,9 @@ namespace Manager
                 SceneLoader = GetComponent<SceneLoader>();
                 CardManagerInstance = GetComponent<CardManager>();
                 RuleManager = GetComponent<RuleManager>();
-                GameObject.Find("RulesTextDisplay").SetActive(false);
+                // GameObject.Find("RulesTextDisplay").SetActive(false);
             }
 
-            //TODO: there's a better way for sure
             DontDestroyOnLoad(GameManagerInstance);
             DontDestroyOnLoad(CardManagerInstance);
             DontDestroyOnLoad(SceneLoader);
@@ -70,6 +71,9 @@ namespace Manager
             DontDestroyOnLoad(GameObject.Find("CardSlots"));
             DontDestroyOnLoad(GameObject.Find("CardContainer"));
             DontDestroyOnLoad(GameObject.Find("Canvas"));
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
         }
 
         // Start is called before the first frame update
@@ -86,18 +90,18 @@ namespace Manager
         // TODO: For debugging only, delete!
         public void ForceScene()
         {
-            UpdateGameState(GameState.LevelEnd);
+            SceneLoader.LoadScene();
         }
 
         public void UpdateGameState(GameState newGameState)
         {
             gameState = newGameState;
-            // TODO: Implement handlers for state changes
+
             switch (newGameState)
             {
                 case GameState.StartGame:
                     LevelManager.UpdateLevelState(LevelManager.LevelState.setUp);
-                    RuleManager.UpdateRuleState(RuleManager.RuleState.assignRules);
+                    RuleManager.UpdateRuleState(RuleManager.RuleState.assignRules, gameObject.transform, gameObject);
                     break;
                 case GameState.PlayerTurn:
                     break;
@@ -110,9 +114,10 @@ namespace Manager
                 case GameState.TurnEnd:
                     break;
                 case GameState.LevelEnd:
-                    RuleManager.UpdateRuleState(RuleManager.RuleState.checkRules);
+                   // RuleManager.UpdateRuleState(RuleManager.RuleState.checkRules, gameObject.transform, gameObject);
                     SceneLoader.UpdateSceneState(SceneLoader.SceneState.nextScene);
                     LevelManager.UpdateLevelState(LevelManager.LevelState.setUp);
+                    // RuleManager.UpdateRuleState(RuleManager.RuleState.assignRules, gameObject.transform, gameObject);
                     break;
                 default:
                     break;
@@ -124,9 +129,28 @@ namespace Manager
 
         #region Methods
 
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            Debug.Log("OnSceneLoaded: " + scene.name);
+            RuleManager.UpdateRuleState(RuleManager.RuleState.assignRules, gameObject.transform, gameObject);
+        }
+
         private void UpdateScore()
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
+        }
+
+        public int GetLevel()
+        {
+            return LevelManager.CurrentLevel;
+        }
+
+        public int CalcScore(int points)
+        {
+            Debug.Log("Incoming Score: " + points);
+            CurrentPoints += points;
+            Debug.Log("Curr Score: " + CurrentPoints);
+            return CurrentPoints;
         }
 
         private void UpdateLevelNumber()

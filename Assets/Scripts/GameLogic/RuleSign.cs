@@ -13,6 +13,7 @@ public class RuleSign : MonoBehaviour
     private RuleManager ruleManager;
     private GameObject ruleSign;
     private Transform RulesText;
+    public string description;
     #endregion
 
 
@@ -53,18 +54,12 @@ public class RuleSign : MonoBehaviour
         RulesText.gameObject.SetActive(false);
     }
 
-    //TODO: this should be in the RuleManager, but I kept having a null ref error when trying to pass this.gameObject to the manager. . .
     private void DisplayRule()
     {
-        Transform parent = gameObject.transform.parent;
 
-        int children = gameObject.transform.parent.childCount;
 
-        string name = parent.GetChild(children - 1).transform.name;
-
-        //TODO: this should reflect the text of the individual rule 
         RulesText.gameObject.SetActive(true);
-        RulesText.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = name;
+        RulesText.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = description;
 
     }
 

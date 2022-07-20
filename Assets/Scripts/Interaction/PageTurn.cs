@@ -19,6 +19,7 @@ public class PageTurn : MonoBehaviour
 
     private GameObject CharacterSprite;
     private GameObject BannerSprite;
+    private GameObject IntroHeader;
 
 
     private static event Action<TutorialState> OnTutorialStateChanged;
@@ -54,6 +55,7 @@ public class PageTurn : MonoBehaviour
         InitCharacterGameObjects();
         CharacterSprite = GameObject.Find("CharacterSprite");
         BannerSprite = GameObject.Find("CharacterBannerSprite");
+        IntroHeader = GameObject.Find("IntroPageHeader");
 
         // ensure screen is clear of unwanted text meshes
         DeactivateTextElements(0);
@@ -198,7 +200,7 @@ public class PageTurn : MonoBehaviour
     {
         DeactivateTextElements(0);
         ToggleCharacterSprites(0);
-
+        IntroHeader.SetActive(true);
         NavButtonBack.SetActive(false);
 
         TextObjects[0].SetActive(true);
@@ -225,6 +227,8 @@ public class PageTurn : MonoBehaviour
     {
         DeactivateTextElements(0);
         ToggleCharacterSprites(1);
+        IntroHeader.SetActive(false);
+
 
         NavButtonBack.SetActive(true);
         TextObjects[1].SetActive(true);

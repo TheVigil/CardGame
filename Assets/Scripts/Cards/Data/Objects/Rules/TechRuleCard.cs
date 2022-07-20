@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
-
+using TMPro;
+using RND = System.Random;
+using Manager;
 namespace Data.Objects
 {
-    public class TechRuleCard : RuleCard
+    public class TechRuleCard : RuleCard, IAssignmentHelper
     {
         private List<string> _allocatedTechniques;
 
@@ -11,6 +13,24 @@ namespace Data.Objects
         {
             _points = points;
             _allocatedTechniques = techniques;
+        }
+
+        public void AssignRuleText(List<string> ruleText)
+        {
+            var _random = new RND();
+            var i = _random.Next(0, ruleText.Count);
+
+            if (_allocatedTechniques == null)
+            {
+                _allocatedTechniques = new List<string>();
+                _allocatedTechniques.Add(ruleText[i]);
+
+            }
+            else
+            {
+                _allocatedTechniques.Add(ruleText[i]);
+            }
+            gameObject.transform.parent.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Technik: " + ruleText[i];
         }
 
         public override void AssertRuleViolation()
@@ -33,7 +53,9 @@ namespace Data.Objects
                     if (match)
                     {
                         _assignedItems[card] = true;
+                        _points = GameManager.GameManagerInstance.GetLevel();
                         _reachedPoints += _points;
+                        GameManager.GameManagerInstance.CalcScore(this.Points);
                         break;
                     }
                 }

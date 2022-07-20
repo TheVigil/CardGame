@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Data.Objects
 {
@@ -16,9 +17,28 @@ namespace Data.Objects
 
         public abstract void AssertRuleViolation();
 
+        private void InitAssignedItems(ItemCard card)
+        {
+            if( _assignedItems == null)
+            {
+                _assignedItems = new Dictionary<ItemCard, bool>();
+                _assignedItems.Add(card, false);
+            }
+            else
+            {
+                return;
+            }
+        }
         public void AttachItemToRule(ItemCard card)
         {
-            _assignedItems.Add(card, false);
+            if( _assignedItems != null)
+            {
+                _assignedItems.Add(card, false);
+            }
+            else
+            {
+                InitAssignedItems(card);
+            }
         }
 
         public void AttachItemToRule(Dictionary<ItemCard, bool> cards)

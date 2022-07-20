@@ -12,7 +12,7 @@ namespace Manager
     public class SceneLoader : MonoBehaviour
     {
 
-        public int sceneIdx = 1;
+        private int sceneIdx = 1;
         private SceneState sceneState;
         public static event Action<SceneState> OnSceneStateChanged;
 
@@ -20,7 +20,7 @@ namespace Manager
         {
             nextScene,
         }
-        private void LoadScene()
+        public void LoadScene()
         {
             sceneIdx++;
             StartCoroutine(LoadSceneAsync(sceneIdx));

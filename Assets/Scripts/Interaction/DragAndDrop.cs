@@ -33,11 +33,9 @@ public class DragAndDrop : MonoBehaviour
         }
     }
 
-    // TODO : Maybe animate the dropzone sprites to indicate a card can be dropped?
     #region Collision Detection
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Debug.Log("enter " + other.name);
         if (other.gameObject.GetComponent<BoxCollider2D>().isTrigger)
         {
             dropZone = other.gameObject;
@@ -57,6 +55,7 @@ public class DragAndDrop : MonoBehaviour
 
     public void EndDrag()
     {
+
         if (overDropZone)
         {
             transform.SetParent(dropZone.transform, false);
@@ -66,7 +65,8 @@ public class DragAndDrop : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().size = new Vector2(1f, 1f);
             gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
             gameManager.GetComponent<CardManager>().EnableCardSlot((gameObject.GetComponent<Card>().handSlotIndex));
-            dropZone.GetComponent<DropZone>().DisableDropZoneCollider();
+            SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.PlaceCard);
+            dropZone.GetComponent<DropZone>().DisableDropZoneCollider(gameObject);
 
             isDraggable = false;
         }

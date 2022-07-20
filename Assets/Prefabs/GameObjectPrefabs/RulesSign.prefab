@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -320, y: -72}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -785.2, y: -211.3}
+  m_SizeDelta: {x: 252.4999, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2619676100716250561
 CanvasRenderer:
@@ -66,12 +66,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ausstellung 2
-
-'
+  m_text: Word
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f342899fecbab0841a7997b42d18f880, type: 2}
+  m_sharedMaterial: {fileID: 4012789277599683349, guid: f342899fecbab0841a7997b42d18f880, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -163,9 +161,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2619676101337691016}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0196, y: -0.5811, z: 0}
-  m_LocalScale: {x: 0.07515778, y: 0.064454086, z: 1}
+  m_LocalScale: {x: 0.26503292, y: 0.083963394, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2619676101342694019}
@@ -281,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7413de783eff4c43ba7af821c4a7fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  description: 
 --- !u!1 &2619676101342694028
 GameObject:
   m_ObjectHideFlags: 0

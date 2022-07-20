@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Data.Objects;
 using System;
-using UnityEngine;
 using UnityEngine.EventSystems;
+using Manager;
+
 public class CardFlipper : MonoBehaviour, IPointerClickHandler
 {
     
@@ -36,6 +37,7 @@ public class CardFlipper : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
+            SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.TurnCard);
             StartFlipCard();
         }
     }
@@ -66,7 +68,7 @@ public class CardFlipper : MonoBehaviour, IPointerClickHandler
     {
         for (int i = 0; i < 180; i++)
         {
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.002f);
             transform.Rotate(new Vector3(x, y, z));
             timer++;
 
