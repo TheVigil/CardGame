@@ -14,7 +14,8 @@ namespace Manager
     {
         /**
          * 
-         * State Updater pattern for checking if cards fullfill the assigned rule on round end.
+         * State Updater pattern for assigning rules to each exhibit at the top of the level, as 
+         * well as checking if cards fullfill the assigned rule on level end.
          * 
          */
 
@@ -99,15 +100,16 @@ namespace Manager
                 },
                 {2,  new SortedDictionary<int, List<string>>
                     {
-                        { 3, new List<string>{"Öl", "Aquarell", "Gezeichnet", "Lithographie", "Farbholzschnitt"}},  
-                        { 4, new List<string>{"Expressionismus"}}, 
-                        { 5 ,new List<string>{"19", "20"}},
+                        {3, new List<string>{"Öl", "Aquarell", "Gezeichnet", "Lithographie", "Farbholzschnitt"}},
+                        {4, new List<string>{"Impressionismus", "Romantik", "Klassizismus", "Ukiyo-e", "Konstrukivismus" }},
+                        {5 ,new List<string>{"16", "17", "18", "19", "20"}},
                     } 
                 },
                 {3,  new SortedDictionary<int, List<string>>
-                    { 
+                    {
+                        {3, new List<string>{"Öl", "Aquarell", "Gezeichnet", "Lithographie", "Farbholzschnitt"}},
                         {4, new List<string>{"Impressionismus", "Romantik", "Klassizismus", "Ukiyo-e", "Konstrukivismus" }}, 
-                        {5, new List<string>{"17", "18", "1919-1930"}},
+                        {5, new List<string>{"16", "17", "18", "19", "20"}},
                     } 
                 }
             };
@@ -148,6 +150,7 @@ namespace Manager
         {
 
         }
+
         #endregion
 
         #region State Management
@@ -191,16 +194,43 @@ namespace Manager
 
             foreach (var exhibitObject in exhibitObjects)
             {
-                int currentLevel = GameManager.GameManagerInstance.CurrentLevel;
+                if(exhibitObject.name == "Pedestal")
+                {
+                    AssignExhibitRules(1, exhibitObject);
+                }
+                else
+                {
+                    AssignExhibitRules(1, exhibitObject);
+                }  
+            }
+        }
 
-                TextMeshProUGUI ruleText = exhibitObject
+        private void AssignExhibitRules(int rulesCount, GameObject exhibitObject)
+        {
+            // we need to track the type of rules already assigned to the pedestal to ensure rule uniqueness
+            List<int> ruleTypes = new List<int>();
+
+            int currentLevel = GameManager.GameManagerInstance.GetLevel();
+
+            while (ruleTypes.Count < rulesCount)
+            {
+                int randRuleType = GenerateRuleType(currentLevel);
+
+                if (!ruleTypes.Contains(randRuleType))
+                {
+                    ruleTypes.Add(randRuleType); 
+                }
+            }
+
+            TextMeshProUGUI ruleText = exhibitObject
                         .transform.GetChild(0)
                         .transform.GetChild(0)
                         .transform.GetChild(0)
                         .GetComponent<TextMeshProUGUI>();
 
-                int randRuleType = random.Next(RulesDict[currentLevel].Keys.First(), RulesDict[currentLevel].Keys.Last() + 1);
 
+            foreach (var randRuleType in ruleTypes)
+            {
                 switch (randRuleType)
                 {
                     case 0:
@@ -214,7 +244,7 @@ namespace Manager
                         exhibitObject.GetComponentInChildren<ObjectRuleCard>().AssignRuleText(RulesDict[currentLevel][randRuleType]);
                         break;
                     case 2:
-                        ruleText.text = "Geburt (Jahrhundert)";
+                        ruleText.text = "Geburtsjahrhundert";
                         Instantiate(ArtistRule, new Vector2(0, 0), Quaternion.identity).transform.SetParent(exhibitObject.transform);
                         exhibitObject.GetComponentInChildren<ArtistRuleCard>().AssignRuleText(RulesDict[currentLevel][randRuleType]);
                         break;
@@ -226,16 +256,23 @@ namespace Manager
                         break;
                     case 4:
                         ruleText.text = "Stil";
-                        Instantiate(StyleRule,new Vector2(0, 0), Quaternion.identity).transform.SetParent(exhibitObject.transform);
+                        Instantiate(StyleRule, new Vector2(0, 0), Quaternion.identity).transform.SetParent(exhibitObject.transform);
+                        exhibitObject.GetComponentInChildren<StyleRuleCard>().AssignRuleText(RulesDict[currentLevel][randRuleType]);
                         break;
                     case 5:
-                        ruleText.text = "Jahr";
-                        Instantiate(ElementRule, new Vector2(0, 0), Quaternion.identity).transform.SetParent(exhibitObject.transform);
+                        ruleText.text = "Entstehungsjahrhundert";
+                        Instantiate(YearRule, new Vector2(0, 0), Quaternion.identity).transform.SetParent(exhibitObject.transform);
+                        exhibitObject.GetComponentInChildren<CreationRuleCard>().AssignRuleText(RulesDict[currentLevel][randRuleType]);
                         break;
                     default:
                         break;
                 }
             }
+        }
+
+        private int GenerateRuleType(int currentLevel)
+        {
+           return random.Next(RulesDict[currentLevel].Keys.First(), RulesDict[currentLevel].Keys.Last() + 1);
         }
 
         private void AttachItem(Transform exhibit, GameObject card)
@@ -299,16 +336,17 @@ namespace Manager
 
         private void CheckRules()
         {
+            Debug.Log("CHECK RULES");
             foreach (var exhibit in exhibitObjects)
             {
-                var rule = exhibit.transform.GetChild(exhibit.transform.childCount - 1);
+                // sloppy, but I can't think of a more clever way to get the rule objects, since I neither know in advance which rules are assigned to the exhibit, nor how many. 
 
-                var matRule = rule.GetComponent<MatRuleCard>();
-                var artistRule = rule.GetComponent<StyleRuleCard>();
-                var creationRule = rule.GetComponent<CreationRuleCard>();
-                var techRule = rule.GetComponent<TechRuleCard>();
-                var styleRule = rule.GetComponent<StyleRuleCard>();
-                var elemRule = rule.GetComponent<ObjectRuleCard>();
+                var matRule = exhibit.GetComponentInChildren<MatRuleCard>();
+                var artistRule = exhibit.GetComponentInChildren<ArtistRuleCard>();
+                var creationRule = exhibit.GetComponentInChildren<CreationRuleCard>();
+                var techRule = exhibit.GetComponentInChildren<TechRuleCard>();
+                var styleRule = exhibit.GetComponentInChildren<StyleRuleCard>();
+                var elemRule = exhibit.GetComponentInChildren<ObjectRuleCard>();
 
                 var ruleArray = new UnityEngine.Object[6] { matRule, artistRule, creationRule, techRule, styleRule, elemRule };
 
@@ -317,7 +355,6 @@ namespace Manager
                     if (ruleCard != null)
                     {
                         string type = ruleCard.GetType().Name;
-
                         switch (type)
                         {
                             case "MatRuleCard":
@@ -325,7 +362,7 @@ namespace Manager
                                 mrc.AssertRuleViolation();
                                 break;
                             case "ArtistRuleCard":
-                                StyleRuleCard arc = (StyleRuleCard)ruleCard;
+                                ArtistRuleCard arc = (ArtistRuleCard)ruleCard;
                                 arc.AssertRuleViolation();
                                 break;
                             case "CreationRuleCard":
@@ -338,7 +375,7 @@ namespace Manager
                                 break;
                             case "StyleRuleCard":
                                 StyleRuleCard src = (StyleRuleCard)ruleCard;
-                                src.AssertRuleViolation();  
+                                src.AssertRuleViolation();
                                 break;
                             case "ObjectRuleCard":
                                 ObjectRuleCard erc = (ObjectRuleCard)ruleCard;

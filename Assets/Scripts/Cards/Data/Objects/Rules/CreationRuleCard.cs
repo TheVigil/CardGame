@@ -1,11 +1,16 @@
+using Manager;
 using System;
-
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using RND = System.Random;
 namespace Data.Objects
 {
-    public class CreationRuleCard : RuleCard
+    public class CreationRuleCard : RuleCard, IAssignmentHelper
     {
         private int _creationAllocation;
         private int _allowedDeviation;
+        private List<string> _centuryAllocation;
 
         public CreationRuleCard(int points, int yearAllocation, int allowedDeviation = 0)
         {
@@ -24,22 +29,44 @@ namespace Data.Objects
                 throw new ArgumentException("Given year must be 4 digits in length and cannot be in the future");
         }
 
+        public void AssignRuleText(List<string> ruleText)
+        {
+            var _random = new RND();
+            var i = _random.Next(0, ruleText.Count);
+
+            if (_centuryAllocation == null)
+            {
+                _centuryAllocation = new List<string>();
+                _centuryAllocation.Add(ruleText[i]);
+
+            }
+            else
+            {
+                _centuryAllocation.Add(ruleText[i]);
+            }
+            gameObject.transform.parent.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Entstehungsjahrhundert: " + ruleText[i];
+        }
+
         public override void AssertRuleViolation()
         {
             foreach (ItemCard card in _assignedItems.Keys)
             {
-                bool inRange = false;
+                bool match = false;
+                var creationCentury = (card.Artist.BirthYear + 100).ToString()[..2];
 
-                if (card.CreationTime.Count > 1)
-                    inRange = CheckTimeRange(card.CreationTime[0], card.CreationTime[1]);
-                else
-                    inRange = CheckTimeRange(card.CreationTime[0], card.CreationTime[0]);
-
-                if (inRange)
+                if (creationCentury == _centuryAllocation[0])
                 {
-                    _assignedItems[card] = true;
-                    _reachedPoints += _points;
+                    match = true;
                 }
+
+                if (match)
+                {
+                    _points = 1 * GameManager.GameManagerInstance.GetLevel();
+                    _reachedPoints += _points;
+                    GameManager.GameManagerInstance.CalcScore(this.Points);
+                    continue;
+                }
+
             }
         }
 

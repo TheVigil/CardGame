@@ -1,3 +1,4 @@
+using Manager;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ public class PageTurn : MonoBehaviour
     #region declarations
     private GameObject NavButtonForward;
     private GameObject NavButtonBack;
+    private GameObject MenuButton;
 
     private GameObject CharacterSprite;
     private GameObject BannerSprite;
@@ -57,6 +59,7 @@ public class PageTurn : MonoBehaviour
         BannerSprite = GameObject.Find("CharacterBannerSprite");
         IntroHeader = GameObject.Find("IntroPageHeader");
 
+
         // ensure screen is clear of unwanted text meshes
         DeactivateTextElements(0);
 
@@ -73,12 +76,22 @@ public class PageTurn : MonoBehaviour
     public void PageForward()
     {
         StateIndex++;
+        if (!SfxManager.sfxInstance.Audio.isPlaying)
+        {
+            SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.ButtonClick);
+
+        }
         NewState();
     }
 
     public void PageBack()
     {
         StateIndex--;
+        if (!SfxManager.sfxInstance.Audio.isPlaying)
+        {
+            SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.ButtonClick);
+
+        }
         NewState();
     }
     #endregion
@@ -88,6 +101,7 @@ public class PageTurn : MonoBehaviour
     {
         NavButtonForward = GameObject.Find("NavButtonForward");
         NavButtonBack = GameObject.Find("NavButtonBack");
+        MenuButton = GameObject.Find("MenuButton");
     }
 
     private void InitTextElementObjects()
@@ -202,6 +216,8 @@ public class PageTurn : MonoBehaviour
         ToggleCharacterSprites(0);
         IntroHeader.SetActive(true);
         NavButtonBack.SetActive(false);
+        MenuButton.SetActive(false);
+        NavButtonForward.SetActive(true);
 
         TextObjects[0].SetActive(true);
 
@@ -231,6 +247,8 @@ public class PageTurn : MonoBehaviour
 
 
         NavButtonBack.SetActive(true);
+        NavButtonForward.SetActive(true);
+
         TextObjects[1].SetActive(true);
 
         // extra setup for character info
@@ -251,6 +269,7 @@ public class PageTurn : MonoBehaviour
     {
         DeactivateTextElements(1);
         ToggleCharacterSprites(1);
+        NavButtonForward.SetActive(true);
 
         // extra setup for character info
         CharacterSprite.GetComponent<SpriteRenderer>()
@@ -268,6 +287,8 @@ public class PageTurn : MonoBehaviour
     {
         DeactivateTextElements(1);
         ToggleCharacterSprites(1);
+        NavButtonForward.SetActive(true);
+
 
         // extra setup for character info
         CharacterSprite.GetComponent<SpriteRenderer>()
@@ -284,6 +305,8 @@ public class PageTurn : MonoBehaviour
     {
         DeactivateTextElements(1);
         ToggleCharacterSprites(1);
+        NavButtonForward.SetActive(true);
+
 
         TextObjects[1].SetActive(true); // for the way back
 
@@ -300,6 +323,8 @@ public class PageTurn : MonoBehaviour
 
     private void SetUpPage5()
     {
+        NavButtonForward.SetActive(true);
+
         ToggleCharacterSprites(0);
         DeactivateTextElements(0);
         TextObjects[2].SetActive(true);
@@ -314,6 +339,8 @@ public class PageTurn : MonoBehaviour
 
     private void SetUpPage7()
     {
+        NavButtonForward.SetActive(true);
+
         DeactivateTextElements(0);
         TextObjects[4].SetActive(true);
     }
@@ -322,6 +349,10 @@ public class PageTurn : MonoBehaviour
     {
         DeactivateTextElements(0);
         TextObjects[5].SetActive(true);
+        MenuButton.SetActive(false);
+        NavButtonForward.SetActive(true);
+
+
     }
 
     private void SetUpPage9()
@@ -329,6 +360,8 @@ public class PageTurn : MonoBehaviour
         DeactivateTextElements(0);
         NavButtonForward.SetActive(false);
         TextObjects[6].SetActive(true);
+        MenuButton.SetActive(true);
+
     }
 
 

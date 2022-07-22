@@ -69,6 +69,7 @@ namespace Manager
         {
             if(dropZones == 0)
             {
+                Debug.Log("END LEVEL");
                 GameManager.GameManagerInstance.UpdateGameState(GameManager.GameState.LevelEnd);
             }
         }

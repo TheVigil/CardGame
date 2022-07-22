@@ -11,6 +11,7 @@ public class DropZone : MonoBehaviour
     private GameObject dropZone;
     private Collider2D dropZoneCollider;
     private GameManager gameManager;
+    // TODO: this is where things start to get sloppy, sadly we ran out of time for code clean up and refactoring.
     private LevelManager levelManager;
     private RuleManager ruleManager;
 
@@ -31,12 +32,12 @@ public class DropZone : MonoBehaviour
 
     public void DisableDropZoneCollider(GameObject card)
     {
-        Debug.Log("ATTACH: " + card);
         dropZoneCollider.enabled = false;
-        levelManager.UpdateLevelState(LevelManager.LevelState.decreaseDrops);
         ruleManager.UpdateRuleState(RuleManager.RuleState.attachItem, gameObject.transform.parent, card);
+        levelManager.UpdateLevelState(LevelManager.LevelState.decreaseDrops);
 
-        var matRule = gameObject.transform.parent.GetComponentInChildren<MatRuleCard>();
+        // TODO: this mess is only for debugging atm. move to RulesManager once all the rules are implemented!
+       /* var matRule = gameObject.transform.parent.GetComponentInChildren<MatRuleCard>();
         var artistRule = gameObject.transform.parent.GetComponentInChildren<ArtistRuleCard>();
         var creationRule = gameObject.transform.parent.GetComponentInChildren<CreationRuleCard>();
         var techRule = gameObject.transform.parent.GetComponentInChildren<TechRuleCard>();
@@ -47,8 +48,6 @@ public class DropZone : MonoBehaviour
 
         foreach (var ruleCard in ruleArray)
         {
-            Debug.Log(ruleCard);
-
             if (ruleCard != null)
             {
                 string type = ruleCard.GetType().Name;
@@ -82,7 +81,7 @@ public class DropZone : MonoBehaviour
                         break;
                 }
             }
-        }
+        }*/
     }
 
     public void EnableDropZoneCollider(GameObject card)

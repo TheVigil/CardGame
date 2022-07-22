@@ -9,9 +9,9 @@ public class RuleSign : MonoBehaviour
 {
 
     #region declarations
-    private GameManager gameManager;
-    private RuleManager ruleManager;
-    private GameObject ruleSign;
+    //private GameManager gameManager;
+    // private RuleManager ruleManager;
+    // private GameObject ruleSign;
     private Transform RulesText;
     public string description;
     #endregion
@@ -21,7 +21,7 @@ public class RuleSign : MonoBehaviour
     private void Awake()
     {
         RulesText = GameObject.Find("Canvas").transform.GetChild(1);
-        gameManager = GameManager.GameManagerInstance;
+        //gameManager = GameManager.GameManagerInstance;
         // ruleManager = gameManager.GetComponent<RuleManager>();
     }
     // Start is called before the first frame update

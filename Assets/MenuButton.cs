@@ -22,4 +22,14 @@ public class MenuButton : MonoBehaviour
     {
         SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.ButtonClick);
     }
+    public void PlayOneShot()
+    {
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.ButtonClick);
+    }
+
+    public void ExitGame()
+    {
+        Debug.Log("Called");
+        Application.Quit();
+    }
 }

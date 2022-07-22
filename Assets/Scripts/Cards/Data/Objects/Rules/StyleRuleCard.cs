@@ -1,30 +1,58 @@
+using Manager;
 using System;
-
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using RND = System.Random;
 namespace Data.Objects
 {
-    public class StyleRuleCard : RuleCard
+    public class StyleRuleCard : RuleCard, IAssignmentHelper
     {
-        private string _nameAllocation;
+        private List<string> _styleAllocation;
 
-        public StyleRuleCard(int points, string nameAllocation)
+        public StyleRuleCard(int points, List<string> styleName)
         {
             _points = points;
-            _nameAllocation = nameAllocation;
+            _styleAllocation = styleName;
+        }
+
+        public void AssignRuleText(List<string> ruleText)
+        {
+            var _random = new RND();
+            var i = _random.Next(0, ruleText.Count);
+
+            if (_styleAllocation == null)
+            {
+                _styleAllocation = new List<string>();
+                _styleAllocation.Add(ruleText[i]);
+
+            }
+            else
+            {
+                _styleAllocation.Add(ruleText[i]);
+            }
+            gameObject.transform.parent.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Einordnung: " + ruleText[i];
         }
 
         public override void AssertRuleViolation()
         {
             foreach (ItemCard card in _assignedItems.Keys)
-                if (card.Artist.Name == _nameAllocation)
+            {
+                if (card.HistClass == _styleAllocation[0])
                 {
-                    _assignedItems[card] = true;
+                    _points = 1 * GameManager.GameManagerInstance.GetLevel();
                     _reachedPoints += _points;
+                    GameManager.GameManagerInstance.CalcScore(this.Points);
+                    continue;
                 }
+
+            }
+                
         }
 
-        public string NameAllocation
+        public List<string> StyleAllocation
         {
-            get { return _nameAllocation; }
+            get { return _styleAllocation; }
         }
     }
 }

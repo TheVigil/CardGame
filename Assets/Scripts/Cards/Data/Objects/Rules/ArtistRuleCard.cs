@@ -37,7 +37,6 @@ namespace Data.Objects
                 _birthyearalloc.Add(ruleText[j]);
             }
 
-            // gameObject.transform.parent.GetComponentInChildren<RuleSign>().description = ruleText[i];
             if (ruleText[i] == ruleText[j])
             {
                 gameObject.transform.parent.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Geburt (Jahrhundert): " + ruleText[i] + "Jh";
@@ -56,7 +55,9 @@ namespace Data.Objects
             {
 
                 bool match = false;
+
                 var birthCentury = (card.Artist.BirthYear + 100).ToString()[..2];
+
                 if (birthCentury == _birthyearalloc[0] || birthCentury == _birthyearalloc[1] || birthCentury == "1")
                 {
                     // note that if the birthCentury is a "1" this means there is no data in the dataset concerning the birth of the artist, so we give the player a freebie here
@@ -66,8 +67,7 @@ namespace Data.Objects
 
                 if (match)
                 {
-                    _assignedItems[card] = true;
-                    _points = GameManager.GameManagerInstance.GetLevel();
+                    _points = 1 * GameManager.GameManagerInstance.GetLevel();
                     _reachedPoints += _points;
                     GameManager.GameManagerInstance.CalcScore(this.Points);
                     continue;

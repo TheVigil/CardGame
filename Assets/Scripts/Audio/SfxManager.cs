@@ -12,6 +12,8 @@ namespace Manager
         public AudioClip TurnCard;
         public AudioClip PlaceCard;
         public AudioClip ButtonClick;
+        public AudioClip EndGame;
+        public AudioClip LevelFinished;
 
         public static SfxManager sfxInstance;
 

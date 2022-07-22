@@ -52,8 +52,7 @@ namespace Data.Objects
 
                     if (match)
                     {
-                        _assignedItems[card] = true;
-                        _points = GameManager.GameManagerInstance.GetLevel();
+                        _points = 1 * GameManager.GameManagerInstance.GetLevel();
                         _reachedPoints += _points;
                         GameManager.GameManagerInstance.CalcScore(this.Points);
                         break;

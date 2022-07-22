@@ -26,6 +26,17 @@ namespace Manager
             StartCoroutine(LoadSceneAsync(sceneIdx));
         }
 
+        public void LoadControlsScene()
+        {
+            StartCoroutine(LoadSceneAsync(8));
+
+        }
+
+        public void LoadMainMenu()
+        {
+            StartCoroutine(LoadSceneAsync(0));
+        }
+
         public void LoadFirstScene()
         {
             // This is lazy, please forgive me
@@ -34,12 +45,13 @@ namespace Manager
 
         public void LoadInstructionsScene()
         {
-            StartCoroutine(LoadSceneAsync(4));
+            StartCoroutine(LoadSceneAsync(7));
         }
 
         IEnumerator LoadSceneAsync(int sceneIdx)
         {
             // We could build in a loading screen here. . .
+            Debug.Log("LOAD SCENEIDX: " + sceneIdx);
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIdx);
             asyncOperation.allowSceneActivation = false;
             float progress = 0;

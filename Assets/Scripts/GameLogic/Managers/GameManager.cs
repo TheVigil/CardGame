@@ -6,6 +6,7 @@ using UnityEngine;
 using Data.Objects;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 namespace Manager
 {
@@ -25,13 +26,16 @@ namespace Manager
         private static SceneLoader SceneLoader;
         private static LevelManager LevelManager;
         private static RuleManager RuleManager;
+        private static GameObject Canvas;
+        private static GameObject CardSlots;
+        private static GameObject CardContainer;
+        private TextMeshProUGUI ScoreText;
         internal int CurrentLevel;
         public int CurrentPoints = 0;
 
         public GameState gameState;
         public static event Action<GameState> OnGameStateChanged;
 
-        // TODO: implement the individual bits of state for the manager. What states do we need here?
         public enum GameState
         {
             StartGame,
@@ -40,15 +44,13 @@ namespace Manager
             UpdateLevelNumber,
             TurnEnd,
             LevelEnd,
+            RestartGame
         }
         #endregion
 
         #region Unity Methods
         private void Awake()
         {
-
-            CurrentLevel = 0;
-
             if (GameManagerInstance != null)
             {
                 Destroy(this);
@@ -60,17 +62,23 @@ namespace Manager
                 SceneLoader = GetComponent<SceneLoader>();
                 CardManagerInstance = GetComponent<CardManager>();
                 RuleManager = GetComponent<RuleManager>();
-                // GameObject.Find("RulesTextDisplay").SetActive(false);
+                ScoreText = GameObject.Find("ScoreText").GetComponentInChildren<TextMeshProUGUI>();
+                CardSlots = GameObject.Find("CardSlots");
+                CardContainer = GameObject.Find("CardContainer");
+                Canvas = GameObject.Find("Canvas");
             }
+
+            CurrentLevel = LevelManager.CurrentLevel;
 
             DontDestroyOnLoad(GameManagerInstance);
             DontDestroyOnLoad(CardManagerInstance);
             DontDestroyOnLoad(SceneLoader);
             DontDestroyOnLoad(LevelManager);
             DontDestroyOnLoad(RuleManager);
-            DontDestroyOnLoad(GameObject.Find("CardSlots"));
-            DontDestroyOnLoad(GameObject.Find("CardContainer"));
-            DontDestroyOnLoad(GameObject.Find("Canvas"));
+            DontDestroyOnLoad(CardSlots);
+            DontDestroyOnLoad(CardSlots);
+            DontDestroyOnLoad(Canvas);
+           // DontDestroyOnLoad(ScoreText);
 
             SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -80,17 +88,23 @@ namespace Manager
         void Start()
         {
             CardManagerInstance.PopulateDeck();
-            UpdateGameState(GameState.StartGame);
         }
 
         #endregion
 
         #region State Management
 
-        // TODO: For debugging only, delete!
+        // sloppy, but the deadline is close and this is a fast workaround
+
         public void ForceScene()
         {
             SceneLoader.LoadScene();
+        }
+
+        public void MainMenu()
+        {
+            SceneLoader.LoadMainMenu();
+
         }
 
         public void UpdateGameState(GameState newGameState)
@@ -100,8 +114,6 @@ namespace Manager
             switch (newGameState)
             {
                 case GameState.StartGame:
-                    LevelManager.UpdateLevelState(LevelManager.LevelState.setUp);
-                    RuleManager.UpdateRuleState(RuleManager.RuleState.assignRules, gameObject.transform, gameObject);
                     break;
                 case GameState.PlayerTurn:
                     break;
@@ -114,10 +126,11 @@ namespace Manager
                 case GameState.TurnEnd:
                     break;
                 case GameState.LevelEnd:
-                   // RuleManager.UpdateRuleState(RuleManager.RuleState.checkRules, gameObject.transform, gameObject);
+                    RuleManager.UpdateRuleState(RuleManager.RuleState.checkRules, gameObject.transform, gameObject);
                     SceneLoader.UpdateSceneState(SceneLoader.SceneState.nextScene);
-                    LevelManager.UpdateLevelState(LevelManager.LevelState.setUp);
-                    // RuleManager.UpdateRuleState(RuleManager.RuleState.assignRules, gameObject.transform, gameObject);
+                    break;
+                case GameState.RestartGame:
+                    MainMenu();
                     break;
                 default:
                     break;
@@ -129,10 +142,53 @@ namespace Manager
 
         #region Methods
 
+        //TODO: should be moved to scene manager, really.
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            Debug.Log("OnSceneLoaded: " + scene.name);
-            RuleManager.UpdateRuleState(RuleManager.RuleState.assignRules, gameObject.transform, gameObject);
+            if(scene.buildIndex == 0)
+            {
+                MainMenuCleanUp();
+            }
+            // level end screens
+            if (scene.buildIndex == 2 || scene.buildIndex == 4)
+            {
+                SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.LevelFinished);
+                BgMusic.BgInstance.GetComponent<AudioSource>().Play();
+                ScoreText.GetComponent<TextMeshProUGUI>().text = "";
+                CardSlots.SetActive(false);
+                GameObject.Find("ScoreScreenText").GetComponentInChildren<TextMeshProUGUI>().text = "Du hast letzte Runde " + CurrentPoints + " Punkte geschafft!";
+            }
+            // endgame screen
+            if (scene.buildIndex == 6)
+            {
+                SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.EndGame);
+                BgMusic.BgInstance.GetComponent<AudioSource>().Play();
+                ScoreText.GetComponent<TextMeshProUGUI>().text = "";
+                CardSlots.SetActive(false);
+                GameObject.Find("ScoreScreenText").GetComponentInChildren<TextMeshProUGUI>().text = "Du hast letzte Runde " + CurrentPoints + " Punkte geschafft!";
+            }
+            
+            if(scene.buildIndex == 1 || scene.buildIndex == 3 || scene.buildIndex == 5)
+            {
+                Canvas.SetActive(true);
+                CardSlots.SetActive(true);
+                ScoreText.GetComponent<TextMeshProUGUI>().text = CurrentPoints.ToString();
+                LevelManager.UpdateLevelState(LevelManager.LevelState.setUp);
+                RuleManager.UpdateRuleState(RuleManager.RuleState.assignRules, gameObject.transform, gameObject);
+            }
+        }
+
+        private void MainMenuCleanUp()
+        {
+            Destroy(GameManagerInstance);
+            Destroy(CardManagerInstance);
+            Destroy(SceneLoader);
+            Destroy(LevelManager);
+            Destroy(RuleManager);
+            Destroy(GameObject.Find("CardSlots"));
+            Destroy(GameObject.Find("CardContainer"));
+            Destroy(GameObject.Find("Canvas"));
+            Destroy(ScoreText);
         }
 
         private void UpdateScore()
@@ -150,6 +206,7 @@ namespace Manager
             Debug.Log("Incoming Score: " + points);
             CurrentPoints += points;
             Debug.Log("Curr Score: " + CurrentPoints);
+            ScoreText.GetComponent<TextMeshProUGUI>().text = CurrentPoints.ToString();
             return CurrentPoints;
         }
 
